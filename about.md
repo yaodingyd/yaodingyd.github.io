@@ -4,12 +4,9 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+My name is Yao Ding. I mostly do front-end stuff, and a little bit back-end stuff. My Master's and Bachelor's degrees
+are both Engineering, so I prefer meself as a engineer.
 
-You can find the source code for the Jekyll new theme at:
-{% include icon-github.html username="jekyll" %} /
-[minima](https://github.com/jekyll/minima)
+I consider myself an average programmer and a subpar blogger, so I will try my best to keep my thoughts down here.
 
-You can find the source code for Jekyll at
-{% include icon-github.html username="jekyll" %} /
-[jekyll](https://github.com/jekyll/jekyll)
+This site is built with Jekyll.

@@ -17,7 +17,7 @@ title: Yao Ding
 email: yaodingyd@gmail.com
 description: ""
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://yaodingyd.github.com/" # the base hostname & protocol for your site
+url: "https://yaodingyd.github.com" # the base hostname & protocol for your site
 github_username:  yaodingyd
 
 # Build settings

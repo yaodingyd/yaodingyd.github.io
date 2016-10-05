@@ -9,6 +9,7 @@ date:   2016-10-05
 There is one interesing part when I tested my Chengnuo.js using Mocha. Actually this process helps me understand how promise works better.
 
 So for asynchronous tesing, Mocha( and Jamine) uses a callback, usually called "done", to indicate that the test if completed. For example:
+
 ```javascript
         it('test a asynchromous function', function(done){
             ...
@@ -18,6 +19,7 @@ So for asynchronous tesing, Mocha( and Jamine) uses a callback, usually called "
             })
         });
 ```
+
 Without the "done" callback, Mocha would take this spec as synchronous and finish testing, returns a "passed", but actually it might have failed.
 
 This problem I encountered is that even though I added "done" in the `resolve` function, I missed it in `catch`

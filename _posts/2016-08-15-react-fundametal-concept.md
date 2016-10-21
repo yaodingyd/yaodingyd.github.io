@@ -7,15 +7,15 @@ date:   2016-08-15
 ### React Element
 JSX: 
 ```javascript
-var reactElementExample = <div myProp="test">example</div>;
+    var reactElementExample = <div myProp="test">example</div>;
 ```
 ES5: 
 ```javascript
-var x = React.createElement(
-  "div",
-  {myProp: "test"},
-  "a div block"
-);
+    var x = React.createElement(
+    "div",
+    {myProp: "test"},
+    "a div block"
+    );
 ```
 React element is a plain old JavaScript Object without any functions.
 
@@ -23,36 +23,36 @@ React element is a plain old JavaScript Object without any functions.
 
 ES6:
 ```javascript
-Class Example extends React.Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            title: props.title
+    Class Example extends React.Component {
+        constructor(props){
+            super(props)
+            this.state = {
+                title: props.title
+            };
         };
-    };
-    myFunction{};
-    render {};
-}
+        myFunction{};
+        render {};
+    }
 
-Example.propTypes = {
-    title: PropTypes.string.isRequired
-}
+    Example.propTypes = {
+        title: PropTypes.string.isRequired
+    }
 ```
 
 ES5:
 ```javascript
-React.createClass({
-    render: function(){},
-    myFunction: function(){},
-    propTypes: {
-      title: ReactPropTypes.string.isRequired
-    },
-    getInitialState: function() {
-        return {
-            title: this.props.title
-        };
-    }
-});
+    React.createClass({
+        render: function(){},
+        myFunction: function(){},
+        propTypes: {
+        title: ReactPropTypes.string.isRequired
+        },
+        getInitialState: function() {
+            return {
+                title: this.props.title
+            };
+        }
+    });
 ```
 
 React Component have states, functions and Component lifecycle hooks.
@@ -60,13 +60,13 @@ React Component have states, functions and Component lifecycle hooks.
 ### Stateless Function Component
 ES5 and JSX:
 ```javascript
-function Example(props){
-    return <div>{props.title}</div>;
-}
+    function Example(props){
+        return <div>{props.title}</div>;
+    }
 ```
 ES6:
 ```javascript
-const Example(props) => ( <div>{props.title}</div>);
+    const Example(props) => ( <div>{props.title}</div>);
 ```
 Stateless function component does not have states and lifecycle hooks. It is a pure function of props.
 

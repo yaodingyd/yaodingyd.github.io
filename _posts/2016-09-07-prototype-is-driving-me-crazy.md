@@ -4,6 +4,7 @@ title:  "Prototype Is Driving Me Crazy"
 date:   2016-08-29
 ---
 
+
 ### 'Prototype' property vs [[Prototype]]
 JavaScript objects all have 'prototype', but it is considered as a "internal property", denoted by double brackets(`[[]]`), which links back to 'Object.prototype'. A function, which is a object too, has the 'visible' prototype property. This is why the following code runs like this in Chrome:
 

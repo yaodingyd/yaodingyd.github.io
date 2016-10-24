@@ -10,3 +10,15 @@ Main idea: loose coupling. ["It's a somewhat event-based way of thinking, but th
 
 Also, because subscribers are agnostic of publisher, they can implement an event handler published by any one.
 
+In Angular 1, thw Observer Pattern is implemented through digest circle in `$scope`. Angular would add a watcher for each of these:
+
+1.`{{expression}}` or `ng-model`, implicitly by Angular;
+2. `$scope.$watch`, explicityly by you
+
+Too many watchers will lower application performances. For Angular 1, the offcial recommedation is that you should not have more than 2000 watchers in a single page. So either reduce watchers usages or use bind-once 
+
+```javascript
+    {{::crtl.model}}
+```
+
+In Angular 1, a subscriber ‘subscribes’ to an event using `$on(‘event’, callback)`, and a publisher ‘publishes’ an event using `$emit(‘event’, args)` or `$broadcast(‘event’, args)`.

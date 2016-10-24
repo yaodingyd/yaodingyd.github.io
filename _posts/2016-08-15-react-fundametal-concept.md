@@ -6,10 +6,12 @@ date:   2016-08-15
 
 ### React Element
 JSX: 
+
 ```javascript
     var reactElementExample = <div myProp="test">example</div>;
 ```
 ES5: 
+
 ```javascript
     var x = React.createElement(
         "div",

@@ -12,9 +12,9 @@ JSX:
 ES5: 
 ```javascript
     var x = React.createElement(
-    "div",
-    {myProp: "test"},
-    "a div block"
+        "div",
+        {myProp: "test"},
+        "a div block"
     );
 ```
 React element is a plain old JavaScript Object without any functions.
@@ -70,7 +70,7 @@ ES6:
 ```
 Stateless function component does not have states and lifecycle hooks. It is a pure function of props.
 
-###Backing instance
+### Backing instance
 The actual DOM node for React element instance or component instance.
 
 Component Instance
@@ -79,6 +79,6 @@ Component Instance
 Backing Instance
 `var domInstance = ReactDOM.findDDOMNode(componentInstance);`
 
-###Refs
+### Refs
 Avoid use refs in component.
 Only use refs to refer componet's backing instance.(If you really need to do DOM stuff)

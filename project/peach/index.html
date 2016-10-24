@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Shui Mi Tao is the Best!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Spot It Generator</h1>
+    <div class="warning-message" id="warning">You input is not a valid one. Try add more symbols or remove duplicated ones</div>
+    <main>
+        <section class="input-section">
+            <h3>Please input your symbols here</h3>
+            <h5>There are <span id="symbol-amount">0</span> symbols now</h5>
+            <div class="symbol-input">
+                <input type="text" id="symbol-input">
+                <button type="button" id="add-symbol" class="add-button">+</button>
+            </div>
+            <div class="symbol-input">
+                <input type="file" id="symbol-image-input">
+                <button type="button" id="add-image-symbol" class="add-button">+</button>
+            </div>
+            <div class="symbol-action">
+                <button type="button" id="remove-symbol" class="remove-button">&#8722;</button>
+                <h6>Remove the last added symbol</h6>
+            </div>
+            <div class="symbol-action">
+                <button type="button" id="clear-symbol" class="clear-button">&#10060;</button>
+                <h6>Clear all you symbols</h6>
+            </div>
+            <div class="symbol-action">
+                <button type="button" id="get-result" class="get-button">&#127825;</button>
+                <h6>Generate cards</h6>
+            </div>
+            <div id="print" class="symbol-action">
+                <button type="button" id="print-result" class="print-button">&#9113;</button>
+                <h6>Print cards</h6>
+            </div>
+
+
+
+            <ul class="symbols" id="symbol-list"></ul>
+        </section>
+
+        <section class="output-section" id="result">
+        </section>
+
+    </main>
+</body>
+
+<script src="spotIt.js"></script>
+<script src="script.js"></script>
+
+</html>

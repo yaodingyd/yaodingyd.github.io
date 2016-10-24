@@ -24,6 +24,7 @@ React element is a plain old JavaScript Object without any functions.
 ### React Component
 
 ES6:
+
 ```javascript
     Class Example extends React.Component {
         constructor(props){
@@ -42,6 +43,7 @@ ES6:
 ```
 
 ES5:
+
 ```javascript
     React.createClass({
         render: function(){},
@@ -61,12 +63,14 @@ React Component have states, functions and Component lifecycle hooks.
 
 ### Stateless Function Component
 ES5 and JSX:
+
 ```javascript
     function Example(props){
         return <div>{props.title}</div>;
     }
 ```
 ES6:
+
 ```javascript
     const Example(props) => ( <div>{props.title}</div>);
 ```

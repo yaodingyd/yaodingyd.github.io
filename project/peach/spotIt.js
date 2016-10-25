@@ -1,6 +1,10 @@
 'use strict';
 
 function spotIt(input) {
+    if(input.length >=14 && input.length <= 18){
+        return specialCase(input);
+    }
+
     var i = 0;
     var j = 0;
     var k = 0;
@@ -83,3 +87,85 @@ function spotIt(input) {
 }
 
 window.spotIt = spotIt;
+
+function specialCase(input){
+    var result = [];
+    var combinations = k_combinations(input, 4);
+    for(var i = 0; i < combinations.length; i++){
+        var resultTemp = [];
+        resultTemp.push(combinations[i]);
+        for(var j = i; j < combinations.length; j++){
+            var notOne = false;
+            for(var t = 0; t < resultTemp.length; t++){
+                if(intersect(resultTemp[t], combinations[j]) !== 1){
+                    notOne = true;
+                }
+            }
+            if(!notOne){
+                resultTemp.push(combinations[j]);
+            }
+        }
+        if(resultTemp.length > result.length){
+            result = resultTemp;
+        }
+    }
+    return result;
+}
+
+function k_combinations(set, k) {
+	var i, j, combs, head, tailcombs;
+	
+	if (k > set.length || k <= 0) {
+		return [];
+	}
+	
+	// K-sized set has only one K-sized subset.
+	if (k == set.length) {
+		return [set];
+	}
+	
+	// There is N 1-sized subsets in a N-sized set.
+	if (k == 1) {
+		combs = [];
+		for (i = 0; i < set.length; i++) {
+			combs.push([set[i]]);
+		}
+		return combs;
+	}
+
+	combs = [];
+	for (i = 0; i < set.length - k + 1; i++) {
+		// head is a list that includes only our current element.
+		head = set.slice(i, i + 1);
+		// We take smaller combinations from the subsequent elements
+		tailcombs = k_combinations(set.slice(i + 1), k - 1);
+		// For each (k-1)-combination we join it with the current
+		// and store it to the set of k-combinations.
+		for (j = 0; j < tailcombs.length; j++) {
+			combs.push(head.concat(tailcombs[j]));
+		}
+	}
+	return combs;
+}
+
+function intersect(a, b)
+{
+  var ai=0, bi=0;
+  var result = [];
+
+  while( ai < a.length && bi < b.length )
+  {
+     if      (a[ai] < b[bi] ){ ai++; }
+     else if (a[ai] > b[bi] ){ bi++; }
+     else /* they're equal */
+     {
+       result.push(a[ai]);
+       ai++;
+       bi++;
+     }
+  }
+
+  return result.length;
+}
+
+

@@ -11,7 +11,7 @@ var symbolInput = document.getElementById('symbol-input');
 var symbolList = document.getElementById('symbol-list');
 
 var printCards = document.getElementById('print-result');
-var print = document.getElementById('print');
+var printSection = document.getElementById('print');
 
 var warning = document.getElementById('warning');
 
@@ -106,7 +106,7 @@ result.addEventListener('click', function() {
         result.appendChild(temp);
     })
 
-    print.style.display = 'block';
+    printSection.style.display = 'block';
 
 });
 

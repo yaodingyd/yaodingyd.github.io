@@ -114,6 +114,7 @@ input {
     margin: 10px;
     flex-wrap: wrap;
     position: relative;
+    flex-basis: 48%;
 }
 
 .result-array-item {
@@ -126,6 +127,10 @@ input {
 }
 
 @media print {
+    @page {
+        size: landscape
+    }
+
     body * {
         visibility: hidden;
     }
@@ -139,5 +144,7 @@ input {
         top: 0;
         right: 0;
         bottom: 0;
+        display: flex;
+        flex-wrap: wrap;
     }
 }

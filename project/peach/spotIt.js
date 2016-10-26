@@ -1,5 +1,6 @@
 'use strict';
 
+(function(){
 function spotIt(input) {
     if(input.length >=14 && input.length <= 18){
         return specialCase(input);
@@ -167,5 +168,5 @@ function intersect(a, b)
 
   return result.length;
 }
-
+})();
 

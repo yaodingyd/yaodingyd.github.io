@@ -151,8 +151,11 @@ function k_combinations(set, k) {
 
 function intersect(a, b)
 {
+  a.sort();
+  b.sort();
   var ai=0, bi=0;
   var result = [];
+
 
   while( ai < a.length && bi < b.length )
   {

@@ -114,7 +114,7 @@ input {
     margin: 10px;
     flex-wrap: wrap;
     position: relative;
-    flex-basis: 48%;
+    flex-basis: 45%;
 }
 
 .result-array-item {

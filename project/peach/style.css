@@ -147,4 +147,10 @@ input {
         display: flex;
         flex-wrap: wrap;
     }
+    .result-array {
+        margin-bottom:3rem;
+        page-break-inside: avoid;
+        page-break-after:always;
+        position: relative;
+    }
 }

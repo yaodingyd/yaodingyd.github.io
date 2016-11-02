@@ -2,7 +2,7 @@
 
 (function(){
 function spotIt(input) {
-    if(input.length >=14 && input.length <= 18){
+    if(input.length >=14 && input.length <= 20){
         return specialCase(input);
     }
 

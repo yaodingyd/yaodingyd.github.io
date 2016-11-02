@@ -61,6 +61,28 @@ ES5:
 
 React Component have states, functions and Component lifecycle hooks.
 
+### Bind 'this'
+
+ES6
+
+```javascript
+    constructor(props){
+        super(props);
+        this.someFunction = this.someFunction.bind(this);
+    }
+
+    someFunction(){
+        this.state.someState = 1;
+    }
+```
+
+or use arrow function, you don't have to explicitly bind `this`:
+
+```javascript
+     someFunction = () => {this.state.someState = 1;}
+```
+
+
 ### Stateless Function Component
 ES5 and JSX:
 

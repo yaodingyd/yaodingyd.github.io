@@ -36,6 +36,6 @@ The last way is more semantic and easy to understand. But the second way is simp
 
 `action` determines what to do with the submitted data. It uauslly is a script page, like `action="submit.php"` or `action="main.jsp"`. If there is no `action` or `action="#"`, it stays in the same page. 
 
-### 
+### Enter in Form
 
-If this is a `submit` button in the form, pressing `Enter` would default trigger `submit` event in form inputs.
+Pressing `Enter` would default trigger `submit` event in form inputs. So be careful, user might submit accidentally.

@@ -21,13 +21,15 @@ JavaScript objects all have 'prototype', but it is considered as a "internal pro
 In Chrome, `__proto__` would be the non-standard accessible internal property of [[Prototype]], which links back to Object.prototype.
 
 ### Constructor
-A constructor is a function used for initializing new objects, and you use the `new` keyword to call the constructor. Prototype property would also has a constructor property(Object.prototype.constructor). So for a constructor function  `object_constructor`, `object_constructor.prototype.constructor` would be itself.
+A constructor is a just another function used for initializing new objects, and you use the `new` keyword to call the constructor. So technically speaking, there is no "constructor function", there is only "constructor call". Prototype property would also has a constructor property(Object.prototype.constructor). So for a constructor function  `object_constructor`, `object_constructor.prototype.constructor` would be itself.
 
 So When new object_constructor() is called, JavaScript does four things:
 1.It creates a new object.
 2.It sets the constructor property of the object to object_constructor.(In ES6)
 3.It sets up the object to delegate to object_constructor.prototype.
 4.It calls object_constructor() in the context of the new object.
+
+NO COPY IS DONE HERE. ONLY DELEGATION.
 
 In this way, whatever property initialized in constructor would be new object's own property; whatever property delegated from prototype would also become new object's property, but not its own. This is also how prototype chain work: all property followed by the prototype chain would be the new object's properties. Thus, when we do a `for...in...` to iterate properties in object, we use `hasOwnProperty` to make sure.
 
@@ -62,6 +64,11 @@ Here is a simple polyfill of Object.create:
         return new ctor();
     }
 ```
+
+### Inheritance vs Delegation
+
+"Inheritance" implies a copy operation, and JavaScript doesn't copy object properties (natively, by default). Instead, JS creates a link between two objects, where one object can essentially delegate property/function access to another object. So we should call "Prototype Delegation"
+
 
 
 

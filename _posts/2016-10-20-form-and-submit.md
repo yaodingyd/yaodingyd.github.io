@@ -3,6 +3,7 @@ layout: post
 title:  "Form and Submit"
 date:   2016-10-20
 ---
+
 ### What Is Submit
 Sumbit is a native function of form element. So if you want to use sumbit funciton, there must be a form first.
 
@@ -39,3 +40,15 @@ The last way is more semantic and easy to understand. But the second way is simp
 ### Enter in Form
 
 Pressing `Enter` would default trigger `submit` event in form inputs. So be careful, user might submit accidentally.
+
+### A mixed `GET` and `POST`
+
+Sometimes I run into this kind of code:
+```javascript
+    $.ajax({
+        type: "POST",
+        url: "example.com?item1=test",
+        data: {item2 : 'test'}
+    });
+```
+Generally this is not a recommended practice that you have both `GET` and `POST`. But we can still get these request, for example, in PHP, `$_GET["item1"]` and `$_POST["item2"]` would work fine.

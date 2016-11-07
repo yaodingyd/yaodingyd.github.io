@@ -4,6 +4,7 @@ title:  "Factory Pattern"
 date:   2016-08-29
 ---
 
+Basically, factory pattern is:
 >To get a new JavaScript Object instance without using `new`.
 
 It looks something like this:
@@ -17,11 +18,13 @@ It looks something like this:
     }
 ```
 
-So when we want a new instance, we just call `createX`, without `new`. There is no constructor function or class involved.
+So when we want a new instance, we just call `createX`, without `new`. There is no constructor function or 'class' involved.
 
-Factory also makes extending object possible, which is object composition. This is why jQuery uses factory pattern to create use instance: use `$()` rather than `new $()`. Extending jQuery function is easy, becasue `jQuery.fn` is alias for `jQuery.prototype` and we just add more custom functions onto prototype.
+Factory pattern usually works great in the scenario to instantiate complex objects and lots of small objects or components with same properties. 
+
+Factory also makes extending object possible, which is essentially object composition. This is why jQuery uses factory pattern to create use instance: use `$()` rather than `new $()`. Extending jQuery function is easy, becasue `jQuery.fn` is alias for `jQuery.prototype` and we just add more custom functions onto prototype.
 
 Concatenative inheritance is the process of copying the properties from one object to another, without retaining a reference between the two objects. It relies on JavaScript’s dynamic object extension feature.
-Cloning is a great way to store default state for objects: This process is commonly achieved using `Object.assign()`. Prior to ES6, it was common to use similar `.extend()` methods from Lodash, Underscore, or jQuery.
+Cloning is a great way to store default state for objects: This process is commonly achieved using `Object.assign()`. Prior to ES6, it was common to use similar `.extend()` methods from Lodash, Underscore, or jQuery. 
 
 

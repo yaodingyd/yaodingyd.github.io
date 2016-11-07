@@ -46,23 +46,3 @@ date:   2016-05-12
 
 ### Get linked list center
 `fast = head.next.next, slow = head.next`
-
-
-
-Q:  
-A: 
-
-
-
-Q:  
-A: 
-
-
-
-Q:  
-A: 
-
-
-
-Q:  
-A: 

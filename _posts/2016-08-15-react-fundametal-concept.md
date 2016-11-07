@@ -110,3 +110,8 @@ Backing Instance
 ### Refs
 Avoid use refs in component.
 Only use refs to refer componet's backing instance.(If you really need to do DOM stuff)
+
+### Presentational and Container Components
+
+A container does data fetching and then renders its corresponding sub-component.
+A presentational component only deals with view.

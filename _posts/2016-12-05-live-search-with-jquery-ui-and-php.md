@@ -9,10 +9,10 @@ I am using jQuery UI Autocomplete to do a live search input widget. The one I'm 
 Basic setup is simple enough:
 
 ```javascript
-    $('#myInput').autocomplete({
-        source: 'search_function.php',
-        'min-width': 1
-    })
+$('#myInput').autocomplete({
+    source: 'search_function.php',
+    'min-width': 1
+})
 ```
 PHP file would return a JSON array containing search results returned from database.
 
@@ -44,34 +44,44 @@ However, if we want to return a complex object and do custom rendering, we need 
 jQuery UI Autocomplete required list items have two properties: `label` and `value`. We can have more properties to be used in our custom render function, in that we use `create` event and `_renderItem` object:
 
 ```javascript
-    create: function () {
-        $(this).data("ui-autocomplete")._renderItem = function (ul, item) {
-            return $("<li>")
-                .append("<div>" + item.label + "<br><small>" + item.value + "<span class='."'float-xs-right'".'>" + item.artist + "</span></small></div>")
-                .appendTo(ul);
-        };
-    }
+create: function () {
+    $(this).data("ui-autocomplete")._renderItem = function (ul, item) {
+        return $("<li>")
+            .append("<div>" + item.label + "<br><small>" + item.value + "<span class='."'float-xs-right'".'>" + item.artist + "</span></small></div>")
+            .appendTo(ul);
+    };
+}
 ```
 
 To make each list item a link, we need `select` event:
 
 ```javascript
-    select: function( event, ui ) {
-        if(ui.item.url !== undefined){
-            var href = ui.item.artist;
-            window.location = ui.item.url;
-        }         
-    }
+select: function( event, ui ) {
+    if(ui.item.url !== undefined){
+        var href = ui.item.artist;
+        window.location = ui.item.url;
+    }         
+}
 ```
 
 A possible pitfall is that in touch device, user need to tap twice to get link working. For this, we disable hover callbacks:
 
 ```javascript
-    open: function(event, ui) {
-            if($(window).innerWidth <= 768) {
-                $(".ui-autocomplete").off("menufocus hover mouseover mouseenter");
-            }
+open: function(event, ui) {
+        if($(window).innerWidth <= 768) {
+            $(".ui-autocomplete").off("menufocus hover mouseover mouseenter");
         }
+    }
+```
+
+To show search result whenever input is focused:
+
+```javascript
+$('#myInput')
+  .autocomplete({source:''})
+  .focus(function(){            
+    $(this).data('autocomplete').search($(this).val());
+  });
 ```
 
 A sample search_function PHP file could look like this(PDO defined before hand, database connection established):

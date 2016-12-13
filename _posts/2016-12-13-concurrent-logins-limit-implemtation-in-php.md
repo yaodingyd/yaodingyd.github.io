@@ -52,7 +52,9 @@ For concurrent logins limit implementation, the big idea is:
 
 1. In database, each token is associated with it's session id and active time-stamp, denoted as last_seen. Each request will update last_seen.
 2. Whenever a request is made, it checks if it's an active session(for example, by check $_SESSION['id'],because sometimes the first ting for start a session is to set $_SESSION['uid']).
+
     2.1. If so, get token record with session id.
+    
         2.1.1  If no records, that means this session is destroyed because user logged in other devices and reaches his maximum logins, so unset this session. *redirect to login page*.
         2.1.2  if there are records, *log user in, then enforce simultaneous logins limit*: get all token records with the same id, order by last_seen and check if it is a active record (time() - last_seen <= session_timeout)
             2.1.2.1 If it is a active record, current records increments by one. If current records sum is less than max login limit, then pass;

@@ -2,9 +2,12 @@
 layout: post
 title:  "Live Search With jQuery UI and PHP"
 date:   2016-12-05
+tag:    
+    - jQuery 
+    - PHP
 ---
 
-I am using jQuery UI Autocomplete to do a live search input widget. The one I'm looking for to build with have clickable items, and show complex content with each item. Luckily, jQuery UI Autocomplete can achieve all this.
+I am using jQuery UI Autocomplete to do a live search input widget. The one I'm looking for to would clickable items, and show complex content with each item. Luckily, jQuery UI Autocomplete can achieve all this.
 
 Basic setup is simple enough:
 
@@ -19,26 +22,26 @@ PHP file would return a JSON array containing search results returned from datab
 However, if we want to return a complex object and do custom rendering, we need change `source` to a function:
 
 ```javascript
-    source:
-        function (request, response) {
-            $.getJSON("/search_function.php?term=" + request.term, function (data) {
-                if(data.length > 1){
-                    response($.map(data, function (item) {
-                        return {
-                            label: item.title,
-                            value: item.access,
-                            artist: item.artist,
-                            url: item.href
-                        };
-                    }));
-                } else {
-                    response([{
-                        label: "Sorry, there are no results matched your seach.",
-                        value: " ",
-                    }]);
-                }
-            });
-        }
+source:
+    function (request, response) {
+        $.getJSON("/search_function.php?term=" + request.term, function (data) {
+            if(data.length > 1){
+                response($.map(data, function (item) {
+                    return {
+                        label: item.title,
+                        value: item.access,
+                        artist: item.artist,
+                        url: item.href
+                    };
+                }));
+            } else {
+                response([{
+                    label: "Sorry, there are no results matched your seach.",
+                    value: " ",
+                }]);
+            }
+        });
+    }
 ```
 
 jQuery UI Autocomplete required list items have two properties: `label` and `value`. We can have more properties to be used in our custom render function, in that we use `create` event and `_renderItem` object:
@@ -87,20 +90,20 @@ $('#myInput')
 A sample search_function PHP file could look like this(PDO defined before hand, database connection established):
 
 ```php
-    <? php
-    if (isset($_GET['term'])){
-        $return_arr = array();
+<? php
+if (isset($_GET['term'])){
+    $return_arr = array();
 
-        try {
-            $stmt = $pdo->prepare('SELECT title FROM table WHERE UPPER(title) LIKE UPPER(?)');
-            $term = '%'.$_GET['term'].'%';
-            $stmt->execute([$term]);
-            $return_arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch(PDOException $e) {
-            echo 'ERROR: ' . $e->getMessage();
-        }
-
-        echo json_encode($return_arr);
+    try {
+        $stmt = $pdo->prepare('SELECT title FROM table WHERE UPPER(title) LIKE UPPER(?)');
+        $term = '%'.$_GET['term'].'%';
+        $stmt->execute([$term]);
+        $return_arr = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch(PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
     }
-    ?>
+
+    echo json_encode($return_arr);
+}
+?>
 ```

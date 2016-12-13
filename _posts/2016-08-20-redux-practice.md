@@ -2,6 +2,7 @@
 layout: post
 title:  "Redux Practice"
 date:   2016-08-20
+tag:    React
 ---
 
 Do more in action-creator and do less in reducer.

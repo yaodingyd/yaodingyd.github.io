@@ -1,7 +1,10 @@
 ---
 layout: post
 title:  "Pub/Sub and Observer Pattern"
-date:   2016-08-01 
+date:   2016-08-01
+tag:    
+    - JavaScript 
+    - Programming
 ---
 
 First of all, read [this](https://addyosmani.com/resources/essentialjsdesignpatterns/book/#observerpatternjavascript).

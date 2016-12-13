@@ -2,6 +2,7 @@
 layout: post
 title:  "Error Logging in PHP"
 date:   2016-12-01
+tag:    PHP
 ---
 
 Error logging can be tricky for PHP. The complete solution is:

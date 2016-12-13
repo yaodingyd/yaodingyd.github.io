@@ -1,7 +1,9 @@
 ---
 layout: post
 title:  "HTTP and Session"
-date:   2016-04-08 
+date:   2016-04-08
+tags:   
+    - Web Fundamental
 ---
 
 ### HTTP

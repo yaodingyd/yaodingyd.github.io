@@ -1,7 +1,8 @@
 ---
 layout: post
 title:  "One Line Punch JavaScript"
-date:   2016-05-12 
+date:   2016-05-12
+tag:    JavaScript  
 ---
 
 #### Check a number is power of n

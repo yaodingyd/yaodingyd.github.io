@@ -2,6 +2,9 @@
 layout: post
 title:  "Prototype Is Driving Me Crazy"
 date:   2016-09-07
+tag:    
+    - JavaScript 
+    - Programming
 ---
 
 ### 'Prototype' property vs [[Prototype]]

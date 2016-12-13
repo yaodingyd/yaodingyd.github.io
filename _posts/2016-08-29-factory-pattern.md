@@ -2,6 +2,9 @@
 layout: post
 title:  "Factory Pattern"
 date:   2016-08-29
+tag:    
+    - JavaScript 
+    - Programming
 ---
 
 Basically, factory pattern is:

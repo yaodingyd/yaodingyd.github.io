@@ -2,6 +2,7 @@
 layout: post
 title:  "Functional Programming Notes"
 date:   2016-11-11 
+tag:    Programming
 ---
 
 ### Glossary

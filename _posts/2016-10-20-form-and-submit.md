@@ -2,6 +2,9 @@
 layout: post
 title:  "Form and Submit"
 date:   2016-10-20
+tag:    
+    - HTML 
+    - Tip
 ---
 
 ### What Is Submit

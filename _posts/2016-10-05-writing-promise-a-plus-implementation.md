@@ -2,6 +2,9 @@
 layout: post
 title:  "Writing a Promise/A+ Implementation"
 date:   2016-10-05
+tag:    
+    - JavaScript 
+    - Programming
 ---
 ### jQuery Deferred and Anti-Pattern
 When I first started to learn about promise, jQuery Deferred object helped me a lot understanding the core concept of promise. It kind of shaped promise for me. So later, when I looked at [this article](https://github.com/petkaantonov/bluebird/wiki/Promise-anti-patterns) about how it is anti-patterns, I felt like I should really look into *promsie* itself.

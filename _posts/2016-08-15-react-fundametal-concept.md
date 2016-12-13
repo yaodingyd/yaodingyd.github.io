@@ -2,6 +2,8 @@
 layout: post
 title:  "React Fundametals"
 date:   2016-08-15
+tag:    
+    - React
 ---
 
 ### React Element

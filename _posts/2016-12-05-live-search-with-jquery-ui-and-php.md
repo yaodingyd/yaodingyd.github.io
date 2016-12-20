@@ -7,7 +7,7 @@ tag:
     - PHP
 ---
 
-I am using jQuery UI Autocomplete to do a live search input widget. The one I'm looking for to would clickable items, and show complex content with each item. Luckily, jQuery UI Autocomplete can achieve all this.
+I am using jQuery UI Autocomplete to do a live search input widget. The one I'm looking for to would have clickable items, and show complex content with each item. Luckily, jQuery UI Autocomplete can achieve all this.
 
 Basic setup is simple enough:
 

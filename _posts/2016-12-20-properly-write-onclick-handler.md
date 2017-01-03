@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Onclick Event Proper Style"
+title:  "Properly Write Onclick Handler"
 date:   2016-12-20
 tags:   
     - Web Fundamental

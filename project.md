@@ -1,0 +1,14 @@
+---
+layout: page
+title: Project
+permalink: /project/
+---
+
+### Spot-it Pattern Generator
+A react and react-bootstrap app that create game spot-it patterns.
+[link](https://yaodingyd.github.io/react-spot-it)
+
+### Form
+A form validation library and form building library that could take JSON data to config and build on the fly.
+[link](https://yaodingyd.github.io/form)
+

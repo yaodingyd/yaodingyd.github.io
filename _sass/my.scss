@@ -12,3 +12,17 @@ a.post-tag{
   text-decoration: none;
   color: #6a9fb5;
 }
+
+.trigger {
+  padding: 0 1rem;
+}
+
+.site-nav a.page-link:hover {
+  text-decoration: none;
+  color: $brand-color;
+}
+
+a.site-title:hover {
+  text-decoration: none;
+  color: $grey-color-dark;
+}

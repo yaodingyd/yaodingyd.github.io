@@ -8,12 +8,6 @@ tags:
 
 Recently I had simple task turned out to be not that simple. My goal is to write a input mask for SSN, and I use `keydown` and `keyup` event to do my magic. Here comes the problem: in (some, or all) Android devices, `keydown` and `keyup` event returns `keycode` all as `229`, which essentially breaks my function.
 
-keydown triggered
-script.js:15 keypress triggered
-script.js:23 textInput triggered
-script.js:19 input triggered
-script.js:11 keyup triggered
-
 There are several events fired after a button is pressed. (in Chrome)
 
 1. `keydown` is triggered first and we have `event.keyCode`.

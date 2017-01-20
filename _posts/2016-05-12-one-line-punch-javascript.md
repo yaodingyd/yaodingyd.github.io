@@ -35,15 +35,18 @@ tag:    JavaScript
 
 ### Sort array based on numbers
 `array.sort(function(a, b){return a-b;})`
-
+
 ### Generate a random string
 `Math.random().toString(36).substr(2)`
-
+
 ### Binary to Gray
 `num ^ (num>>1)`
-
+
 ### Number less than n bit
 `num < 1<< n`
-
+
 ### Get linked list center
 `fast = head.next.next, slow = head.next`
+
+### Find only one number that is single ([1,2,2,3,3])
+`array.reduce(function(accu, i){return accu^i},0)` (xor)

@@ -19,3 +19,8 @@ There are several events fired after a button is pressed. (in Chrome)
 
 So for  Android devices, `keypress` event may or may not fire and `keyup`, `keydown` would not give you correct `keyCode`. [Bottomline, the problem is the predictive text functionality](https://github.com/RobinHerbots/Inputmask/blob/3.x/README_android.md) and see this post for more info.
 
+
+##### 2/1/2017 Update 
+
+Now webkit has a post on `Input` event [here](https://webkit.org/blog/7358/enhanced-editing-with-input-events/).
+

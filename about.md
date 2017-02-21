@@ -8,9 +8,6 @@ My name is Yao Ding. I mostly work in the magic realm of web front-end and consi
 
 I'm also fluent in PHP, Node and Java, familiar with SQL and ORM, and have a bunch of experience with RESTful Services and APIs. I do freelance projects invovling full-stack work, from server(Apache), database(MySql) to backend and frontend.
 
-Checkout my blog https://yaodingyd.github.io.
-
-
 I consider myself an average programmer and a subpar blogger, so I will try my best to keep my thoughts down here.
 
 This site is built with Jekyll.

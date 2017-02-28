@@ -28,7 +28,11 @@ Generally, use `keydown` for keycode, use `keypress` for event.
 ### Why
 [Bottomline, the problem is the predictive text functionality](https://github.com/RobinHerbots/Inputmask/blob/3.x/README_android.md). Because my Android phone has predictive typing by default, so I got `229` for all my input. But if I disable predictive typing, `keydown` and `keyup` would behave normal. 
 
-They way to disable predictive typing is to use `password` as input type. 
+`input` event would also be the predictive text instead of single characters.
+
+They way to disable predictive typing is to use `password` as input type. But we need a "display input" to sit above the hidden input and it can get complicated for actually code. 
+
+The new `inputmode` in HTML5 would potentially save the day, but it is still in the future.
 
 
 ##### 2/1/2017 Update 

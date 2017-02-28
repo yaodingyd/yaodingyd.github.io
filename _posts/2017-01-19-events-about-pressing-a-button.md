@@ -6,18 +6,29 @@ tags:
     - Web Fundamental
 ---
 
+### Problem
+
 Recently I had simple task turned out to be not that simple. My goal is to write a input mask for SSN, and I use `keydown` and `keyup` event to do my magic. Here comes the problem: in (some, or all) Android devices, `keydown` and `keyup` event returns `keycode` all as `229`, which essentially breaks my function.
+
+### Background
 
 There are several events fired after a button is pressed. (in Chrome)
 
-1. `keydown` is triggered first and we have `event.keyCode`.
-2. `keypress` is triggered after and I'm not very fond of this event after all.
+1. `keydown` is triggered with `event.keyCode`.
+2. `keypress` is triggered with `event.keyCode`.
 3. `textInput` is triggered. This event is available in Chrome and IE 9+.
 4. At this point the input will have value.
 5. `input` is triggered. `event.target.value` would have input's value.
-6. `keyup` is triggered at last and we still have `event.keyCode`.
+6. `keyup` is triggered at last with `event.keyCode`.
 
-So for  Android devices, `keypress` event may or may not fire and `keyup`, `keydown` would not give you correct `keyCode`. [Bottomline, the problem is the predictive text functionality](https://github.com/RobinHerbots/Inputmask/blob/3.x/README_android.md) and see this post for more info.
+In particular, keyCode on `keypress` events is usually redundant and shouldn't be used (except in old IE, which I don't care). It would returns a different keycode from `keyup` and `keydown` for alphabet.
+
+Generally, use `keydown` for keycode, use `keypress` for event.
+
+### Why
+[Bottomline, the problem is the predictive text functionality](https://github.com/RobinHerbots/Inputmask/blob/3.x/README_android.md). Because my Android phone has predictive typing by default, so I got `229` for all my input. But if I disable predictive typing, `keydown` and `keyup` would behave normal. 
+
+They way to disable predictive typing is to use `password` as input type. 
 
 
 ##### 2/1/2017 Update 

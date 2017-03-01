@@ -58,7 +58,8 @@ make the inner div `display: table-row`
  right: 0;
  left: 0;
  ```
-11. @media print a specific div, there are three ways: 
+11. 
+`@media` print a specific div, there are three ways: 
  1. 
  ```css
  body > * { visibility: hidden;}

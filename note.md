@@ -4,8 +4,7 @@ title: Note
 permalink: /note/
 ---
 
-
-##A collection of werid CSS, JavaScript and Cross-browser issue I have encountered.
+# A collection of werid CSS, JavaScript and Cross-browser issue I have encountered.
 
 1. In *Firefox* and *IE*, for a flex child, the height and width cannot be set 
 as percentage, because somehow the child cannot get its parent's width and  height. Use PX only.
@@ -100,14 +99,14 @@ In Safari, body and print div's `position` must be `static` or `relative`, or it
  ```
 
 
-##Some best practices I have encountered.
+# Some best practices I have encountered.
 
 1. `<a href='http://example.com' target='_blank' rel='noopener'>` is not only safe(it prevents child window to use window.opener and window.opener.location to get parent window), but also has a performance improvement.
 
 2. You can pass a string to `setTimtout` and `setInterval` to run as a function, but this is usually evil as using `eval()`, because it is run in the global scope, has performance issues, is potentially insecure if you're injecting any parameters.
 
 
-##Don't forget
+# Don't forget
 
 1. Get/set body scroll position
     `document.documentElement.scrollTop || document.body.scrollTop`
@@ -118,7 +117,7 @@ In Safari, body and print div's `position` must be `static` or `relative`, or it
 
 
 
-## fun-stuff-on-web
+# Fun-stuff-on-web
 A collection of interesting web app, sites and APIs.
 
 1. [https://yesno.wtf/](https://yesno.wtf/)
@@ -146,7 +145,7 @@ API that lets you play cards.
 API that generates meme.
 
 
-## OS or bash related
+# OS or bash related
 
 1. In OSX, `.bash_profile` is used instead of `.bashrc`. It's located in `~/.bash_profile` (`$HOME/.bash_profile`).
    To add path, add `export PATH=$PATH:~/my/custom/path` in `.bash_profile` and `source ~/.bash_profile`.

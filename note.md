@@ -98,6 +98,7 @@ In Safari, body and print div's `position` must be `static` or `relative`, or it
    -webkit-text-size-adjust: 100%;
  }
  ```
+ 16. If `overflow:hidden` is not working on pseudo elements, add `position:relative` to their wrapper.
 
 
 # Some best practices I have encountered.

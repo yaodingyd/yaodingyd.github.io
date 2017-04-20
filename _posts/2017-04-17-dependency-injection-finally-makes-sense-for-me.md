@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Dependency Injection Finally Makes Senses For Me (in Angular 1)"
-date:   2017-03-22
+date:   2017-04-17
 tags:   
     - Node
 ---

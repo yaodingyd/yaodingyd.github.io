@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Dependency Injection Finally Makes Senses For Me (in Angular 1)"
+title:  "Stream and Buffer in Node"
 date:   2017-04-20
 tags:   
     - Node

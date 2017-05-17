@@ -50,6 +50,8 @@ document.addEventListener("DOMContentLoaded", function() {
         goingForward = false;
       }
 
+      this.newContainer.dataset.prev = this.getPreviousHistory();
+
       TweenLite.set(this.newContainer, {
         visibility: 'visible',
         xPercent: goingForward ? 100 : -100,
@@ -59,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
         right: 0
       });
 
-      TweenLite.to(this.oldContainer, 0.6, { xPercent: goingForward ? -100 : 100 });
+      TweenLite.to(this.oldContainer, 0.6, { xPercent: goingForward ? -100 : 100, opacity: 0 });
       TweenLite.to(this.newContainer, 0.6, { xPercent: 0, onComplete: function() {
         TweenLite.set(_this.newContainer, { clearProps: 'all' });
         TweenLite.to(footer, 0.5, { opacity: 1 });
@@ -68,7 +70,11 @@ document.addEventListener("DOMContentLoaded", function() {
     },
 
     getNewPageFile: function() {
-      return Barba.HistoryManager.currentStatus().url.split('/').pop();
+      return Barba.HistoryManager.currentStatus().url;
+    },
+
+    getPreviousHistory: function() {
+      return Barba.HistoryManager.prevStatus().url;
     }
   });
 

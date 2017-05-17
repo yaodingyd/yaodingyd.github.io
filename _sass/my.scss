@@ -26,3 +26,28 @@ a.site-title:hover {
   text-decoration: none;
   color: $grey-color-dark;
 }
+
+.site-header {
+  border-top: none; 
+}
+
+.page-navigation {
+  font-size: 14px;
+  display: block;
+  width: auto;
+  overflow: hidden;
+
+  a {
+    display: block;
+    width: 50%;
+    float: left;
+    margin: 1em 0;
+  }
+
+  .next {
+    text-align: right;
+  }
+
+}
+
+

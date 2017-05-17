@@ -15,8 +15,8 @@ Also, because subscribers are agnostic of publisher, they can implement an event
 
 In Angular 1, thw Observer Pattern is implemented through digest circle in `$scope`. Angular would add a watcher for each of these:
 
-1.`{{expression}}` or `ng-model`, implicitly by Angular;
-2. `$scope.$watch`, explicityly by you
+1.{% raw %}`{{expression}}`{% endraw %} or `ng-model`, implicitly by Angular;
+2. `$scope.$watch`, explicitly by you
 
 Too many watchers will lower application performances. For Angular 1, the offcial recommedation is that you should not have more than 2000 watchers in a single page. So either reduce watchers usages or use bind-once. 
 

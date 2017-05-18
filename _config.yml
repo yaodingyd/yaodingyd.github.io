@@ -1,13 +1,21 @@
 title: Yao Ding
 email: yaodingyd@gmail.com
 description: "Yao's blog on everything about web technologies'"
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: ""
 tag_page: "/blog/tags"
-url: "https://yaodingyd.github.io" # the base hostname & protocol for your site
+url: "https://yaodingyd.github.io" 
 github_username:  yaodingyd
 
+permalink: /blog/:title/
 paginate: 8
 
-# Build settings
 markdown: kramdown
 theme: minima
+
+include: ["_pages"]
+exclude:
+  - node_modules
+  - gulpfile.js
+  - package.json
+  - Gemfile
+  - Gemfile.lock

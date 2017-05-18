@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Note
-permalink: /note/
 ---
 
 # A collection of werid CSS, JavaScript and Cross-browser issue I have encountered.

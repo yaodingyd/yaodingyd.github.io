@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Project
-permalink: /project/
 ---
 
 ## Spot-it Pattern Generator

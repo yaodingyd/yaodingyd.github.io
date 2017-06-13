@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "How JavaScript Modules work"
-date:   2015-12-01
+date:   2017-06-12
 tags:   
     - How it works
 ---

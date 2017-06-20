@@ -8,7 +8,7 @@ tag:
 ---
 
 ### 'Prototype' property vs [[Prototype]]
-JavaScript objects all have 'prototype', but it is considered as a "internal property", denoted by double brackets(`[[]]`), which links back to 'Object.prototype'. A function, which is a object too, has the 'visible' prototype property. This is why the following code runs like this in Chrome:
+JavaScript objects all have 'prototype', but it is considered as a "internal property", denoted by double brackets(`[[Prototype]]`), which links back to `Object.prototype`. A function, which is a object too, has the 'visible' prototype property. This is why the following code runs like this in Chrome:
 
 ```javascript
     var x = {};
@@ -20,7 +20,12 @@ JavaScript objects all have 'prototype', but it is considered as a "internal pro
     console.log(y.prototype);
 ```
 
-In Chrome, `__proto__` would be the non-standard accessible internal property of [[Prototype]], which links back to Object.prototype.
+In Chrome, `__proto__` would be the non-standard accessible internal property of `[[Prototype]]`.
+
+In ES6 there is a new function `Object.setPrototypeOf` sets the prototype ( internal `[[Prototype]]`) of a specified object to another object or null. On MDN it warning about the slow operated yet subtle and far-flung effect. In Babel, polyfill for `class` there is one line of code:
+`if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass`
+Basically it sets subClass's `__proto` point to superClass.
+
 
 ### Constructor
 A constructor is a just another function used for initializing new objects, and you use the `new` keyword to call the constructor. So technically speaking, there is no "constructor function", there is only "constructor call". Prototype property would also has a constructor property(Object.prototype.constructor). So for a constructor function  `object_constructor`, `object_constructor.prototype.constructor` would be itself.
@@ -51,9 +56,19 @@ Code first:
     // subclass extends superclass
     Child.prototype = Object.create(Parent.prototype); //assign prototype, but overwrite Child.prototype.constructor to Parent
     Child.prototype.constructor = Child; // restore constructor to Child
+
+    // or this, I learned this from Babel's polyfill for class
+    Child.prototype = Object.create(Parent && Parent.prototype, {
+        constructor: {
+            value: Child,
+            enumerable: false,
+            writable: true,
+            configurable: true
+        }
+    });
 ```
 
-We use Object.create instead of new Super() to assign child.prototype because it complicates all of your constructor functions, limits their ability to detect construction errors, and requires that all constructors everywhere handle that form of use. And this is call Parasitic Combination Inheritance pattern.
+We use `Object.create` instead of `new Super()` to assign `Child.prototype` because it complicates all of your constructor functions, limits their ability to detect construction errors, and requires that all constructors everywhere handle that form of use. And this is call Parasitic Combination Inheritance pattern.
 
 Here is a simple polyfill of Object.create:
 

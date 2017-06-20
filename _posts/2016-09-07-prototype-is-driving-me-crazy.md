@@ -23,8 +23,12 @@ JavaScript objects all have 'prototype', but it is considered as a "internal pro
 In Chrome, `__proto__` would be the non-standard accessible internal property of `[[Prototype]]`.
 
 In ES6 there is a new function `Object.setPrototypeOf` sets the prototype ( internal `[[Prototype]]`) of a specified object to another object or null. On MDN it warning about the slow operated yet subtle and far-flung effect. In Babel, polyfill for `class` there is one line of code:
-`if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass`
-Basically it sets subClass's `__proto` point to superClass.
+
+```javascript
+if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass
+```
+
+Basically it sets subClass's `__proto__` point to superClass.
 
 
 ### Constructor

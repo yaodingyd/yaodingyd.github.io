@@ -1,4 +1,5 @@
-document.addEventListener("DOMContentLoaded", function() {
+// page transition using barba
+document.addEventListener('DOMContentLoaded', function () {
   var lastElementClicked;
 
   Barba.Pjax.init();
@@ -82,3 +83,25 @@ document.addEventListener("DOMContentLoaded", function() {
     return MovePage;
   };
 });
+
+// menu toggling
+document.addEventListener('DOMContentLoaded', function () {
+  var nav = document.getElementById('nav')
+  nav.addEventListener('click', function(){
+    toggleClass(nav, 'is-expanded');
+  })
+})
+
+// utility
+function toggleClass(el, _class) {
+  if (el && el.className && el.className.indexOf(_class) >= 0) {
+    var pattern = new RegExp('\\s*' + _class + '\\s*');
+    el.className = el.className.replace(pattern, ' ');
+  }
+  else if (el){
+    el.className = el.className + ' ' + _class;
+  }
+  else {
+    console.log("Element not found");
+  }
+}

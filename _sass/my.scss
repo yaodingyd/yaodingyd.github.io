@@ -62,11 +62,24 @@ a.site-title:hover {
 }
 
  @include media-query($on-palm) {
+    .page-content {
+      padding-top: 60px;
+    }
+
+   .site-header {
+     z-index: 10;
+     position: fixed;
+     width: 100%;
+     background: linear-gradient(to top, transparent, rgba(255,255,255, 0.8) 20%, #fff);
+   }
+
    .site-nav {
+     z-index: 11;
      max-width: 36px;
      max-height: 36px;
      transition: all 0.5s;
      overflow: hidden;
+     background: #fff;
 
      &.is-expanded {
         max-width: 100px;

@@ -109,6 +109,14 @@ In Safari, body and print div's `position` must be `static` or `relative`, or it
 
 2. You can pass a string to `setTimtout` and `setInterval` to run as a function, but this is usually evil as using `eval()`, because it is run in the global scope, has performance issues, is potentially insecure if you're injecting any parameters.
 
+3. You can use this 404 page to do redirect:
+
+```html
+<!DOCTYPE html>
+<title>404/301 redirect</title>
+<meta http-equiv="refresh" content="0;URL=http://mypage.xy"/>
+```
+
 
 # Don't forget
 

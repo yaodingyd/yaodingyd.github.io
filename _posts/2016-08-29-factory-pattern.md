@@ -10,6 +10,8 @@ tag:
 Basically, factory pattern is:
 >To get a new JavaScript Object instance without using `new`.
 
+In the ES5 & ES6 context, that means a function returns new object, without using `class`, `new`, or constructor function.
+
 It looks something like this:
 
 ```javascript
@@ -21,13 +23,48 @@ It looks something like this:
     }
 ```
 
-So when we want a new instance, we just call `createX`, without `new`. There is no constructor function or 'class' involved.
+Or simpler, like this
 
-Factory pattern usually works great in the scenario to instantiate complex objects and lots of small objects or components with same properties. 
+```javascript
+    function createX (name) {
+        return {
+            name: name
+        }
+    }
+```
 
-Factory also makes extending object possible, which is essentially object composition. This is why jQuery uses factory pattern to create use instance: use `$()` rather than `new $()`. Extending jQuery function is easy, becasue `jQuery.fn` is alias for `jQuery.prototype` and we just add more custom functions onto prototype.
+Or, with ES6's arrow function, even simpler
 
-Concatenative inheritance is the process of copying the properties from one object to another, without retaining a reference between the two objects. It relies on JavaScript’s dynamic object extension feature.
-Cloning is a great way to store default state for objects: This process is commonly achieved using `Object.assign()`. Prior to ES6, it was common to use similar `.extend()` methods from Lodash, Underscore, or jQuery. 
+```javascript
+    const createX = (name) => ({name: name})
+```
+
+Factory pattern usually works great in the scenario to instantiate complex objects and lots of small objects or components with same properties, which in other words means factory functions works great in composition:
+
+```javascript
+    const createX = (name) => ({ name })
+
+    const createY = (age, name) => ({
+        age,
+        info: { createX() }
+    })
+```
+
+Composing factories can build arbitrarily complex objects that doesn't mess around with `new` or `this`.Also, objects that can be expressed in terms of *has-a* relationships, rather than *is-a* can be implemented with composition, instead of inheritance.
+
+Factory also makes extending object possible, which is also essentially object composition. This is why jQuery uses factory pattern to create use instance: use `$()` rather than `new $()`. Extending jQuery function is easy, becasue `jQuery.fn` is alias for `jQuery.prototype` and we just add more custom functions onto prototype. Another use is cloning. It is a great way to store default state for objects: This process is commonly achieved using `Object.assign()`. Prior to ES6, it was common to use similar `.extend()` methods from Lodash, Underscore, or jQuery. 
+
+The last use is in High Order Function, where factory can be *enhanced* to return more complex object:
+
+```javascript
+    const createX = (name) => ({ name })
+
+    const enhancer = factory => (name, age) => ({
+        age,
+        factory(name)
+    })
+
+    const createNameWithAge = enhancer(createX);
+```
 
 

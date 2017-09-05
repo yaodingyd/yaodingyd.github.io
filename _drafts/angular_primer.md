@@ -1,0 +1,1 @@
+angular directive is isolated scope by default.

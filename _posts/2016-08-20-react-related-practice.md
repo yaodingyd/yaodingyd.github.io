@@ -16,6 +16,19 @@ Export selectors with related reducers. Or put they in standalone selector files
 Use more selectors for improving render performance.
 
 
-# React-Router
+# React-Router (with react-transition-groups)
 
-1. Doing transition, two take-aways: always use `key` for `CSSTransitionGroup` children, and use `location` for children route.
+1. Doing transition, two take-aways: always use `key` for `TransitionGroup` children, and use `location` for children route.
+
+```javascript
+  <TransitionGroup>
+    <CSSTransition key={location.key} classNames="route" timeout={300}>
+      <Switch location={location}>
+        <Route exact path="/" component={Welcome} />
+        <Route path="/word" component={WordControl} />
+        <Route path="/test" component={Welcome} />
+      </Switch>
+    </CSSTransition>
+  </TransitionGroup>
+```
+Because `Transtion` takes a exited and entered components in this scenario, make sure all routes are already in place. For example, don't leaves out `/`.

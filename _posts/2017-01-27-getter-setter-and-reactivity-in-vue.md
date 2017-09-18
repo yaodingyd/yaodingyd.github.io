@@ -28,4 +28,8 @@ Also because of this, if property is an array, set to a new array would always t
 
 These code would be in vue's github repo `src/core/observer`. 
 
+### How Reactivity is achieved in Preact
+
+Reactivity is not "native" in Preact as in Vue as in all the render lifecycle would be init after `setState` is callled.
+
 

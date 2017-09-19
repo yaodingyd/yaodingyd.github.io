@@ -30,6 +30,6 @@ These code would be in vue's github repo `src/core/observer`.
 
 ### How Reactivity is achieved in Preact
 
-Reactivity is not "native" in Preact as in Vue as in all the render lifecycle would be init after `setState` is callled.
+Lifecycle hooks would be called after `setState` is invoked.
 
 

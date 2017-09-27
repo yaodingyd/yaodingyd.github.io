@@ -56,6 +56,12 @@ This is becauof of EMCA's specs:
 
 >Unless otherwise specified every built-in prototype object has the Object prototype object, which is the initial value of the expression Object.prototype (15.2.4), as the value of its [[Prototype]] internal property, except the Object prototype object itself.
 
+>The Function prototype object is itself a Function object (its [[Class]] is "Function") that, when invoked, accepts any arguments and returns undefined.
+
+>The value of the [[Prototype]] internal property of the Function prototype object is the standard built-in Object prototype object (15.2.4). The initial value of the [[Extensible]] internal property of the Function prototype object is true.
+
+>The Function prototype object does not have a valueOf property of its own; however, it inherits the valueOf property from the Object prototype Object.
+
 
 ### Constructor
 A constructor is a just another function used for initializing new objects, and you use the `new` keyword to call the constructor. So technically speaking, there is no "constructor function", there is only "constructor call". Prototype property would also has a constructor property(Object.prototype.constructor). So for a constructor function  `object_constructor`, `object_constructor.prototype.constructor` would be itself.

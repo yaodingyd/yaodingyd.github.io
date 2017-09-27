@@ -1,3 +1,15 @@
+---
+layout: post
+title:  "Reading Vue's Source Code"
+date:   2017-09-26
+tags:   
+    - Vue
+---
+
+A couples of notes when I read through Vue's source code.
+
+## Naming convention
+
 About Vue instance properties naming convention:
 Any related to DOM would have a `$` prefix;
 Any related to inner property, which user would not want to access at the first place would have a `-` prefix;

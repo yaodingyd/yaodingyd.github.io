@@ -14,10 +14,15 @@ JavaScript objects all have 'prototype', but it is considered as a "internal pro
     var x = {};
     //x's [[Prototype]] would be undefined because it's 'hidden'
     console.log(x.prototype);
+    // __proto__ would be Object.prototype 
+    console.log(x.__proto__)
 
     var y = function(){};
     //y's Prototype would be Object, with a constructor function and __proto__
     console.log(y.prototype);
+
+    var x1 = new y();
+    // now __proto__ would be y, and prototype still be undefined
 ```
 
 In Chrome, `__proto__` would be the non-standard accessible internal property of `[[Prototype]]`.
@@ -29,6 +34,27 @@ if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superCla
 ```
 
 Basically it sets subClass's `__proto__` point to superClass.
+
+### Chicken and egg
+
+Here is one interesting part about `Function` and `Object`'s prototype. We know that `Object.prototype` would be at the top of all prototype chain, so 
+```javascript
+Object.prototype.__proto__ === null // true
+```
+And you can use `new Object()`, so Object is also a function, and Function is an object, thus
+```javascript
+Object instanceof Function // true
+Function instanceof Object // true
+```
+But
+```javascript
+Function.prototype === Function.__proto__ // true
+Function.prototype.__proto__ === Object.prototype // true
+```
+This is becauof of EMCA's specs:
+>Every built-in function and every built-in constructor has the Function prototype object, which is the initial value of the expression Function.prototype (15.3.4), as the value of its [[Prototype]] internal property.
+
+>Unless otherwise specified every built-in prototype object has the Object prototype object, which is the initial value of the expression Object.prototype (15.2.4), as the value of its [[Prototype]] internal property, except the Object prototype object itself.
 
 
 ### Constructor

@@ -100,7 +100,9 @@ In Safari, body and print div's `position` must be `static` or `relative`, or it
  ```
  16. If `overflow:hidden` is not working on pseudo elements, add `position:relative` to their wrapper.
  
- 17. https://css-tricks.com/full-width-containers-limited-width-parents/
+ 17. https://css-tricks.com/full-width-containers-limited-width-parents/.
+ 
+ 18. For `position:sticky` tow work, its parent must not be `overflow:hidden`.
 
 
 # Some best practices I have encountered.

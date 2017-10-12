@@ -9,6 +9,18 @@ document.addEventListener('DOMContentLoaded', function () {
     lastElementClicked = el;
   });
 
+  Barba.Dispatcher.on('newPageReady', function(currentStatus, oldStatus, container) {
+    var script = container.querySelector("script");
+    // create a new script tag and append to container to invode Disqus script
+    // append old script node just won't work
+    if (script) {
+      container.removeChild(script);
+      var newScriptTag = document.createElement('script');
+      newScriptTag.innerText = script.innerText;
+      container.appendChild(newScriptTag);
+    }
+  }); 
+
   var MovePage = Barba.BaseTransition.extend({
     start: function() {
       this.originalThumb = lastElementClicked;

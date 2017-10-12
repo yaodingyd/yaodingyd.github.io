@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (script) {
       container.removeChild(script);
       var newScriptTag = document.createElement('script');
-      newScriptTag.innerText = script.innerText;
+      newScriptTag.innerHTML = script.innerHTML;
       container.appendChild(newScriptTag);
     }
   }); 

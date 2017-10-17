@@ -7,6 +7,7 @@ tags:
 ---
 
 
+Some resources on how to implement virtual dom.
 
 https://github.com/creeperyang/blog/issues/33
 

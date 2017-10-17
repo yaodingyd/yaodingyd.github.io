@@ -2,12 +2,22 @@ title: Yao Ding
 email: yaodingyd@gmail.com
 description: "Yao's blog on everything about web technologies'"
 baseurl: ""
-tag_page: "/blog/tags"
 url: "https://yaodingyd.github.io" 
 github_username:  yaodingyd
 
+plugins:
+  - jekyll-paginate
+  - jekyll-archives
+
 permalink: /blog/:title/
-paginate: 8
+paginate: 5
+paginate_path: /page-:num/
+
+jekyll-archives:
+  enabled: all
+  layout: 'archive'
+  permalinks:
+    tag: '/tag/'
 
 markdown: kramdown
 theme: minima

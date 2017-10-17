@@ -10,7 +10,7 @@ comments: true
     <p class="post-meta"><time datetime="2016-04-08T00:00:00-04:00" itemprop="datePublished">{{page.date| date: "%b %-d, %Y"}}</time></p>
     {% if page.tags %}  
       {% for tag in page.tags %}
-        <a href="{{ site.baseurl }}{{ site.tag_page }}#{{ tag | slugify }}" class="post-tag">{{ tag }}</a>
+        <a href="{{ site.baseurl }}/tag#{{ tag | slugify }}" class="post-tag">{{ tag }}</a>
       {% endfor %}
     {% endif %}
 

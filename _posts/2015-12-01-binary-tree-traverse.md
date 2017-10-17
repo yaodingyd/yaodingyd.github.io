@@ -6,6 +6,8 @@ tags:
     - Algorithm
 ---
 
+Algorithm.
+
 ## Depth-first Search
 
 ### Pre-order, In-order, Post-order in recursive manner

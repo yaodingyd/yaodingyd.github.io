@@ -6,6 +6,8 @@ tags:
     - How it works
 ---
 
+Some resources on how modules works in JavaScript.
+
 ### Subject on how Node's CommonJS works
 
 [http://fredkschott.com/post/2014/06/require-and-the-module-system/](http://fredkschott.com/post/2014/06/require-and-the-module-system/)

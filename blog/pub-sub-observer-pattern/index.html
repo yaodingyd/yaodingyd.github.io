@@ -53,13 +53,65 @@
 
         <main id="barba-wrapper" class="page-content" aria-label="Content">
           <div class="wrapper barba-container">
-          <div class="not-found">
-  <h2>This page is lost somehow.</h2>
-  <h3><a href="https://yaodingyd.github.io">Maybe go to the home page then?</a></h3>
+          <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Pub/Sub and Observer Pattern</h1>
+    <p class="post-meta"><time datetime="2016-04-08T00:00:00-04:00" itemprop="datePublished">Aug 1, 2016</time></p>
+      
+      
+        <a href="/tag#javascript" class="post-tag">JavaScript</a>
+      
+        <a href="/tag#programming" class="post-tag">Programming</a>
+      
+    
+
+
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>First of all, read <a href="https://addyosmani.com/resources/essentialjsdesignpatterns/book/#observerpatternjavascript">this</a>.</p>
+
+<p>Main idea: loose coupling. <a href="http://stackoverflow.com/a/13513771/6901252">“It’s a somewhat event-based way of thinking, but the “events” aren’t tied to a specific object.”</a>. So for Pub/Sub, they don’t even know if their counterparts exist. For Observer pattern, though observer must subscribe to the subject, observers don’t know about each other.</p>
+
+<p>Also, because subscribers are agnostic of publisher, they can implement an event handler published by any one.</p>
+
+<p>In Angular 1, thw Observer Pattern is implemented through digest circle in <code class="highlighter-rouge">$scope</code>. Angular would add a watcher for each of these:</p>
+
+<p>1.<code class="highlighter-rouge"><span class="p">{</span><span class="err">{expression</span><span class="p">}</span><span class="err">}</span></code> or <code class="highlighter-rouge">ng-model</code>, implicitly by Angular;</p>
+<ol>
+  <li><code class="highlighter-rouge">$scope.$watch</code>, explicitly by you</li>
+</ol>
+
+<p>Too many watchers will lower application performances. For Angular 1, the offcial recommedation is that you should not have more than 2000 watchers in a single page. So either reduce watchers usages or use bind-once.</p>
+
+<p>In Angular 1, a subscriber ‘subscribes’ to an event using <code class="highlighter-rouge">$on(‘event’, callback)</code>, and a publisher ‘publishes’ an event using <code class="highlighter-rouge">$emit(‘event’, args)</code> or <code class="highlighter-rouge">$broadcast(‘event’, args)</code>.</p>
+
+  </div>
+
+  
+</article>
+
+<div class="page-navigation">
+  
+    <a class="prev" href="/blog/one-line-punch-javascript/">&laquo; One Line Punch JavaScript</a>
+  
+  
+    <a class="next" href="/blog/react-fundametal-concept/">React Fundametals &raquo;</a>
+  
 </div>
 
-
-          
+<div id="disqus_thread"></div>
+<script>
+  // var disqus_developer = 1;
+  var disqus_config = function () {
+    this.page.url = "https://yaodingyd.github.io//blog/pub-sub-observer-pattern/";  
+    this.page.identifier = "/blog/pub-sub-observer-pattern"; 
+  };
+  (function() { var d = document, s = d.createElement('script');s.src = 'https://yaoding.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
           </div>
         </main>

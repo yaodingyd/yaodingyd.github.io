@@ -53,13 +53,91 @@
 
         <main id="barba-wrapper" class="page-content" aria-label="Content">
           <div class="wrapper barba-container">
-          <div class="not-found">
-  <h2>This page is lost somehow.</h2>
-  <h3><a href="https://yaodingyd.github.io">Maybe go to the home page then?</a></h3>
+          <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">One Line Punch JavaScript</h1>
+    <p class="post-meta"><time datetime="2016-04-08T00:00:00-04:00" itemprop="datePublished">May 12, 2016</time></p>
+      
+      
+        <a href="/tag#javascript" class="post-tag">JavaScript</a>
+      
+    
+
+
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <h4 id="check-a-number-is-power-of-n">Check a number is power of n</h4>
+<p><code class="highlighter-rouge">n &gt; 0 &amp;&amp; Math.log10(a) / Math.log10(n)  % 1  === 0</code></p>
+
+<h3 id="check-a-number-is-power-of-2">Check a number is power of 2</h3>
+<p><code class="highlighter-rouge">n &gt; 0 &amp;&amp; !(n &amp; (n-1))</code></p>
+
+<h4 id="mergeflatten-a-multidimensional-array-in-javascript">Merge/flatten a multidimensional array in JavaScript</h4>
+<p><code class="highlighter-rouge">Var merged = Array.prototype.concat.apply([], array)</code></p>
+
+<h3 id="nodelist-to-array">Nodelist to array</h3>
+<p><code class="highlighter-rouge">Array.prototype.slice.call(document.childNodes)</code></p>
+
+<h3 id="implement-spacifyhello-world---h-e-l-l-o--w-o-r-l-d">Implement Spacify(‘hello world’)  =&gt; ‘h e l l o  w o r l d’</h3>
+<p><code class="highlighter-rouge">str.split('').join(' ')</code></p>
+
+<h3 id="reverse-a-string">Reverse a string</h3>
+<p><code class="highlighter-rouge">str.split(‘’).reverse.join(‘’)</code></p>
+
+<h3 id="duplicate-an-array">Duplicate an array</h3>
+<p><code class="highlighter-rouge">var b = a.concat(a.slice())</code></p>
+
+<h3 id="implement-isinteger-function">Implement isInteger() function</h3>
+<p><code class="highlighter-rouge">x^0 === x or Math.floor(x) === x or x%1 === x</code></p>
+
+<h3 id="adding-digits-of-an-integeralso-called-digital-root">Adding digits of an integer(also called digital root)</h3>
+<p><code class="highlighter-rouge">num === 0 ? 0 :num - 9 * Math.floor((num-1)/9)</code></p>
+
+<h3 id="sort-array-based-on-numbers">Sort array based on numbers</h3>
+<p><code class="highlighter-rouge">array.sort(function(a, b){return a-b;})</code></p>
+
+<h3 id="generate-a-random-string">Generate a random string</h3>
+<p><code class="highlighter-rouge">Math.random().toString(36).substr(2)</code></p>
+
+<h3 id="binary-to-gray">Binary to Gray</h3>
+<p><code class="highlighter-rouge">num ^ (num&gt;&gt;1)</code></p>
+
+<h3 id="number-less-than-n-bit">Number less than n bit</h3>
+<p><code class="highlighter-rouge">num &lt; 1&lt;&lt; n</code></p>
+
+<h3 id="get-linked-list-center">Get linked list center</h3>
+<p><code class="highlighter-rouge">fast = head.next.next, slow = head.next</code></p>
+
+<h3 id="find-only-one-number-that-is-single-12233">Find only one number that is single ([1,2,2,3,3])</h3>
+<p><code class="highlighter-rouge">array.reduce(function(accu, i){return accu^i},0)</code> (xor)</p>
+
+  </div>
+
+  
+</article>
+
+<div class="page-navigation">
+  
+    <a class="prev" href="/blog/http-and-session/">&laquo; HTTP and Session</a>
+  
+  
+    <a class="next" href="/blog/pub-sub-observer-pattern/">Pub/Sub and Observer Pattern &raquo;</a>
+  
 </div>
 
-
-          
+<div id="disqus_thread"></div>
+<script>
+  // var disqus_developer = 1;
+  var disqus_config = function () {
+    this.page.url = "https://yaodingyd.github.io//blog/one-line-punch-javascript/";  
+    this.page.identifier = "/blog/one-line-punch-javascript"; 
+  };
+  (function() { var d = document, s = d.createElement('script');s.src = 'https://yaoding.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
           </div>
         </main>

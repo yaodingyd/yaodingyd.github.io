@@ -53,13 +53,60 @@
 
         <main id="barba-wrapper" class="page-content" aria-label="Content">
           <div class="wrapper barba-container">
-          <div class="not-found">
-  <h2>This page is lost somehow.</h2>
-  <h3><a href="https://yaodingyd.github.io">Maybe go to the home page then?</a></h3>
+          <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Stream and Buffer in Node</h1>
+    <p class="post-meta"><time datetime="2016-04-08T00:00:00-04:00" itemprop="datePublished">Apr 20, 2017</time></p>
+      
+      
+        <a href="/tag#node" class="post-tag">Node</a>
+      
+    
+
+
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p><code class="highlighter-rouge">Buffer</code> is what node uses to handle raw chunks of binary data, when using <code class="highlighter-rouge">fs.readFile()</code>, that would take the file into a <code class="highlighter-rouge">Buffer</code>, and reading it all at once. <code class="highlighter-rouge">Stream</code>, on the other hand, reads data at chunks. <code class="highlighter-rouge">Stream</code> are all <code class="highlighter-rouge">EventEmitter</code> class:</p>
+
+<blockquote>
+  <p>This object was simply an EventEmitter that added a special pipe() method to do the streaming magic.</p>
+</blockquote>
+
+<p>and <code class="highlighter-rouge">response</code> and <code class="highlighter-rouge">request</code> are all <code class="highlighter-rouge">Stream</code>, so they can listen to events and get <code class="highlighter-rouge">pipe</code>d.</p>
+
+<p>Libraries like though2 can make <code class="highlighter-rouge">stream</code> out of function so we can use it to handle streaming data. In other words, anything ‘abstract interface’ in a <code class="highlighter-rouge">pipe</code> call needs to be a <code class="highlighter-rouge">stream.transform</code> (most of the time), and we use though2 to wrap a function to be a <code class="highlighter-rouge">stream.transform</code>.</p>
+
+<p><code class="highlighter-rouge">Stream</code> generally handle <code class="highlighter-rouge">Buffer</code> and <code class="highlighter-rouge">String</code>, but it can also be an object stream, where a POJO gets streamed. To do this we enable <code class="highlighter-rouge">objectMode: true</code>, in though2 would be <code class="highlighter-rouge">var stream = through2({ objectMode: true }, function(chunk, enc, callback) { })</code>.</p>
+
+<p>It is how Gulp is using <code class="highlighter-rouge">Stream</code> inside, which would be a Vinyl object stream.</p>
+
+  </div>
+
+  
+</article>
+
+<div class="page-navigation">
+  
+    <a class="prev" href="/blog/dependency-injection-finally-makes-sense-for-me/">&laquo; Dependency Injection Finally Makes Senses For Me (in Angular 1)</a>
+  
+  
+    <a class="next" href="/blog/charles-proxy-faq/">Charles Proxy FAQ &raquo;</a>
+  
 </div>
 
-
-          
+<div id="disqus_thread"></div>
+<script>
+  // var disqus_developer = 1;
+  var disqus_config = function () {
+    this.page.url = "https://yaodingyd.github.io//blog/stream-and-buffer/";  
+    this.page.identifier = "/blog/stream-and-buffer"; 
+  };
+  (function() { var d = document, s = d.createElement('script');s.src = 'https://yaoding.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
           </div>
         </main>

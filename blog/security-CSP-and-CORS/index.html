@@ -53,13 +53,69 @@
 
         <main id="barba-wrapper" class="page-content" aria-label="Content">
           <div class="wrapper barba-container">
-          <div class="not-found">
-  <h2>This page is lost somehow.</h2>
-  <h3><a href="https://yaodingyd.github.io">Maybe go to the home page then?</a></h3>
+          <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Security: CSP and CORS</h1>
+    <p class="post-meta"><time datetime="2016-04-08T00:00:00-04:00" itemprop="datePublished">Jul 19, 2017</time></p>
+      
+      
+        <a href="/tag#web-fundamental" class="post-tag">Web Fundamental</a>
+      
+    
+
+
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>Today when I was working, I checked console log and saw 146 errors of something like this:</p>
+
+<blockquote>
+  <p>[Report Only] Refused to load the stylesheet ‘http://example.com’ because it violates the following Content Security Policy directive: “default-src https: ‘unsafe-inline’ ‘unsafe-eval’”. Note that ‘style-src’ was not explicitly set, so ‘default-src’ is used as a fallback.</p>
+</blockquote>
+
+<p>Then I noticed there is a new item in header: <code class="highlighter-rouge">Content-Security-Policy-Report-Only:default-src https: 'unsafe-inline' 'unsafe-eval'; report-uri https://example.com/reportingEndpoint</code>. This enables <em>Content Security Policy</em>, which in the case, report error only and doesn’t really block resources from loading.</p>
+
+<h2 id="what-is-content-security-policy">What is Content Security Policy</h2>
+
+<p>According to MDN:</p>
+
+<blockquote>
+  <p>Content Security Policy (CSP) is an added layer of security that helps to detect and mitigate certain types of attacks, including Cross Site Scripting (XSS) and data injection attacks. These attacks are used for everything from data theft to site defacement or distribution of malware.</p>
+</blockquote>
+
+<p>To use CSP, we can either enable this in the server side, that means adding a <code class="highlighter-rouge">Content-Security-Policy</code> HTTP header, or use <code class="highlighter-rouge">&lt;meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src https://*; child-src 'none';"&gt;</code> meta tags in the HTML.</p>
+
+<h2 id="whats-difference-with-cors">What’s difference with CORS?</h2>
+
+<p>Same Origin Policy is the default policy for all browsers and it limits that a resource makes a cross-origin HTTP request when it requests a resource from a different domain, protocol, or port to its own. Basically when doing <code class="highlighter-rouge">XMLHttpRequest</code> or <code class="highlighter-rouge">fetch</code>, you have to enable CORS for different origin, but not loading <code class="highlighter-rouge">script</code> or <code class="highlighter-rouge">img</code> tag when document first loads.</p>
+
+
+  </div>
+
+  
+</article>
+
+<div class="page-navigation">
+  
+    <a class="prev" href="/blog/about-cropping-image/">&laquo; About Cropping Image</a>
+  
+  
+    <a class="next" href="/blog/reading-vue-source-code/">Reading Vue's Source Code &raquo;</a>
+  
 </div>
 
-
-          
+<div id="disqus_thread"></div>
+<script>
+  // var disqus_developer = 1;
+  var disqus_config = function () {
+    this.page.url = "https://yaodingyd.github.io//blog/security-CSP-and-CORS/";  
+    this.page.identifier = "/blog/security-CSP-and-CORS"; 
+  };
+  (function() { var d = document, s = d.createElement('script');s.src = 'https://yaoding.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
           </div>
         </main>

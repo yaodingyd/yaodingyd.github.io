@@ -53,13 +53,60 @@
 
         <main id="barba-wrapper" class="page-content" aria-label="Content">
           <div class="wrapper barba-container">
-          <div class="not-found">
-  <h2>This page is lost somehow.</h2>
-  <h3><a href="https://yaodingyd.github.io">Maybe go to the home page then?</a></h3>
+          <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Dependency Injection Finally Makes Senses For Me (in Angular 1)</h1>
+    <p class="post-meta"><time datetime="2016-04-08T00:00:00-04:00" itemprop="datePublished">Apr 17, 2017</time></p>
+      
+      
+        <a href="/tag#node" class="post-tag">Node</a>
+      
+    
+
+
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>I started learning Dependency Injection(DI) with Angular 1 and frankly speaking, it was not a very pleasant experiences for me at the start. Angular uses all kinds of jargons in one short <a href="https://github.com/angular/angular.js/wiki/Understanding-Dependency-Injection">article</a>: <code class="highlighter-rouge">service</code>, <code class="highlighter-rouge">provider</code>, then <code class="highlighter-rouge">$provider</code>, <code class="highlighter-rouge">$provider.service()</code>, <code class="highlighter-rouge">$provider.factory()</code>, with some actually referring to the one of program paradiams and some are Angular’s directives, I was totally confused at that time.</p>
+
+<p>Surly I have no problem understanding it now. To quote from Laravel’s offical documents:</p>
+
+<blockquote>
+  <p>Dependency injection is a fancy phrase that essentially means this: class dependencies are “injected” into the class via the constructor or, in some cases, “setter” methods.</p>
+</blockquote>
+
+<p>And the more I looked into how Laravel handles DI, the more I see how Angular is truly a MVC framework.</p>
+
+<p>Laravel has two concepts around DI: <code class="highlighter-rouge">service container</code> and <code class="highlighter-rouge">service provider</code>. Basically in <code class="highlighter-rouge">service provider</code> we ‘register’ (or ‘define’) a ‘service’, and use <code class="highlighter-rouge">service container</code> to do <code class="highlighter-rouge">App::bind</code> or <code class="highlighter-rouge">App::singleton</code>, and later Laraval can use type hinting to do DI. Angular follows the same concept here: we use <code class="highlighter-rouge">$provide</code> to define a bunch of ‘service’, or use its shorcuts(<code class="highlighter-rouge">module.provider</code>, <code class="highlighter-rouge">module.service</code> or <code class="highlighter-rouge">module.factory</code>); later we inject all these dependency with either an array in the callback
+<code class="highlighter-rouge">someModule.controller('MyController', ['$scope', 'dep1', 'dep2', function($scope, dep1, dep2) {...})</code>, or use <code class="highlighter-rouge">MyController.$inject = ['$scope', 'dep1', 'dep2'];</code>. One thing to notice is that all ‘service’ in Angular are singletons.</p>
+
+
+  </div>
+
+  
+</article>
+
+<div class="page-navigation">
+  
+    <a class="prev" href="/blog/most-depressing-part-in-front-end-tooling/">&laquo; Most Depressing Part in Front-end Dev</a>
+  
+  
+    <a class="next" href="/blog/stream-and-buffer/">Stream and Buffer in Node &raquo;</a>
+  
 </div>
 
-
-          
+<div id="disqus_thread"></div>
+<script>
+  // var disqus_developer = 1;
+  var disqus_config = function () {
+    this.page.url = "https://yaodingyd.github.io//blog/dependency-injection-finally-makes-sense-for-me/";  
+    this.page.identifier = "/blog/dependency-injection-finally-makes-sense-for-me"; 
+  };
+  (function() { var d = document, s = d.createElement('script');s.src = 'https://yaoding.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
           </div>
         </main>

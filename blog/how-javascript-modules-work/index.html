@@ -53,13 +53,85 @@
 
         <main id="barba-wrapper" class="page-content" aria-label="Content">
           <div class="wrapper barba-container">
-          <div class="not-found">
-  <h2>This page is lost somehow.</h2>
-  <h3><a href="https://yaodingyd.github.io">Maybe go to the home page then?</a></h3>
+          <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">How JavaScript Modules work</h1>
+    <p class="post-meta"><time datetime="2016-04-08T00:00:00-04:00" itemprop="datePublished">Jun 12, 2017</time></p>
+      
+      
+        <a href="/tag#how-it-works" class="post-tag">How it works</a>
+      
+    
+
+
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>Some resources on how modules works in JavaScript.</p>
+
+<h3 id="subject-on-how-nodes-commonjs-works">Subject on how Node’s CommonJS works</h3>
+
+<p><a href="http://fredkschott.com/post/2014/06/require-and-the-module-system/">http://fredkschott.com/post/2014/06/require-and-the-module-system/</a>
+<a href="https://blog.risingstack.com/node-js-at-scale-module-system-commonjs-require/">https://blog.risingstack.com/node-js-at-scale-module-system-commonjs-require/</a></p>
+
+<h3 id="nodes-module-source-code">Node’s module source code</h3>
+
+<p><a href="https://github.com/nodejs/node/blob/master/lib/module.js">github url</a></p>
+
+<h3 id="commonjs-specs">CommonJS Specs</h3>
+
+<p><a href="http://wiki.commonjs.org/wiki/Modules/1.1.1">CommonJS’s wiki</a></p>
+
+<h3 id="how-requirejs-works">How RequireJS works</h3>
+
+<p>From <a href="https://www.quora.com/How-does-require-js-work-How-it-load-files-Does-it-make-ajax-call-to-load-files-or-any-other-way-Can-anyone-explain-it-clearly/answer/Gourab-Kar-2?srid=uk2Rp">this answer</a></p>
+
+<blockquote>
+  <ol>
+    <li>Loading a file in requirejs is simply attaching a script tag with src to your mentioned filename. This is triggered by require () function. Now comes a beautiful feature. All the script tags have onchange event. When the file gets loaded, the onchange function is triggered and saved in a variable that will be used on demand by define () function. When all the dependencies are resolved, all the loaded files are arranged in there order of them being called and a map of it is created.</li>
+  </ol>
+</blockquote>
+
+<blockquote>
+  <ol>
+    <li>You must have noticed the files that you can load by requirejs are AMD. The contents are enveloped in a define function and the function returns something. This prevents the variables / business objects to be exposed at window level. Everything you’ve written inside an AMD module is scoped to the define function and it is used when injected as an object in another function. When such files get loaded, the returned value is stored in the variable mentioned in point 1.</li>
+  </ol>
+</blockquote>
+
+<h3 id="amd-spec">AMD spec</h3>
+
+<p><a href="https://github.com/amdjs/amdjs-api/blob/master/AMD.md">AMDjs github</a></p>
+
+<h3 id="applications">Applications</h3>
+
+<p>Browserify would convert ES6 <code class="highlighter-rouge">import</code> to CommonJS modules, since most browsers cannot support it yet.</p>
+
+  </div>
+
+  
+</article>
+
+<div class="page-navigation">
+  
+    <a class="prev" href="/blog/charles-proxy-faq/">&laquo; Charles Proxy FAQ</a>
+  
+  
+    <a class="next" href="/blog/about-cropping-image/">About Cropping Image &raquo;</a>
+  
 </div>
 
-
-          
+<div id="disqus_thread"></div>
+<script>
+  // var disqus_developer = 1;
+  var disqus_config = function () {
+    this.page.url = "https://yaodingyd.github.io//blog/how-javascript-modules-work/";  
+    this.page.identifier = "/blog/how-javascript-modules-work"; 
+  };
+  (function() { var d = document, s = d.createElement('script');s.src = 'https://yaoding.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
           </div>
         </main>

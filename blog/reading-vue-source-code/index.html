@@ -53,13 +53,76 @@
 
         <main id="barba-wrapper" class="page-content" aria-label="Content">
           <div class="wrapper barba-container">
-          <div class="not-found">
-  <h2>This page is lost somehow.</h2>
-  <h3><a href="https://yaodingyd.github.io">Maybe go to the home page then?</a></h3>
+          <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Reading Vue's Source Code</h1>
+    <p class="post-meta"><time datetime="2016-04-08T00:00:00-04:00" itemprop="datePublished">Sep 26, 2017</time></p>
+      
+      
+        <a href="/tag#vue" class="post-tag">Vue</a>
+      
+    
+
+
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>A couples of notes when I read through Vue’s source code.</p>
+
+<h2 id="naming-convention">Naming convention</h2>
+
+<p>About Vue instance properties naming convention:
+Any related to DOM would have a <code class="highlighter-rouge">$</code> prefix;
+Any related to inner property, which user would not want to access at the first place would have a <code class="highlighter-rouge">-</code> prefix;
+The rest of public properties and methods would have no prefixs.
+All Vue instance methods/property would be extended on <code class="highlighter-rouge">Vue.prototype</code> and prefixed with a <code class="highlighter-rouge">$</code></p>
+
+<h2 id="vue-instantiation">Vue instantiation:</h2>
+
+<p>Each time instantiated with a new Vue instance, so we have the <code class="highlighter-rouge">new</code> keyword. Essentially <code class="highlighter-rouge">Vue</code> is a constructor function, inside it calls <code class="highlighter-rouge">vue._init</code> function to instantiate a new Vue instance. Vue uses <code class="highlighter-rouge">vm</code> as a reference (ViewModel)</p>
+
+<h2 id="observer">Observer</h2>
+
+<p>This whole <code class="highlighter-rouge">Observer</code> is already discussed in my other post. Vue uses <code class="highlighter-rouge">Observer</code> to make data reactive with ES5 <code class="highlighter-rouge">Object.defineProperty</code> and <code class="highlighter-rouge">get</code> <code class="highlighter-rouge">set</code>. Also each reactive property has <code class="highlighter-rouge">Watcher</code> to manage its <code class="highlighter-rouge">Dep</code>, like DOM update. Each data change would push all <code class="highlighter-rouge">Watcher</code> in a queue managed by <code class="highlighter-rouge">Scheduler</code> class. On <code class="highlighter-rouge">nextTick</code>, the queue would be flushed and all <code class="highlighter-rouge">Watcher</code> callback would be applied.</p>
+
+<p>Any reactive data changes -&gt; dep.notify() -&gt; watcher.update() -&gt; queueWatcher() -&gt; wait for nexttick to flush queue</p>
+
+<h2 id="init">Init</h2>
+<p>_init 
+  has <code class="highlighter-rouge">el</code> when initialized ? call public <code class="highlighter-rouge">$mount</code> -&gt; mountComponet -&gt; intialize a new <code class="highlighter-rouge">Watcher</code> -&gt;  vm._update -&gt; run patch, createElm, CreateComponent -&gt; recursively create all children components -&gt; mount all components</p>
+
+<h2 id="render">Render?</h2>
+
+<p>Vue uses template to compile to render function, or you can use your own render function. render function would call createElement to get a new vnode. Vnode to do patch -&gt; createComponent -&gt; create an instance and mount</p>
+
+<p>recursively mounted all children(componentInstance), then mount parent</p>
+
+  </div>
+
+  
+</article>
+
+<div class="page-navigation">
+  
+    <a class="prev" href="/blog/security-CSP-and-CORS/">&laquo; Security: CSP and CORS</a>
+  
+  
+    <a class="next" href="/blog/reading-virtual-dom-implementation/">Reading Virtual Dom Implementation &raquo;</a>
+  
 </div>
 
-
-          
+<div id="disqus_thread"></div>
+<script>
+  // var disqus_developer = 1;
+  var disqus_config = function () {
+    this.page.url = "https://yaodingyd.github.io//blog/reading-vue-source-code/";  
+    this.page.identifier = "/blog/reading-vue-source-code"; 
+  };
+  (function() { var d = document, s = d.createElement('script');s.src = 'https://yaoding.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
           </div>
         </main>

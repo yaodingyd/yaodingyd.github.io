@@ -53,13 +53,57 @@
 
         <main id="barba-wrapper" class="page-content" aria-label="Content">
           <div class="wrapper barba-container">
-          <div class="not-found">
-  <h2>This page is lost somehow.</h2>
-  <h3><a href="https://yaodingyd.github.io">Maybe go to the home page then?</a></h3>
+          <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Scrollbar And Window Width</h1>
+    <p class="post-meta"><time datetime="2016-04-08T00:00:00-04:00" itemprop="datePublished">Sep 23, 2016</time></p>
+      
+      
+        <a href="/tag#jquery" class="post-tag">jQuery</a>
+      
+        <a href="/tag#tip" class="post-tag">Tip</a>
+      
+    
+
+
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <h3 id="mac-vs-pc">Mac vs PC</h3>
+<p>In Mac, there is a system preference setting that hides scrollbar in browsers, so scrollbar does not take space. In IE, there is <code class="highlighter-rouge">-ms-overflow-style:-ms-autohiding-scrollbar</code> that does the same thing. But unfortunately for Chrome and Firefox on Windows, you cannot make the scrollbar not taking up space.</p>
+
+<h3 id="jquerywindowwidth-vs-windowinnerwidth">jQuery(window).width() vs window.innerWidth</h3>
+<p>Since scrollbar can take up space or not, here comes the issue: it makes  <code class="highlighter-rouge">jQuery(window).width()</code> unreliable.
+Also, you can get the horrible content shift when you open up a modal and set <code class="highlighter-rouge">overflow:hidden</code> on body.</p>
+
+<p>Recently I took a lesson from this:   <code class="highlighter-rouge">jQuery(window).width()</code> returns different values for Chrome on Mac and on PC. It’s because this method returns a computered width. This issue is fixed in the latest jQuery<a href="https://github.com/jquery/jquery/issues/1729">this issue</a>, but for 1.11, you still need to use <code class="highlighter-rouge">window.innerWidth</code> to get width with scrollbar.</p>
+
+  </div>
+
+  
+</article>
+
+<div class="page-navigation">
+  
+    <a class="prev" href="/blog/prototype-is-driving-me-crazy/">&laquo; Prototype Is Driving Me Crazy</a>
+  
+  
+    <a class="next" href="/blog/writing-promise-a-plus-implementation/">Writing a Promise/A+ Implementation &raquo;</a>
+  
 </div>
 
-
-          
+<div id="disqus_thread"></div>
+<script>
+  // var disqus_developer = 1;
+  var disqus_config = function () {
+    this.page.url = "https://yaodingyd.github.io//blog/scrollbar-and-window-width/";  
+    this.page.identifier = "/blog/scrollbar-and-window-width"; 
+  };
+  (function() { var d = document, s = d.createElement('script');s.src = 'https://yaoding.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
           </div>
         </main>

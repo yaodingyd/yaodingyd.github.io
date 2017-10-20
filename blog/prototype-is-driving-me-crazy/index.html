@@ -70,7 +70,9 @@
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <h3 id="prototype-property-vs-prototype">‘Prototype’ property vs [[Prototype]]</h3>
+    <p>JavaScript is a not a strictly OOP language, and it is driving me crazy.</p>
+
+<h3 id="prototype-property-vs-prototype">‘Prototype’ property vs [[Prototype]]</h3>
 <p>JavaScript objects all have ‘prototype’, but it is considered as a “internal property”, denoted by double brackets(<code class="highlighter-rouge">[[Prototype]]</code>), which links back to <code class="highlighter-rouge">Object.prototype</code>. A function, which is a object too, has the ‘visible’ prototype property. This is why the following code runs like this in Chrome:</p>
 
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code>    <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="p">{};</span>
@@ -149,6 +151,23 @@
 <p>Currently in ES5, prototype.constructor is kind of a placeholder property to ensure that your newly created object is an instance of your parent. Note that the value of this property is a reference to the function itself, and it can be treated as ‘read-only’.  If you change your prototype.constructor,  and create a new child with new parent(), the child’s property stays the same, you can try it! Only if you deliberately use the constructor function, it will be used.</p>
 
 <p>Contructor also introduce an issue, that is <code class="highlighter-rouge">instanceof</code>. <code class="highlighter-rouge">instanceof</code> checks type by checking ‘instance’’s [[Prototype]] is equal to ‘constructor’s prototype. Read this more on <a href="https://medium.com/javascript-scene/javascript-factory-functions-vs-constructor-functions-vs-classes-2f22ceddf33e#.av1qtyvf9">this article</a>.</p>
+
+<h3 id="static-method-vs-prototype-method">Static method vs Prototype method</h3>
+<p>In ES6, using the <code class="highlighter-rouge">class</code> syntax sugar could help you create a more OOP-like JavaScript object. And you can even use <code class="highlighter-rouge">static</code> to declare static method. The ones without <code class="highlighter-rouge">static</code> keyword are declared as prototype methods. It would be something like this:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">myClass</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">staticMethod</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// normally it's a utility class, and we don't use `this` that much</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">myClass</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">prototypeMethod</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// `this` is used a lot because it's uauslly used on an instance</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>The reason why we put instance method in prototype is that using “this” results in every instance of the class  having its own independent copy of method, whereas using prototype will mean that each instance of class  will use the same copy of method. Thus, declaring methods on the prototype is more memory efficient.</p>
 
 <h3 id="create-a-subclass">Create a ‘subclass’</h3>
 <p>Code first:</p>

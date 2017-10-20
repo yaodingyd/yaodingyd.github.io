@@ -29,7 +29,8 @@ exclude:
   - package.json
   - Gemfile
   - Gemfile.lock
-  - vendor
+  - vendo
+  - Rakefile
 
 # GitHub
 username:             yaodingyd

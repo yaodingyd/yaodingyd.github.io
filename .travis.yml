@@ -1,4 +1,7 @@
 language: ruby
+branches:
+  only: 
+    - source
 rvm:
 - 2.3.1
 install:

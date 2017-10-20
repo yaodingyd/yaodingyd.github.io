@@ -7,6 +7,8 @@ tag:
     - Programming
 ---
 
+JavaScript is a not a strictly OOP language, and it is driving me crazy. 
+
 ### 'Prototype' property vs [[Prototype]]
 JavaScript objects all have 'prototype', but it is considered as a "internal property", denoted by double brackets(`[[Prototype]]`), which links back to `Object.prototype`. A function, which is a object too, has the 'visible' prototype property. This is why the following code runs like this in Chrome:
 
@@ -77,6 +79,23 @@ In this way, whatever property initialized in constructor would be new object's 
 Currently in ES5, prototype.constructor is kind of a placeholder property to ensure that your newly created object is an instance of your parent. Note that the value of this property is a reference to the function itself, and it can be treated as 'read-only'.  If you change your prototype.constructor,  and create a new child with new parent(), the child’s property stays the same, you can try it! Only if you deliberately use the constructor function, it will be used. 
 
 Contructor also introduce an issue, that is `instanceof`. `instanceof` checks type by checking 'instance''s [[Prototype]] is equal to 'constructor's prototype. Read this more on [this article](https://medium.com/javascript-scene/javascript-factory-functions-vs-constructor-functions-vs-classes-2f22ceddf33e#.av1qtyvf9).
+
+### Static method vs Prototype method
+In ES6, using the `class` syntax sugar could help you create a more OOP-like JavaScript object. And you can even use `static` to declare static method. The ones without `static` keyword are declared as prototype methods. It would be something like this:
+
+```javascript
+function myClass () {
+    this.staticMethod = function () {
+        // normally it's a utility class, and we don't use `this` that much
+    }
+}
+
+myClass.prototype.prototypeMethod = function () {
+    // `this` is used a lot because it's uauslly used on an instance
+}
+```
+
+The reason why we put instance method in prototype is that using "this" results in every instance of the class  having its own independent copy of method, whereas using prototype will mean that each instance of class  will use the same copy of method. Thus, declaring methods on the prototype is more memory efficient.
 
 ### Create a 'subclass'
 Code first:

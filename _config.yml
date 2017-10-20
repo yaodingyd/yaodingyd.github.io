@@ -29,3 +29,13 @@ exclude:
   - package.json
   - Gemfile
   - Gemfile.lock
+  - vendor
+
+# GitHub
+username:             yaodingyd
+repo:                 yaodingyd.github.io
+branch:               source
+
+# Jekyll source / destination
+source:               .
+destination:          _site

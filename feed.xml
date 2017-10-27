@@ -5,9 +5,53 @@
     <description>Yao's blog on everything about web technologies'</description>
     <link>https://yaodingyd.github.io/</link>
     <atom:link href="https://yaodingyd.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 27 Oct 2017 17:49:26 +0000</pubDate>
-    <lastBuildDate>Fri, 27 Oct 2017 17:49:26 +0000</lastBuildDate>
+    <pubDate>Fri, 27 Oct 2017 17:53:13 +0000</pubDate>
+    <lastBuildDate>Fri, 27 Oct 2017 17:53:13 +0000</lastBuildDate>
     <generator>Jekyll v3.5.2</generator>
+    
+      <item>
+        <title>Mutation Observer Is Cool</title>
+        <description>&lt;p&gt;Mutation Observer is a well-supported (&lt;a href=&quot;https://caniuse.com/#search=Mutation%20Observer&quot;&gt;CanIUse link&lt;/a&gt;) and very effcient API. Today I finally has a legit usecase for it.&lt;/p&gt;
+
+&lt;h3 id=&quot;detecting-lazy-loaded-ad-is-inserted&quot;&gt;Detecting lazy-loaded ad is inserted&lt;/h3&gt;
+&lt;p&gt;Today at work I run into this situation: on page there is a Google DFP ad and it is loaded in a iframe. I don’t have any knowledge of knowing it this ad is being inserted into DOM, for on DOM ready it is just a placeholder. I tried setting a timeout for it but it could get tricky and there is no guarantee for it would always work. Thus enters Mutation Observer.&lt;/p&gt;
+
+&lt;p&gt;I would skip the code because there is always MDN. Later when I dig more into it, I found out &lt;a href=&quot;https://eager.io/blog/three-real-world-use-cases-for-mutation-observer/&quot;&gt;this article&lt;/a&gt; has included my usage. Also combining &lt;code class=&quot;highlighter-rouge&quot;&gt;contenteditable&lt;/code&gt;, it would make a greate WYSIWYG editor.&lt;/p&gt;
+
+&lt;h3 id=&quot;more-usage&quot;&gt;More usage&lt;/h3&gt;
+
+&lt;p&gt;There is something intereting in Vue as it uses Mutation Observer as a fallback for &lt;code class=&quot;highlighter-rouge&quot;&gt;promise&lt;/code&gt; to implement &lt;code class=&quot;highlighter-rouge&quot;&gt;nextTick&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;observer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;MutationObserver&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;nextTickHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;textNode&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createTextNode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;observer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;observe&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;textNode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;characterData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;timerFunc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;textNode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// nextTickHandler is the hanlder for callbacks in Vue.nextTick(callback)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This works because handling is postponed and batched into subtree insertions with Mutation Observer.&lt;/p&gt;
+
+&lt;h3 id=&quot;some-thoughts&quot;&gt;Some thoughts&lt;/h3&gt;
+
+&lt;p&gt;Why isn’t a well-supported and efficeint API not that generally used? I think it’s because how the modern framework is designed: instead of keeping tracking of states with DOM, states is seperated into a dedicated JavaScript object. Also with virtual DOM, real DOM mutation triggered event might be delayed.&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 27 Oct 2017 00:00:00 +0000</pubDate>
+        <link>https://yaodingyd.github.io/blog/mutation-observer-is-cool/</link>
+        <guid isPermaLink="true">https://yaodingyd.github.io/blog/mutation-observer-is-cool/</guid>
+        
+        <category>Web Fundamental</category>
+        
+        
+      </item>
     
       <item>
         <title>Reading Virtual Dom Implementation</title>
@@ -316,76 +360,6 @@ All Vue instance methods/property would be extended on &lt;code class=&quot;high
         <pubDate>Wed, 22 Mar 2017 00:00:00 +0000</pubDate>
         <link>https://yaodingyd.github.io/blog/most-depressing-part-in-front-end-tooling/</link>
         <guid isPermaLink="true">https://yaodingyd.github.io/blog/most-depressing-part-in-front-end-tooling/</guid>
-        
-        <category>Node</category>
-        
-        
-      </item>
-    
-      <item>
-        <title>Async Programming in JavaScript</title>
-        <description>&lt;h3 id=&quot;promises-vs-event-based-architecture&quot;&gt;Promises vs Event-based Architecture&lt;/h3&gt;
-
-&lt;p&gt;There is a wonderful &lt;a href=&quot;https://gist.github.com/dmvaldman/12a7e46be6c3097aae31&quot;&gt;post&lt;/a&gt; explaining what’s the relationship between these two. Basically we can treat &lt;code class=&quot;highlighter-rouge&quot;&gt;Promise&lt;/code&gt; as a simple pattern over &lt;code class=&quot;highlighter-rouge&quot;&gt;EventEmitter&lt;/code&gt; that only &lt;code class=&quot;highlighter-rouge&quot;&gt;resolve&lt;/code&gt; once, which means &lt;code class=&quot;highlighter-rouge&quot;&gt;emit&lt;/code&gt; just one &lt;code class=&quot;highlighter-rouge&quot;&gt;fulfill&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;reject&lt;/code&gt;. They all depend on &lt;code class=&quot;highlighter-rouge&quot;&gt;event loop&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;function-queue&quot;&gt;Function Queue&lt;/h3&gt;
-
-&lt;p&gt;I wondered how is &lt;code class=&quot;highlighter-rouge&quot;&gt;next&lt;/code&gt; working in connect, and&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-JavaScript&quot;&gt;var middlewares = [
-  function fun1(req, res, next) {
-    parseBody(req, function(err, body) {
-      if (err) return next(err);
-      req.body = body;
-      next();
-    });
-  },
-
-  function fun2(req, res, next) {
-    checkIdInDatabase(req.body.id, function(err, rows) {
-      if (err) return next(err);
-      res.dbResult = rows;
-      next();
-    });
-  },
-
-  function fun3(req, res, next) {
-    if (res.dbResult &amp;amp;&amp;amp; res.dbResult.length &amp;gt; 0) {
-      res.end('true');
-    }
-    else {
-      res.end('false');
-    }
-    next();
-  }
-]
-
-function requestHandler(req, res) {
-  var i=0;
-
-  function next(err) {
-
-    if (err) {
-      return res.end('error:', err.toString());
-    }
-
-    if (i&amp;lt;middlewares.length) {
-      middlewares[i++](req, res, next);
-    } else {
-      return ;
-    }
-  }
-
-  next();
-}
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;And this is all the &lt;code class=&quot;highlighter-rouge&quot;&gt;middleware&lt;/code&gt; works. And that’s why we need to add &lt;code class=&quot;highlighter-rouge&quot;&gt;next&lt;/code&gt; to our middleware at the end. &lt;code class=&quot;highlighter-rouge&quot;&gt;use&lt;/code&gt; is essentially added middlewares to our function queue, and we can also add a &lt;code class=&quot;highlighter-rouge&quot;&gt;setTimeout&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;process.nextTick&lt;/code&gt; to calling the middleware function, to ensure event loop handle it correctly.&lt;/p&gt;
-</description>
-        <pubDate>Tue, 21 Feb 2017 00:00:00 +0000</pubDate>
-        <link>https://yaodingyd.github.io/blog/async-programming-in-js/</link>
-        <guid isPermaLink="true">https://yaodingyd.github.io/blog/async-programming-in-js/</guid>
         
         <category>Node</category>
         

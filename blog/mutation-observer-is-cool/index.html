@@ -71,126 +71,77 @@
 
         <main id="barba-wrapper" class="page-content" aria-label="Content">
           <div class="wrapper barba-container">
-          <div class="home">
+          <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
 
-  <ul class="post-list">
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Mutation Observer Is Cool</h1>
+    <p class="post-meta"><time datetime="2016-04-08T00:00:00-04:00" itemprop="datePublished">Oct 27, 2017</time></p>
+      
+      
+        <a href="/tag#web-fundamental" class="post-tag">Web Fundamental</a>
+      
     
-      <li>
-        <span class="post-meta">Oct 20, 2016</span>
-        <h2>
-          <a class="post-link" href="/blog/form-and-submit/">Form and Submit</a>
-        </h2>
-        <div class="post-excerpt"><h3 id="what-is-submit">What Is Submit</h3>
-<p>Sumbit is a native function of form element. So if you want to use sumbit funciton, there must be a form first.</p>
 
-</div>        
-      </li>
-    
-      <li>
-        <span class="post-meta">Oct 5, 2016</span>
-        <h2>
-          <a class="post-link" href="/blog/writing-promise-a-plus-implementation/">Writing a Promise/A+ Implementation</a>
-        </h2>
-        <div class="post-excerpt"><h3 id="jquery-deferred-and-anti-pattern">jQuery Deferred and Anti-Pattern</h3>
-<p>When I first started to learn about promise, jQuery Deferred object helped me a lot understanding the core concept of promise. It kind of shaped promise for me. So later, when I looked at <a href="https://github.com/petkaantonov/bluebird/wiki/Promise-anti-patterns">this article</a> about how it is anti-patterns, I felt like I should really look into <em>promsie</em> itself.</p>
 
-</div>        
-      </li>
-    
-      <li>
-        <span class="post-meta">Sep 23, 2016</span>
-        <h2>
-          <a class="post-link" href="/blog/scrollbar-and-window-width/">Scrollbar And Window Width</a>
-        </h2>
-        <div class="post-excerpt"><h3 id="mac-vs-pc">Mac vs PC</h3>
-<p>In Mac, there is a system preference setting that hides scrollbar in browsers, so scrollbar does not take space. In IE, there is <code class="highlighter-rouge">-ms-overflow-style:-ms-autohiding-scrollbar</code> that does the same thing. But unfortunately for Chrome and Firefox on Windows, you cannot make the scrollbar not taking up space.</p>
+  </header>
 
-</div>        
-      </li>
-    
-      <li>
-        <span class="post-meta">Sep 7, 2016</span>
-        <h2>
-          <a class="post-link" href="/blog/prototype-is-driving-me-crazy/">Prototype Is Driving Me Crazy</a>
-        </h2>
-        <div class="post-excerpt"><p>JavaScript is a not a strictly OOP language, and it is driving me crazy.</p>
+  <div class="post-content" itemprop="articleBody">
+    <p>Mutation Observer is a well-supported (<a href="https://caniuse.com/#search=Mutation%20Observer">CanIUse link</a>) and very effcient API. Today I finally has a legit usecase for it.</p>
 
-</div>        
-      </li>
-    
-      <li>
-        <span class="post-meta">Aug 29, 2016</span>
-        <h2>
-          <a class="post-link" href="/blog/factory-pattern/">Factory Pattern</a>
-        </h2>
-        <div class="post-excerpt"><p>Basically, factory pattern is:</p>
-<blockquote>
-  <p>To get a new JavaScript Object instance without using <code class="highlighter-rouge">new</code>.</p>
-</blockquote>
+<h3 id="detecting-lazy-loaded-ad-is-inserted">Detecting lazy-loaded ad is inserted</h3>
+<p>Today at work I run into this situation: on page there is a Google DFP ad and it is loaded in a iframe. I don’t have any knowledge of knowing it this ad is being inserted into DOM, for on DOM ready it is just a placeholder. I tried setting a timeout for it but it could get tricky and there is no guarantee for it would always work. Thus enters Mutation Observer.</p>
 
-</div>        
-      </li>
-    
-  </ul>
+<p>I would skip the code because there is always MDN. Later when I dig more into it, I found out <a href="https://eager.io/blog/three-real-world-use-cases-for-mutation-observer/">this article</a> has included my usage. Also combining <code class="highlighter-rouge">contenteditable</code>, it would make a greate WYSIWYG editor.</p>
 
-  
+<h3 id="more-usage">More usage</h3>
 
-  
-  
+<p>There is something intereting in Vue as it uses Mutation Observer as a fallback for <code class="highlighter-rouge">promise</code> to implement <code class="highlighter-rouge">nextTick</code>:</p>
 
-  
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">counter</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">observer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">MutationObserver</span><span class="p">(</span><span class="nx">nextTickHandler</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">textNode</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createTextNode</span><span class="p">(</span><span class="nb">String</span><span class="p">(</span><span class="nx">counter</span><span class="p">));</span>
+<span class="nx">observer</span><span class="p">.</span><span class="nx">observe</span><span class="p">(</span><span class="nx">textNode</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">characterData</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">});</span>
+<span class="nx">timerFunc</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">counter</span> <span class="o">=</span> <span class="p">(</span><span class="nx">counter</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="nx">textNode</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="nb">String</span><span class="p">(</span><span class="nx">counter</span><span class="p">);</span>
+<span class="p">};</span>
 
-  
+<span class="c1">// nextTickHandler is the hanlder for callbacks in Vue.nextTick(callback)</span>
+</code></pre>
+</div>
 
-  
+<p>This works because handling is postponed and batched into subtree insertions with Mutation Observer.</p>
 
-  <div class="pagination-wrapper">
-    <div class="pagination">
-      
-        <a class="pagination-step" href="/page-4/">
-          Newer
-        </a>
-      
+<h3 id="some-thoughts">Some thoughts</h3>
 
-      
-        <a class="pagination-first" href="/">1</a>
-        <span class="pagination-more">&middot;&middot;&middot;</span>
-      
+<p>Why isn’t a well-supported and efficeint API not that generally used? I think it’s because how the modern framework is designed: instead of keeping tracking of states with DOM, states is seperated into a dedicated JavaScript object. Also with virtual DOM, real DOM mutation triggered event might be delayed.</p>
 
-      
-        
-          <a href="/page-3">3</a>
-        
-      
-        
-          <a href="/page-4">4</a>
-        
-      
-        
-          <span class="active">5</span>
-        
-      
-        
-          <a href="/page-6">6</a>
-        
-      
-        
-          <a href="/page-7">7</a>
-        
-      
 
-      
-
-      
-        <a class="pagination-step" href="/page-6/">
-          Older
-        </a>
-      
-    </div>
   </div>
 
+  
+</article>
 
+<div class="page-navigation">
+  
+    <a class="prev" href="/blog/reading-virtual-dom-implementation/">&laquo; Reading Virtual Dom Implementation</a>
+  
+  
 </div>
+
+<div id="disqus_thread"></div>
+<script>
+  // var disqus_developer = 1;
+  var disqus_config = function () {
+    this.page.url = "https://yaodingyd.github.io//blog/mutation-observer-is-cool/";  
+    this.page.identifier = "/blog/mutation-observer-is-cool"; 
+  };
+  (function() { var d = document, s = d.createElement('script');s.src = 'https://yaoding.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
           </div>
         </main>

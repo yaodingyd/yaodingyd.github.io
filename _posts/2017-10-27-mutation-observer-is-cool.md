@@ -6,7 +6,7 @@ tags:
     - Web Fundamental
 ---
 
-Mutation Observer is a well-supported  [CanIUse link](https://caniuse.com/#search=Mutation%20Observer) and very effcient API. Today I finally has a legit usecase for it.
+Mutation Observer is a well-supported ([CanIUse link](https://caniuse.com/#search=Mutation%20Observer)) and very effcient API. Today I finally has a legit usecase for it.
 
 ### Detecting lazy-loaded ad is inserted
 Today at work I run into this situation: on page there is a Google DFP ad and it is loaded in a iframe. I don't have any knowledge of knowing it this ad is being inserted into DOM, for on DOM ready it is just a placeholder. I tried setting a timeout for it but it could get tricky and there is no guarantee for it would always work. Thus enters Mutation Observer.

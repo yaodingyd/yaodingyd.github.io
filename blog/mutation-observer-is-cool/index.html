@@ -38,55 +38,41 @@
 
   ga('create', 'UA-86352654-1', 'auto');
   ga('send', 'pageview');
-
-</script>
-  
+  </script>
 </head>
 
-  <body>
+  <body class="site">
 
-        <header class="site-header" role="banner">
-    <div class="wrapper">
-        <a class="site-title" href="/">Yao Ding</a>
-        <nav class="site-nav" id="nav">
-            <a href="#" class="menu-icon">
-                <svg viewBox="0 0 18 15" width="18px" height="15px">
-                <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
-                <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
-                <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
-                </svg>
-            </a>
-            <span class="trigger">
-                <a class="page-link" href="/project/">Project</a>
-            </span>
-            <span class="trigger">
-                <a class="page-link" href="/note/">Note</a>
-            </span>
-            <span class="trigger">
-                <a class="page-link" href="/about/">About</a>
-            </span>
-        </nav>
-  </div>
+        <header class="header" role="banner">
+    <a class="header__avatar" href="/">
+        <img class="header__avatar-img" src="/resource/avatar.jpg">
+    </a>
+    <nav class="header__nav">
+        <a class="header__nav-link" href="/">Blog</a>
+        <a class="header__nav-link" href="/project/">Project</a>
+        <a class="header__nav-link" href="/note/">Note</a>
+        <a class="header__nav-link" href="/about/">About</a>
+    </nav>
 </header>
 
-        <main id="barba-wrapper" class="page-content" aria-label="Content">
-          <div class="wrapper barba-container">
-          <article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+        <main id="barba-wrapper" class="site__content" aria-label="Content">
+          <div class="barba-container">
+          <div class="container">
+  <article class="post" itemtype="http://schema.org/BlogPosting">  
+    <header class="post__header">
+      <h1 class="title" itemprop="name headline">Mutation Observer Is Cool</h1>
+      <div class="post__meta">
+        <time class="post__time">Oct 27, 2017</time>
+          
+          
+            <a href="/tag#web-fundamental" class="post__tag">Web Fundamental</a>
+          
+        
+      </div>
+    </header>
 
-  <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">Mutation Observer Is Cool</h1>
-    <p class="post-meta"><time datetime="2016-04-08T00:00:00-04:00" itemprop="datePublished">Oct 27, 2017</time></p>
-      
-      
-        <a href="/tag#web-fundamental" class="post-tag">Web Fundamental</a>
-      
-    
-
-
-  </header>
-
-  <div class="post-content" itemprop="articleBody">
-    <p>Mutation Observer is a well-supported (<a href="https://caniuse.com/#search=Mutation%20Observer">CanIUse link</a>) and very effcient API. Today I finally has a legit usecase for it.</p>
+    <div class="post__content" itemprop="articleBody">
+      <p>Mutation Observer is a well-supported (<a href="https://caniuse.com/#search=Mutation%20Observer">CanIUse link</a>) and very effcient API. Today I finally has a legit usecase for it.</p>
 
 <h3 id="detecting-lazy-loaded-ad-is-inserted">Detecting lazy-loaded ad is inserted</h3>
 <p>Today at work I run into this situation: on page there is a Google DFP ad and it is loaded in a iframe. I don’t have any knowledge of knowing it this ad is being inserted into DOM, for on DOM ready it is just a placeholder. I tried setting a timeout for it but it could get tricky and there is no guarantee for it would always work. Thus enters Mutation Observer.</p>
@@ -119,57 +105,30 @@
 <p>Why isn’t a well-supported and efficeint API not that generally used? I think it’s because how the modern framework is designed: instead of keeping tracking of states with DOM, states is seperated into a dedicated JavaScript object. Also with virtual DOM, real DOM mutation triggered event might be delayed.</p>
 
 
+    </div>
+  </article>
+
+  <div class="page-navigation">
+    
+      <a class="page__prev" href="/blog/reading-virtual-dom-implementation/">&laquo; Reading Virtual Dom Implementation</a>
+    
+    
   </div>
-
-  
-</article>
-
-<div class="page-navigation">
-  
-    <a class="prev" href="/blog/reading-virtual-dom-implementation/">&laquo; Reading Virtual Dom Implementation</a>
-  
-  
 </div>
-
-<div id="disqus_thread"></div>
-<script>
-  // var disqus_developer = 1;
-  var disqus_config = function () {
-    this.page.url = "https://yaodingyd.github.io//blog/mutation-observer-is-cool/";  
-    this.page.identifier = "/blog/mutation-observer-is-cool"; 
-  };
-  (function() { var d = document, s = d.createElement('script');s.src = 'https://yaoding.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
           </div>
         </main>
 
-        <footer class="site-footer">
-  <div class="wrapper">
-    <h2 class="footer-heading">Yao Ding</h2>
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li><a href="mailto:yaodingyd@gmail.com">yaodingyd@gmail.com</a></li>
-        </ul>
-      </div>
-      <div class="footer-col footer-col-2">
-        <ul class="social-media-list">
-          <li>
-            <a href="https://github.com/yaodingyd"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg></span><span class="username">yaodingyd</span></a>
-          </li>
-        </ul>
-      </div>
-    </div>
+        <footer class="footer" id="barba-footer">
+  <div class="footer__title">Yao Ding</div>
+  <div class="footer__links">
+      <a class="footer__link" href="mailto:yaodingyd@gmail.com">Email</a>
+      <a  class="footer__link" href="https://github.com/yaodingyd">Github</a>
   </div>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/barba.js/1.0.0/barba.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.1/TweenMax.min.js"></script>
-<script src="/public/script/main.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.js"></script>
+<!-- <script src="/public/js/src.js"></script> -->
+
 
   </body>
 </html>

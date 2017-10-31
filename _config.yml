@@ -20,7 +20,6 @@ jekyll-archives:
     tag: '/tag/'
 
 markdown: kramdown
-theme: minima
 
 include: ["_pages"]
 exclude:
@@ -29,8 +28,11 @@ exclude:
   - package.json
   - Gemfile
   - Gemfile.lock
-  - vendo
+  - vendor
   - Rakefile
+  - .sass-cache
+  - _sass
+  - _js
 
 # GitHub
 username:             yaodingyd

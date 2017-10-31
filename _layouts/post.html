@@ -3,44 +3,31 @@ layout: home
 comments: true
 ---
 
-<article class="post" itemscope="" itemtype="http://schema.org/BlogPosting">
+<div class="container">
+  <article class="post" itemtype="http://schema.org/BlogPosting">  
+    <header class="post__header">
+      <h1 class="title" itemprop="name headline">{{page.title}}</h1>
+      <div class="post__meta">
+        <time class="post__time">{{page.date| date: "%b %-d, %Y"}}</time>
+        {% if page.tags %}  
+          {% for tag in page.tags %}
+            <a href="{{ site.baseurl }}/tag#{{ tag | slugify }}" class="post__tag">{{ tag }}</a>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </header>
 
-  <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">{{page.title}}</h1>
-    <p class="post-meta"><time datetime="2016-04-08T00:00:00-04:00" itemprop="datePublished">{{page.date| date: "%b %-d, %Y"}}</time></p>
-    {% if page.tags %}  
-      {% for tag in page.tags %}
-        <a href="{{ site.baseurl }}/tag#{{ tag | slugify }}" class="post-tag">{{ tag }}</a>
-      {% endfor %}
+    <div class="post__content" itemprop="articleBody">
+      {{content}}
+    </div>
+  </article>
+
+  <div class="page-navigation">
+    {% if page.previous.url %}
+      <a class="page__prev" href="{{page.previous.url}}">&laquo; {{page.previous.title}}</a>
     {% endif %}
-
-
-  </header>
-
-  <div class="post-content" itemprop="articleBody">
-    {{content}}
+    {% if page.next.url %}
+      <a class="page__next" href="{{page.next.url}}">{{page.next.title}} &raquo;</a>
+    {% endif %}
   </div>
-
-  
-</article>
-
-<div class="page-navigation">
-  {% if page.previous.url %}
-    <a class="prev" href="{{page.previous.url}}">&laquo; {{page.previous.title}}</a>
-  {% endif %}
-  {% if page.next.url %}
-    <a class="next" href="{{page.next.url}}">{{page.next.title}} &raquo;</a>
-  {% endif %}
 </div>
-
-<div id="disqus_thread"></div>
-<script>
-  // var disqus_developer = 1;
-  var disqus_config = function () {
-    this.page.url = "https://yaodingyd.github.io/{{ page.url }}";  
-    this.page.identifier = "{{ page.id }}"; 
-  };
-  (function() { var d = document, s = d.createElement('script');s.src = 'https://yaoding.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>

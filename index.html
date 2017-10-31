@@ -2,16 +2,13 @@
 layout: home
 ---
 
-<div class="home">
-
-  <ul class="post-list">
+<div class="container posts">
+  <ul class="posts__list">
     {% for post in paginator.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title | escape }}</a>
-        </h2>
-        <div class="post-excerpt">{{ post.excerpt }}</div>        
+      <li class="post">
+        <div class="post__meta">{{ post.date | date: "%b %-d, %Y" }}</div>
+        <a class="post__link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title | escape }}</a>
+        <div class="post__excerpt">{{ post.excerpt }}</div>        
       </li>
     {% endfor %}
   </ul>

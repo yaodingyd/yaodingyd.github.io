@@ -1,0 +1,22 @@
+.post {
+  width: 30rem;
+  margin: 0 auto 2rem;
+}
+
+.posts__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.post__meta {
+  font-size: 0.875rem;
+  font-style: italic;
+  color: #1098ad;
+}
+
+.post__link {
+  display: block;
+  font-size: 1.5rem;
+  padding-top: 0.5rem;
+}

@@ -34,6 +34,13 @@ a:visited {
   text-decoration: none;
 }
 
+blockquote {
+  margin: 0;
+  padding: 1rem 0 1rem 2rem;
+  border-left: 2px solid #495057;
+  background-color: #dee2e6;
+}
+
 .container {
   margin: 0 auto;
   min-width: 30rem;

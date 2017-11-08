@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Yao's Blog</title>
+  <meta name="description" content="Yao's blog on everything about web technologies'">
+
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link rel="canonical" href="https://yaodingyd.github.io/">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/black/pace-theme-flash.min.css" />
+  
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yaodingyd.github.io">
+  <meta property="og:title" content="Yao's Blog">
+  <meta property="og:image" content="">
+  <meta property="og:description" content="Yao's blog on everything about web technologies">
+  <meta property="og:site_name" content="Yao's Blog">
+  <meta property="og:locale" content="en_US">
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@YaoDingSD">
+  <meta name="twitter:url" content="https://yaodingyd.github.io">
+  <meta name="twitter:title" content="Yao's Blog">
+  <meta name="twitter:description" content="Yao's blog on everything about web technologies">
+  <meta name="twitter:image" content="https://example.com/image.jpg">
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-86352654-1', 'auto');
+  ga('send', 'pageview');
+  </script>
+</head>
+
+  <body class="site">
+
+        <header class="header" role="banner">
+    <a class="header__avatar" href="/">
+        <img class="header__avatar-img" src="/resource/avatar.jpg">
+    </a>
+    <nav class="header__nav">
+        <a class="header__nav-link" href="/">Blog</a>
+        <a class="header__nav-link" href="/project/">Project</a>
+        <a class="header__nav-link" href="/note/">Note</a>
+        <a class="header__nav-link" href="/about/">About</a>
+    </nav>
+</header>
+
+        <main id="barba-wrapper" class="site__content" aria-label="Content">
+          <div class="barba-container">
+          <div class="container">
+  <article class="post" itemtype="http://schema.org/BlogPosting">  
+    <header class="post__header">
+      <h1 class="title" itemprop="name headline">Async vs DOMContentLoaded</h1>
+      <div class="post__meta">
+        <time class="post__time">Nov 8, 2017</time>
+          
+          
+            <a href="/tag#web-fundamental" class="post__tag">Web Fundamental</a>
+          
+        
+      </div>
+    </header>
+
+    <div class="post__content" itemprop="articleBody">
+      <p>The different ways of “wait for” script to loading can be tricky.</p>
+
+<h3 id="async">Async</h3>
+
+<p><code class="highlighter-rouge">async</code> attribute makes executing the script asynchronously, that means parsing DOM and running the script at almost the same time. But be care when putting global scripts inside <code class="highlighter-rouge">async</code> and calling other dependent script inside a <code class="highlighter-rouge">DOMContentLoaded</code>: the latter might fire before the former.</p>
+
+<p>I did a test with this situation: I have a script tag in <code class="highlighter-rouge">header</code>, and a <code class="highlighter-rouge">async</code> script in <code class="highlighter-rouge">body</code>, something like this:</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code>  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"domready.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">async</span> <span class="na">src=</span><span class="s">"async.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+</code></pre>
+</div>
+
+<p>It turns out the domready fires before async. But if there are a certain amount of DOM node under <code class="highlighter-rouge">async</code> script, async fires first</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code>  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"domready.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">async</span> <span class="na">src=</span><span class="s">"async.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;div&gt;</span>blah<span class="nt">&lt;/div&gt;</span>
+    <span class="c">&lt;!--&gt;and more blah div under...&lt;--&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+</code></pre>
+</div>
+
+<p>I did more test and roughly around 3k <code class="highlighter-rouge">div</code> would make async fires before <code class="highlighter-rouge">DOMContentLoaded</code></p>
+
+<h3 id="defer">Defer</h3>
+
+<p>Since we are talking about this, I will throw <code class="highlighter-rouge">defer</code> here too, but it is pretty clear, according to MDN:</p>
+<blockquote>
+  <p>This Boolean attribute is set to indicate to a browser that the script is meant to be executed after the document has been parsed, but before firing <code class="highlighter-rouge">DOMContentLoaded</code>.</p>
+</blockquote>
+
+<p>So it is certain that <code class="highlighter-rouge">defer</code> fires before <code class="highlighter-rouge">DOMContentLoaded</code></p>
+
+
+    </div>
+  </article>
+
+  <div class="page-navigation">
+    
+      <a class="page__prev" href="/blog/mutation-observer-is-cool/">&laquo; Mutation Observer Is Cool</a>
+    
+    
+  </div>
+</div>
+
+          </div>
+        </main>
+
+        <footer class="footer" id="barba-footer">
+  <div class="footer__title">Yao Ding</div>
+  <div class="footer__links">
+      <a class="footer__link" href="mailto:yaodingyd@gmail.com">Email</a>
+      <a  class="footer__link" href="https://github.com/yaodingyd">Github</a>
+  </div>
+</footer>
+
+<!-- <script src="/public/js/src.js"></script> -->
+
+
+  </body>
+</html>

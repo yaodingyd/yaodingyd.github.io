@@ -1,6 +1,10 @@
 .post {
   width: 40rem;
   margin: 0 auto 2rem;
+
+  @include tablet {
+    width: 100%;
+  }
 }
 
 .posts__list {

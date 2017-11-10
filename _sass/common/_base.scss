@@ -27,6 +27,10 @@ p, div {
   color: #000;
 }
 
+p {
+  line-height: 1.2;
+}
+
 a,
 a:active,
 a:visited {
@@ -43,11 +47,15 @@ blockquote {
 
 .container {
   margin: 0 auto;
-  min-width: 30rem;
+  min-width: 40rem;
   width: 60%;
+
+  @include tablet {
+    width: 80%;
+    min-width: auto;
+  }
 
   @include mobile {
     width: 90%;
-    min-width: auto;
   }
 }

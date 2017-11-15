@@ -6,6 +6,8 @@ tags:
     - Node
 ---
 
+A collection about async programming in JavaScript.
+
 ### Promises vs Event-based Architecture
 
 There is a wonderful [post](https://gist.github.com/dmvaldman/12a7e46be6c3097aae31) explaining what's the relationship between these two. Basically we can treat `Promise` as a simple pattern over `EventEmitter` that only `resolve` once, which means `emit` just one `fulfill` or `reject`. They all depend on `event loop`.

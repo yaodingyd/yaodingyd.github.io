@@ -7,7 +7,6 @@ tag:
     - Tip
 ---
 
-### What Is Submit
 Sumbit is a native function of form element. So if you want to use sumbit funciton, there must be a form first.
 
 When `submit` is called, form data uses `GET` or `POST`, depending on your method, to send back to server. It either refresh your page or go to another url. 

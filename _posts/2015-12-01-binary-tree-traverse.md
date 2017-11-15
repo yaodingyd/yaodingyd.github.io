@@ -6,7 +6,7 @@ tags:
     - Algorithm
 ---
 
-Algorithm.
+Implemetation about DFS and BFS.
 
 ## Depth-first Search
 
@@ -137,13 +137,13 @@ public class Solution {
   private int getMaxDepth(TreeNode node) {
     if (node == null) return 0;
     if (node.left == null && node.right == null) return 1;
-    return Math.max(getDepth(node.left), getDepth(node.right)) + 1;
+    return Math.max(getMaxDepth(node.left), getMaxDepth(node.right)) + 1;
   }
 
   private int getMinDepth(TreeNode node) {
     if (node == null) return Integer.Max_VALUE; // rule out non-tree branch
     if (node.left == null && node.right == null) return 1;
-    return Math.max(getDepth(node.left), getDepth(node.right)) + 1;
+    return Math.min(getMinDepth(node.left), getMinDepth(node.right)) + 1;
   }
 ```
 

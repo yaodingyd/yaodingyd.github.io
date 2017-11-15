@@ -5,6 +5,8 @@ date:   2016-05-12
 tag:    JavaScript  
 ---
 
+A collection of one-liner interview questions.
+
 #### Check a number is power of n
 `n > 0 && Math.log10(a) / Math.log10(n)  % 1  === 0`
 

@@ -6,7 +6,7 @@ tag:
     - JavaScript 
     - Programming
 ---
-### jQuery Deferred and Anti-Pattern
+
 When I first started to learn about promise, jQuery Deferred object helped me a lot understanding the core concept of promise. It kind of shaped promise for me. So later, when I looked at [this article](https://github.com/petkaantonov/bluebird/wiki/Promise-anti-patterns) about how it is anti-patterns, I felt like I should really look into *promsie* itself.
 
 So I knew about Promise/A+, and how the atrocious jQuery's Deferred was not Promise/A+ compliant. (well, now jQuery 3.0+ is). There I got a clear understanding for 'fulfill', 'reject', and 'thenable'. So the anti-pattern stuff, basically it tells us: 1) Deferred is a nice wrapper, but only for non-promise object; if it already is a promise, chain it! 2) `then` function takes a `resolve` and `reject`, you cannot tell the status of a promise until it is *resolved*, that includs fulfilled(success) and rejected(fail) 3) By doing the following two, there might be silent error that are not caught.

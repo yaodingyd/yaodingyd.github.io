@@ -6,6 +6,8 @@ tags:
     - Web Fundamental
 ---
 
+A collection of knowledge on HTTP and a sad story about a web dev who didn't have the basic knowledge with http and session when doing a job interview somewhat at early 2016.
+
 ### HTTP
 
 HTTP is a TCP/IP based communication protocol, that is used to deliver data (HTML files, image files, query results, etc.) on the World Wide Web. By default, web traffic uses TCP port 80. The basic structure is like this:
@@ -64,13 +66,3 @@ So, in order to keep persistent infor with stateless HTTP, here are a few differ
 2. Client-IP - the IP address of the client
 3. Fat Urls(rewrite URLs) - storing state of the current user by modifying the URL and redirecting to a different URL on each click; each click essentially accumulates state.
 4. Cookies - Cookies allow the server to attach arbitrary information for outgoing responses via the Set-Cookie response header. A cookie is set with key/value pairs separated by semicolon (;), as in Set-Cookie: session-id=12345ABC; username=nettuts. A server can also restrict the cookies to a specific domain and path, and it can make them persistent with an expires value. Cookies are automatically sent by the browser for each request made to a server, and the browser ensures that only the domain- and path-specific cookies are sent in the request. In cookies we  can set SessionID, or a session token, which  is a unique identifier that is generated and sent from a server to a client to identify the current interaction session.  This is called *session tracking*. There are other techniques use other to keep tracking of session, like OAuth uses access tokens.
-
-##### Why I wrote this post
-
-It's kind of a sad story...as a web dev, I didn't have the basic knowledge with http and session when doing a job interview somewhat at early 2016...sad, just sad...
-
-
-
-
-
-

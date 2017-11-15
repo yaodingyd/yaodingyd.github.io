@@ -50,7 +50,6 @@
     <nav class="header__nav">
         <a class="header__nav-link" href="/">Blog</a>
         <a class="header__nav-link" href="/project/">Project</a>
-        <a class="header__nav-link" href="/note/">Note</a>
         <a class="header__nav-link" href="/about/">About</a>
     </nav>
 </header>
@@ -74,8 +73,7 @@
     </header>
 
     <div class="post__content" itemprop="articleBody">
-      <h3 id="jquery-deferred-and-anti-pattern">jQuery Deferred and Anti-Pattern</h3>
-<p>When I first started to learn about promise, jQuery Deferred object helped me a lot understanding the core concept of promise. It kind of shaped promise for me. So later, when I looked at <a href="https://github.com/petkaantonov/bluebird/wiki/Promise-anti-patterns">this article</a> about how it is anti-patterns, I felt like I should really look into <em>promsie</em> itself.</p>
+      <p>When I first started to learn about promise, jQuery Deferred object helped me a lot understanding the core concept of promise. It kind of shaped promise for me. So later, when I looked at <a href="https://github.com/petkaantonov/bluebird/wiki/Promise-anti-patterns">this article</a> about how it is anti-patterns, I felt like I should really look into <em>promsie</em> itself.</p>
 
 <p>So I knew about Promise/A+, and how the atrocious jQuery’s Deferred was not Promise/A+ compliant. (well, now jQuery 3.0+ is). There I got a clear understanding for ‘fulfill’, ‘reject’, and ‘thenable’. So the anti-pattern stuff, basically it tells us: 1) Deferred is a nice wrapper, but only for non-promise object; if it already is a promise, chain it! 2) <code class="highlighter-rouge">then</code> function takes a <code class="highlighter-rouge">resolve</code> and <code class="highlighter-rouge">reject</code>, you cannot tell the status of a promise until it is <em>resolved</em>, that includs fulfilled(success) and rejected(fail) 3) By doing the following two, there might be silent error that are not caught.</p>
 

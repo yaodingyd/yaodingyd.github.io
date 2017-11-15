@@ -50,7 +50,6 @@
     <nav class="header__nav">
         <a class="header__nav-link" href="/">Blog</a>
         <a class="header__nav-link" href="/project/">Project</a>
-        <a class="header__nav-link" href="/note/">Note</a>
         <a class="header__nav-link" href="/about/">About</a>
     </nav>
 </header>
@@ -72,7 +71,9 @@
     </header>
 
     <div class="post__content" itemprop="articleBody">
-      <h3 id="promises-vs-event-based-architecture">Promises vs Event-based Architecture</h3>
+      <p>A collection about async programming in JavaScript.</p>
+
+<h3 id="promises-vs-event-based-architecture">Promises vs Event-based Architecture</h3>
 
 <p>There is a wonderful <a href="https://gist.github.com/dmvaldman/12a7e46be6c3097aae31">post</a> explaining what’s the relationship between these two. Basically we can treat <code class="highlighter-rouge">Promise</code> as a simple pattern over <code class="highlighter-rouge">EventEmitter</code> that only <code class="highlighter-rouge">resolve</code> once, which means <code class="highlighter-rouge">emit</code> just one <code class="highlighter-rouge">fulfill</code> or <code class="highlighter-rouge">reject</code>. They all depend on <code class="highlighter-rouge">event loop</code>.</p>
 

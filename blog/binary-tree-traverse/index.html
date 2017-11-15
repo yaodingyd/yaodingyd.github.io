@@ -50,7 +50,6 @@
     <nav class="header__nav">
         <a class="header__nav-link" href="/">Blog</a>
         <a class="header__nav-link" href="/project/">Project</a>
-        <a class="header__nav-link" href="/note/">Note</a>
         <a class="header__nav-link" href="/about/">About</a>
     </nav>
 </header>
@@ -72,7 +71,7 @@
     </header>
 
     <div class="post__content" itemprop="articleBody">
-      <p>Algorithm.</p>
+      <p>Implemetation about DFS and BFS.</p>
 
 <h2 id="depth-first-search">Depth-first Search</h2>
 
@@ -201,13 +200,13 @@
   <span class="kd">private</span> <span class="kt">int</span> <span class="nf">getMaxDepth</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">node</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">if</span> <span class="o">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="mi">0</span><span class="o">;</span>
     <span class="k">if</span> <span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">left</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">node</span><span class="o">.</span><span class="na">right</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="k">return</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">getDepth</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">left</span><span class="o">),</span> <span class="n">getDepth</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">right</span><span class="o">))</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="k">return</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">getMaxDepth</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">left</span><span class="o">),</span> <span class="n">getMaxDepth</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">right</span><span class="o">))</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
   <span class="o">}</span>
 
   <span class="kd">private</span> <span class="kt">int</span> <span class="nf">getMinDepth</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">node</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">if</span> <span class="o">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="n">Integer</span><span class="o">.</span><span class="na">Max_VALUE</span><span class="o">;</span> <span class="c1">// rule out non-tree branch</span>
     <span class="k">if</span> <span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">left</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">node</span><span class="o">.</span><span class="na">right</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="k">return</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">getDepth</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">left</span><span class="o">),</span> <span class="n">getDepth</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">right</span><span class="o">))</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="k">return</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">getMinDepth</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">left</span><span class="o">),</span> <span class="n">getMinDepth</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">right</span><span class="o">))</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
   <span class="o">}</span>
 </code></pre>
 </div>

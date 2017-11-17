@@ -21,14 +21,14 @@ gulp.task('jekyll', () => {
 })
 
 gulp.task('css', function () {
-  gulp.src('_sass/**/*')
+  gulp.src('_sass/*.scss')
     .pipe(plumber())
     .pipe(sourcemaps.init())
-    .pipe(sass({
-      outputStyle: 'compressed'
-    }))
-    .pipe(sourcemaps.write())
+    .pipe(sass({outputStyle: 'compressed'}))
+    .pipe(sourcemaps.write({includeContent: false}))
+    .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(autoprefixer({ browsers: ['last 4 versions', '> 1%', 'not ie <= 9'] }))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('_site/public/css'))
     .pipe(browserSync.stream())
     .pipe(gulp.dest('public/css'))

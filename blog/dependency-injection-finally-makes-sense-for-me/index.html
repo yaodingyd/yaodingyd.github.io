@@ -81,8 +81,28 @@
 
 <p>And the more I looked into how Laravel handles DI, the more I see how Angular is truly a MVC framework.</p>
 
-<p>Laravel has two concepts around DI: <code class="highlighter-rouge">service container</code> and <code class="highlighter-rouge">service provider</code>. Basically in <code class="highlighter-rouge">service provider</code> we ‘register’ (or ‘define’) a ‘service’, and use <code class="highlighter-rouge">service container</code> to do <code class="highlighter-rouge">App::bind</code> or <code class="highlighter-rouge">App::singleton</code>, and later Laraval can use type hinting to do DI. Angular follows the same concept here: we use <code class="highlighter-rouge">$provide</code> to define a bunch of ‘service’, or use its shorcuts(<code class="highlighter-rouge">module.provider</code>, <code class="highlighter-rouge">module.service</code> or <code class="highlighter-rouge">module.factory</code>); later we inject all these dependency with either an array in the callback
-<code class="highlighter-rouge">someModule.controller('MyController', ['$scope', 'dep1', 'dep2', function($scope, dep1, dep2) {...})</code>, or use <code class="highlighter-rouge">MyController.$inject = ['$scope', 'dep1', 'dep2'];</code>. One thing to notice is that all ‘service’ in Angular are singletons.</p>
+<p>Laravel has two concepts around DI: <code class="highlighter-rouge">service container</code> and <code class="highlighter-rouge">service provider</code>. Basically in <code class="highlighter-rouge">service provider</code> we ‘register’ (or ‘define’) a ‘service’, and use <code class="highlighter-rouge">service container</code> to do <code class="highlighter-rouge">App::bind</code> or <code class="highlighter-rouge">App::singleton</code>, and later Laraval can use type hinting to do DI.</p>
+
+<p>Angular follows the same concept here: we use <code class="highlighter-rouge">$provide</code> to define a bunch of ‘service’, or use its shorcuts(<code class="highlighter-rouge">module.provider</code>, <code class="highlighter-rouge">module.service</code> or <code class="highlighter-rouge">module.factory</code>); later we inject all these dependency with either an array in the callback</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="err">`</span><span class="nx">someModule</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">'MyController'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'$scope'</span><span class="p">,</span> <span class="s1">'dep1'</span><span class="p">,</span> <span class="s1">'dep2'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">,</span> <span class="nx">dep1</span><span class="p">,</span> <span class="nx">dep2</span><span class="p">)</span> <span class="p">{...})</span><span class="err">`</span> 
+</code></pre>
+</div>
+
+<p>or use</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="err">`</span><span class="nx">MyController</span><span class="p">.</span><span class="nx">$inject</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'$scope'</span><span class="p">,</span> <span class="s1">'dep1'</span><span class="p">,</span> <span class="s1">'dep2'</span><span class="p">];</span><span class="err">`</span><span class="p">.</span> 
+</code></pre>
+</div>
+<p>One thing to notice is that all ‘service’ in Angular are singletons.</p>
+
+<p>Similarly, in Spring, the IoC container handles dependencies for beans. In Spring’s offical documents, it describes IoC, or <em>Inversion of Control</em>, as Dependency Injection, as an inversion of Service locator. This confuses me for a little bit, until I saw the following:</p>
+
+<blockquote>
+  <p>Service Locator is a kind of dependency injection pattern. The Service Locator pattern does not describe how to instantiate the services. It describes a way to register services and locate them. A Service Locator should be able to locate a service without knowing its concrete type. For example, it might use a string key. This allows you to replace the concrete implementation of the dependency without modifying the classes. <a href="https://github.com/dimik/service-locator#description">source</a></p>
+</blockquote>
+
+<p>So for Spring, the inversion is that instead of bean(or module) using Service Locator to do ‘dependency injection’, there is a container, in this case called <code class="highlighter-rouge">IoC container</code>, as <code class="highlighter-rouge">service container</code> in Laravel, to do DI.</p>
 
 
     </div>

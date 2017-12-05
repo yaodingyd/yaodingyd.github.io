@@ -49,7 +49,7 @@ make the inner div `display: table-row`
      box-shadow: 0 0 1px rgba(255,255,255,.5);
   }
   ```
-9. `line-height` behaves differently in XHTML and HTML5. That would bite you in the ass some day.
+9. `line-height` behaves differently in XHTML and HTML5. That would bite you in the ass some day. Pay attention to `line-height` in transitional DOCTYPE.
 
 10. When using `overflow:hidden` to disable scrolling in the background, add `overflow-y:scroll` to body to prevent content shifting. For mobile to prevent body scrolling, use 
  ```css
@@ -137,27 +137,6 @@ A collection of interesting web app, sites and APIs.
 1. [https://yesno.wtf/](https://yesno.wtf/)
 API that could give you a random Yes/No with a hilarious image.
 
-2. [http://tholman.com/](http://tholman.com/)
-Websites that have so many interesting demos. 
-
-3. [https://randomuser.me/](https://randomuser.me/)
-API that generates random user info.
-
-4. [http://www.randomtext.me/](http://www.randomtext.me/)
-API that generates random text.
-
-5. [http://jservice.io/](http://jservice.io/)
-API that generates random trivia.
-
-6. [http://openweathermap.org/api](http://openweathermap.org/api)
-API that provides weather info.
-
-7. [http://deckofcardsapi.com/](http://deckofcardsapi.com/)
-API that lets you play cards.
-
-8. [http://apimeme.com/](http://apimeme.com/)
-API that generates meme.
-
 
 # OS or bash related
 
@@ -168,24 +147,3 @@ API that generates meme.
 
 3. `netstat -nlp | grep :8080` Find process running on port 8080
    `ps -e|grep node` find all node processes 
-
-
-
-
-
-      
- 
- 
- 
-    
-
-
-
-
-
-
-
-
-
-
-

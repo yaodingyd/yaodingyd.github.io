@@ -35,3 +35,4 @@ Because `Transtion` takes a exited and entered components in this scenario, make
 
 # React-Transition-Group
 1. By default component is always mounted. use `mountOnEnter` and `unmountOnExit`.
+2. When using `TransitionGroup`, the individual `Transition`'s `in` prop is always overwritten by `TransitionGroup`.

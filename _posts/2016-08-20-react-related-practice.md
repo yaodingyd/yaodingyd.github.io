@@ -32,3 +32,6 @@ Use more selectors for improving render performance.
   </TransitionGroup>
 ```
 Because `Transtion` takes a exited and entered components in this scenario, make sure all routes are already in place. For example, don't leaves out `/`.
+
+# React-Transition-Group
+1. By default component is always mounted. use `mountOnEnter` and `unmountOnExit`.

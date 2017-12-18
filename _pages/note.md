@@ -4,6 +4,32 @@ title: Note
 permalink: /note/
 ---
 
+# LeetCode 
+
+1. usage of two pointers(one faster, and one slow ): 
+- find/remove duplicates in a array 
+- check loop/find node in linked list
+
+2. backtrack
+```javascript
+function backtrack() {
+    if (condition met) {
+        return res
+    }
+
+    for (var i of pool ) {
+        res.push(i)
+        var check = backtrack()
+        if (check met) {
+            break// or return true
+        }
+        res.pop(i)
+    }
+}
+
+```
+
+
 # A collection of werid CSS, JavaScript and Cross-browser issue I have encountered.
 
 1. In *Firefox* and *IE*, for a flex child, the height and width cannot be set 

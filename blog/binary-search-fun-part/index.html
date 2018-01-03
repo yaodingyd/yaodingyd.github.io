@@ -102,6 +102,8 @@
   <li><code class="highlighter-rouge">middle</code> could be equal to <code class="highlighter-rouge">left</code></li>
 </ol>
 
+<p><em>Rule of thumb to prevent infinite loop in binary search</em> if there is a <code class="highlighter-rouge">return</code> or <code class="highlighter-rouge">break</code> inside your while loop for equal condition, then you can use <code class="highlighter-rouge">left &lt;= right</code>; otherwise use <code class="highlighter-rouge">left &lt; right</code></p>
+
 <h3 id="get-range">Get range</h3>
 
 <p>There is a variation that in a sorted array which could contain duplicates, returns the leftmost and rightmost target index. So in [1,2,3,4,5,5,5,6,7,8], the leftmost 5 index is 4, the rightmost 5 index is 6.</p>
@@ -138,23 +140,54 @@
 <span class="p">}</span>
 </code></pre>
 </div>
-<p>Now the while condition doesn’t include equal because it would result in a infinite loop when <code class="highlighter-rouge">middle</code> is assigned to right.</p>
+<p>Now <code class="highlighter-rouge">while</code>  doesn’t include equal because it would result in a infinite loop when <code class="highlighter-rouge">middle</code> is assigned to right.</p>
 
 <p>It is easy to understand to include middle into left/right:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>// the target is 4
 l        r
 ----------
-1, 2, 3, 4, 5, 6, 7            
+1, 2, 3, 4, 4, 4, 5, 6, 7            
 
-         l        r
-         ----------
-1, 2, 3, 4, 5, 6, 7
+               l        r
+               ----------
+1, 2, 3, 4, 4, 4, 5, 6, 7
 </code></pre>
 </div>
 
 <p>The tricky part is how to prevent infinite loop. When there is only two numbers in left to right range, middle would be left if  <code class="highlighter-rouge">Math.floor((left + right)/ 2)</code>, and in the next if condition middle is reassgined to left, thus an infinite loop. Here computing middle is  <code class="highlighter-rouge">Math.floor((left + right + 1)/ 2)</code>, in this way middle would be right if there are only two numbers.</p>
 
+<h3 id="find-number-is-a-rotated-array">Find number is a rotated array</h3>
+
+<p>Now there is another variation: a sorted array could rotate around a pivot, so <code class="highlighter-rouge">[1,2,3,4,5,6,7,8]</code> is <code class="highlighter-rouge">[4,5,6,7,8,1,2,3]</code> now. We can still use binary search, but we need to make sure of the sorted and unsorted half of the array.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">searchInRotatedArray</span><span class="p">(</span><span class="nx">nums</span><span class="p">,</span> <span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">left</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">right</span> <span class="o">=</span> <span class="nx">nums</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span>
+  <span class="k">while</span> <span class="p">(</span><span class="nx">left</span> <span class="o">&lt;=</span> <span class="nx">right</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">mid</span> <span class="o">=</span> <span class="nx">left</span> <span class="o">+</span> <span class="p">(</span><span class="nx">right</span><span class="o">-</span><span class="nx">left</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+      <span class="k">if</span><span class="p">(</span><span class="nx">nums</span><span class="p">[</span><span class="nx">mid</span><span class="p">]</span><span class="o">===</span><span class="nx">target</span><span class="p">)</span> <span class="k">return</span> <span class="nx">mid</span>
+      
+      <span class="k">if</span> <span class="p">(</span><span class="nx">nums</span><span class="p">[</span><span class="nx">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">right</span><span class="p">])</span> <span class="p">{</span> <span class="c1">// right half sorted</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">target</span> <span class="o">&gt;</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">mid</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nx">target</span> <span class="o">&lt;=</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">nums</span><span class="p">])</span>
+              <span class="nx">left</span> <span class="o">=</span> <span class="nx">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+          <span class="k">else</span>
+              <span class="nx">right</span> <span class="o">=</span> <span class="nx">mid</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">else</span>  <span class="p">(</span><span class="nx">nums</span><span class="p">[</span><span class="nx">mid</span><span class="p">]</span> <span class="o">&gt;</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">left</span><span class="p">])</span> <span class="p">{</span>  <span class="c1">// left half sorted</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">target</span> <span class="o">&gt;=</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">left</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nx">target</span> <span class="o">&lt;</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">mid</span><span class="p">])</span> 
+              <span class="nx">right</span> <span class="o">=</span> <span class="nx">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+          <span class="k">else</span>
+              <span class="nx">left</span> <span class="o">=</span> <span class="nx">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">right</span><span class="o">--</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>The last <code class="highlighter-rouge">else</code> is for if there are duplicates in the array, say <code class="highlighter-rouge">[1,3,1,1,1]</code>. Now the <code class="highlighter-rouge">mid</code>, <code class="highlighter-rouge">left</code> and <code class="highlighter-rouge">right</code> are both the same and we can’t decide which half is sorted. In such scenario the only solution is to exclude left/right and time complexity goes from O(ln(n)) to O(n)</p>
 
     </div>
   </article>

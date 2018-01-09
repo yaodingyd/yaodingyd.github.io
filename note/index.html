@@ -66,77 +66,85 @@
       <li>check loop/find node in linked list</li>
     </ul>
   </li>
-  <li>
-    <p>backtrack
-```javascript
-function backtrack() {
- if (condition met) {
-     return res
- }</p>
-
-    <p>for (var i of pool ) {
-     res.push(i)
-     var check = backtrack()
-     if (check met) {
-         break// or return true
-     }
-     res.pop(i)
- }
-}</p>
-  </li>
+  <li>backtrack</li>
 </ol>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
-3. greedy: start from end of array to check if there is a matching node 
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">backtrack</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">condition</span> <span class="nx">met</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">res</span>
+    <span class="p">}</span>
 
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="nx">of</span> <span class="nx">pool</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+        <span class="kd">var</span> <span class="nx">check</span> <span class="o">=</span> <span class="nx">backtrack</span><span class="p">()</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">check</span> <span class="nx">met</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">break</span><span class="c1">// or return true</span>
+        <span class="p">}</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">pop</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-# A collection of werid CSS, JavaScript and Cross-browser issue I have encountered.
-
-1. In *Firefox* and *IE*, for a flex child, the height and width cannot be set 
-as percentage, because somehow the child cannot get its parent's width and  height. Use PX only.
- 
-2. If you already short-hand background property, then background-size would
-be reset to default. You have to add it to short-handed background, as
-background position / background size.
- 
-3. `&lt;meta width="viewport"&gt;` would make browser ignore the overflow property 
-on html or body tag. So you should have another div wrap your main.
-
-4. In order to prevent css transform flicker in iPhone and Android, use
 </code></pre>
 </div>
-<p>-webkit-perspective: 1000px;
+
+<ol>
+  <li>greedy: start from end of array to check if there is a matching node</li>
+</ol>
+
+<h1 id="a-collection-of-werid-css-javascript-and-cross-browser-issue-i-have-encountered">A collection of werid CSS, JavaScript and Cross-browser issue I have encountered.</h1>
+
+<ol>
+  <li>
+    <p>In <em>Firefox</em> and <em>IE</em>, for a flex child, the height and width cannot be set 
+as percentage, because somehow the child cannot get its parent’s width and  height. Use PX only.</p>
+  </li>
+  <li>
+    <p>If you already short-hand background property, then background-size would
+be reset to default. You have to add it to short-handed background, as
+background position / background size.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">&lt;meta width="viewport"&gt;</code> would make browser ignore the overflow property 
+on html or body tag. So you should have another div wrap your main.</p>
+  </li>
+  <li>In order to prevent css transform flicker in iPhone and Android, use
+    <div class="highlighter-rouge"><pre class="highlight"><code>  -webkit-perspective: 1000px;
   -webkit-backface-visibility: hidden;
   perspective: 1000px;
-  backface-visibility: hidden;</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>5. Image loading would trigger a resizeevent on mobile *Chrome*, but does not in Desktop or any other browsers. So if multiply page resizing event happen in mobile, check if there's any lazy-loading.
-
-6. To set width of inner div on scrollable element to 100% of scrollable width,
-make the inner div `display: table-row`
-
-7. If children elements are displayed as `inline-block` and get pushed down once there is window resizing, make parent display as `inline-block` too, and add `white-space: nowrap` to parent.
-
-8. In order to display scrollbar on iOS device, use: 
-  ```css
-  ::-webkit-scrollbar {
-     -webkit-appearance: none;
-     width: 7px;
-     height: 7px;
-  }
-  ::-webkit-scrollbar:vertical {
-     width: 7px;
-  }
-  ::-webkit-scrollbar:horizontal {
-     width: 7px;
-  }
-  ::-webkit-scrollbar-thumb {
-     border-radius: 4px;
-     background-color: rgba(0,0,0,.5);
-     box-shadow: 0 0 1px rgba(255,255,255,.5);
-  }
+  backface-visibility: hidden;
 </code></pre>
-</div>
-<ol>
+    </div>
+  </li>
+  <li>
+    <p>Image loading would trigger a resizeevent on mobile <em>Chrome</em>, but does not in Desktop or any other browsers. So if multiply page resizing event happen in mobile, check if there’s any lazy-loading.</p>
+  </li>
+  <li>
+    <p>To set width of inner div on scrollable element to 100% of scrollable width,
+make the inner div <code class="highlighter-rouge">display: table-row</code></p>
+  </li>
+  <li>
+    <p>If children elements are displayed as <code class="highlighter-rouge">inline-block</code> and get pushed down once there is window resizing, make parent display as <code class="highlighter-rouge">inline-block</code> too, and add <code class="highlighter-rouge">white-space: nowrap</code> to parent.</p>
+  </li>
+  <li>In order to display scrollbar on iOS device, use:
+    <div class="language-css highlighter-rouge"><pre class="highlight"><code>  <span class="nd">::-webkit-scrollbar</span> <span class="p">{</span>
+  <span class="nl">-webkit-appearance</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">7px</span><span class="p">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="m">7px</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nd">::-webkit-scrollbar:vertical</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">7px</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nd">::-webkit-scrollbar:horizontal</span> <span class="p">{</span>
+  <span class="nl">width</span><span class="p">:</span> <span class="m">7px</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nd">::-webkit-scrollbar-thumb</span> <span class="p">{</span>
+  <span class="nl">border-radius</span><span class="p">:</span> <span class="m">4px</span><span class="p">;</span>
+  <span class="nl">background-color</span><span class="p">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">.5</span><span class="p">);</span>
+  <span class="nl">box-shadow</span><span class="p">:</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1px</span> <span class="n">rgba</span><span class="p">(</span><span class="m">255</span><span class="p">,</span><span class="m">255</span><span class="p">,</span><span class="m">255</span><span class="p">,</span><span class="m">.5</span><span class="p">);</span>
+  <span class="p">}</span>
+</code></pre>
+    </div>
+  </li>
   <li>
     <p><code class="highlighter-rouge">line-height</code> behaves differently in XHTML and HTML5. That would bite you in the ass some day. Pay attention to <code class="highlighter-rouge">line-height</code> in transitional DOCTYPE.</p>
   </li>

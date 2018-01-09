@@ -9,6 +9,7 @@ permalink: /note/
 1. usage of two pointers(one faster, and one slow ): 
 - find/remove duplicates in a array 
 - check loop/find node in linked list
+- conditional sort: sort in left, middle, right ranges
 
 2. backtrack
 
@@ -27,9 +28,7 @@ function backtrack() {
         res.pop(i)
     }
 }
-
 ```
-
 3. greedy: start from end of array to check if there is a matching node 
 
 

@@ -11,6 +11,7 @@ permalink: /note/
 - check loop/find node in linked list
 
 2. backtrack
+
 ```javascript
 function backtrack() {
     if (condition met) {

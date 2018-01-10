@@ -9,7 +9,7 @@ permalink: /note/
 1. usage of two pointers(one faster, and one slow ): 
 - find/remove duplicates in a array 
 - check loop/find node in linked list
-- conditional sort: sort in left, middle, right ranges
+- one left, one right: sort
 
 2. backtrack
 

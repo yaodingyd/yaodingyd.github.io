@@ -104,6 +104,7 @@
 <ol>
   <li>By default component is always mounted. use <code class="highlighter-rouge">mountOnEnter</code> and <code class="highlighter-rouge">unmountOnExit</code>.</li>
   <li>When using <code class="highlighter-rouge">TransitionGroup</code>, the individual <code class="highlighter-rouge">Transition</code>’s <code class="highlighter-rouge">in</code> prop is always overwritten by <code class="highlighter-rouge">TransitionGroup</code>.</li>
+  <li>When combining FLIP animation technique, force a reflow on <code class="highlighter-rouge">onEnter</code> hook, otherwise the inverted transition would be overwritten without triggering any animation.</li>
 </ol>
 
     </div>

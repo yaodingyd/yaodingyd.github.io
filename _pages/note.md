@@ -30,6 +30,7 @@ function backtrack() {
 }
 ```
 3. greedy: start from end of array to check if there is a matching node 
+4. Think recursive and iterative
 
 
 # A collection of werid CSS, JavaScript and Cross-browser issue I have encountered.

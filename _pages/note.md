@@ -32,6 +32,33 @@ function backtrack() {
 3. greedy: start from end of array to check if there is a matching node 
 
 
+
+# DOM cheatsheet
+
+I keep forgetting methods of traversing node in DOM, so here it is:
+
+Traversing in `Nodes`
+![node](https://javascript.info/article/dom-navigation/dom-links@2x.png)
+
+Traversing in `Elements`
+
+![element](https://javascript.info/article/dom-navigation/dom-links-elements@2x.png)
+
+
+Node types
+![type](https://javascript.info/article/basic-dom-node-properties/dom-class-hierarchy@2x.png)
+
+All images credit to [https://javascript.info/](https://javascript.info/).
+
+
+Node parent to manipulate child
+
+1. `appendChild`
+2. `removeChild`
+3. `replaceChild`
+4. `insertBefore(node, referenceChild)`
+
+
 # A collection of werid CSS, JavaScript and Cross-browser issue I have encountered.
 
 1. In *Firefox* and *IE*, for a flex child, the height and width cannot be set 

@@ -56,80 +56,57 @@
 
         <main id="barba-wrapper" class="site__content" aria-label="Content">
           <div class="barba-container">
-          <div class="container posts">
-  <ul class="posts__list">
-    
-      <li class="post">
-        <div class="post__meta">Dec 1, 2015</div>
-        <a class="post__link" href="/blog/binary-tree-traverse/">Binary Tree Traversal</a>
-        <div class="post__excerpt"><p>Implemetation about DFS and BFS.</p>
-
-</div>        
-      </li>
-    
-      <li class="post">
-        <div class="post__meta">Nov 1, 2015</div>
-        <a class="post__link" href="/blog/binary-search-fun-part/">Binary Search Fun Part</a>
-        <div class="post__excerpt"><p>Binary search seems very simple but it can be tricy too.</p>
-
-</div>        
-      </li>
-    
-  </ul>
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-
-  <div class="pagination-wrapper">
-    <div class="pagination">
-      
-        <a class="pagination-step" href="/page-6/">
-          Newer
-        </a>
-      
-
-      
-        <a class="pagination-first" href="/">1</a>
-        <span class="pagination-more">&middot;&middot;&middot;</span>
-      
-
-      
+          <div class="container">
+  <article class="post" itemtype="http://schema.org/BlogPosting">  
+    <header class="post__header">
+      <h1 class="title" itemprop="name headline">All About Servers</h1>
+      <div class="post__meta">
+        <time class="post__time">Jan 11, 2018</time>
+          
+          
+            <a href="/tag#web-fundamental" class="post__tag">Web Fundamental</a>
+          
         
-          <a href="/page-3">3</a>
-        
-      
-        
-          <a href="/page-4">4</a>
-        
-      
-        
-          <a href="/page-5">5</a>
-        
-      
-        
-          <a href="/page-6">6</a>
-        
-      
-        
-          <span class="active">7</span>
-        
-      
+      </div>
+    </header>
 
-      
+    <div class="post__content" itemprop="articleBody">
+      <p>A crash course about server structures.</p>
 
-      
+<h2 id="three-tier-architecure">Three-tier architecure</h2>
+
+<p>According to Wikipedia,</p>
+<blockquote>
+  <p>Three-tier architecture is a client–server software architecture pattern in which the user interface (presentation), functional process logic (“business rules”), computer data storage and data access are developed and maintained as independent modules, most often on separate platforms.</p>
+</blockquote>
+
+<p>Basically, there are three layers in each web application:</p>
+<ol>
+  <li>Presentation layer (front end server)</li>
+  <li>Logic layer (back end server)</li>
+  <li>Data layer (database)</li>
+</ol>
+
+<p>## Front end server</p>
+
+<p>What is a front end server? A front end server is the first server to receive requests and sending them to other servers. In this way, it improves the scalability of services. You can provide multiple front end servers accessing the same backend server or a single front end server with multiple backend servers. So a front end server acts as a reverse proxy (accepts a request from a client, forwards it to a server that can fulfill it, and returns the server’s response to the client), and a load balancer (distributes incoming client requests among a group of servers, in each case returning the response from the selected server to the appropriate client).</p>
+
+<p>Typical front end servers are apache and ngix.</p>
+
+<p>## The need for a front end server</p>
+
+<p>Basically front end server serves faster with static content and clustering is easy. For other reason, see <a href="https://wiki.apache.org/tomcat/FAQ/Connectors#Q3">this</a>.</p>
+
+
     </div>
+  </article>
+
+  <div class="page-navigation">
+    
+      <a class="page__prev" href="/blog/async-vs-dom-ready/">&laquo; Async vs DOMContentLoaded</a>
+    
+    
   </div>
-
-
 </div>
 
           </div>

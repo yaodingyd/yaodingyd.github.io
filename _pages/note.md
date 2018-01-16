@@ -9,8 +9,10 @@ permalink: /note/
 1. usage of two pointers(one faster, and one slow ): 
 - find/remove duplicates in a array 
 - check loop/find node in linked list
+- one left, one right: sort
 
 2. backtrack
+
 ```javascript
 function backtrack() {
     if (condition met) {
@@ -26,10 +28,9 @@ function backtrack() {
         res.pop(i)
     }
 }
-
 ```
-
 3. greedy: start from end of array to check if there is a matching node 
+4. Think recursive and iterative
 
 
 

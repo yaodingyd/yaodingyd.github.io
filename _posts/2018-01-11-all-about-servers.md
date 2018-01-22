@@ -24,6 +24,8 @@ What is a front end server? A front end server is the first server to receive re
 
 Typical front end servers are apache and ngix.
 
+Sometimes we call it a 'web server', to differentiate from an 'app server', which contains the business logic.
+
 
 ## The need for a front end server
 

@@ -34,8 +34,6 @@ _init
   has `el` when initialized ? call public `$mount` -> mountComponet -> intialize a new `Watcher` ->  vm._update -> run patch, createElm, CreateComponent -> recursively create all children components -> mount all components
 
 
-
-
 ## Render?
 
 Vue uses template to compile to render function, or you can use your own render function. render function would call createElement to get a new vnode. Vnode to do patch -> createComponent -> create an instance and mount

@@ -228,7 +228,8 @@ pre.highlight {
   code {
     margin: 0 auto;
     display: block;
-    width: 30rem;
+    width: 40rem;
+    overflow-x: auto; 
 
     @include tablet {
       width: 100%;
@@ -237,6 +238,6 @@ pre.highlight {
 }
 
 code.highlighter-rouge {
-  background: #868e96;
-  color: #f8f8f2; 
+  background: #e9ecef;
+  color: #000; 
 }

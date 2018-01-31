@@ -109,33 +109,32 @@ make the inner div `display: table-row`
 9. `line-height` behaves differently in XHTML and HTML5. That would bite you in the ass some day. Pay attention to `line-height` in transitional DOCTYPE.
 
 10. When using `overflow:hidden` to disable scrolling in the background, add `overflow-y:scroll` to body to prevent content shifting. For mobile to prevent body scrolling, use 
- ```css
- overflow: hidden;
- position: fixed;
- right: 0;
- left: 0;
+  ```css
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  left: 0;
+  ```
 
- ```
-11. 
-`@media` print a specific div, there are three ways:  
- ```css
- body > * { visibility: hidden;}
- .print { visibility: visible;}
- ```
- ```css
- body > * { display: none;}
- .print { display: block;}
- ```
- ```javascript
- function printContent(el){
+11. `@media` print a specific div, there are three ways:  
+   ```css
+   body > * { visibility: hidden;}
+   .print { visibility: visible;}
+   ```
+   ```css
+   body > * { display: none;}
+   .print { display: block;}
+   ```
+   ```javascript
+   function printContent(el){
     var restorepage = document.body.innerHTML;
     var printcontent = document.getElementById(el).outerHTML;
     document.body.innerHTML = printcontent;
     window.print();
     document.body.innerHTML = restorepage;
   }
- ```
-In Safari, body and print div's `position` must be `static` or `relative`, or it will be blank.
+  ```
+  In Safari, body and print div's `position` must be `static` or `relative`, or it will be blank.
 
 12. SVG, like XML, its node content is modified by `el.textContent` (jQuery.text()), rather than `el.innerHTML`.
 

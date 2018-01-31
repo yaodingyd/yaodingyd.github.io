@@ -77,10 +77,12 @@
 
 <p>https://github.com/livoras/blog/issues/13</p>
 
+<p>https://github.com/berwin/Blog/issues/18</p>
+
 <h2 id="terms">Terms</h2>
 
 <p><em><code class="highlighter-rouge">vnode</code></em>: A abstract model of node, using POJO to represent a DOM node; usually have three properties: <code class="highlighter-rouge">tagName</code>, <code class="highlighter-rouge">props</code> for attributes, and <code class="highlighter-rouge">children</code> for children DOM nodes or plain text.
-<em><code class="highlighter-rouge">h</code></em>: function to convert to vnode; usually returns a virtual dom tree, or a <code class="highlighter-rouge">vtree</code>.
+<em><code class="highlighter-rouge">h</code></em>: function to create vnode; usually returns a virtual dom tree, or a <code class="highlighter-rouge">vtree</code>. In react-like libraries, we use JSX syntax to structure HTML. Babel would transpile JSX to a series of <code class="highlighter-rouge">createElement</code> or <code class="highlighter-rouge">h</code> functions. 
 <em><code class="highlighter-rouge">diff</code></em>: function to compare two <code class="highlighter-rouge">vtree</code> to get patches.
 <em><code class="highlighter-rouge">patch</code></em>: function to apply patches to real DOM.
 <em><code class="highlighter-rouge">render</code></em>: the process of turning virtual DOM element into a real DOM element.

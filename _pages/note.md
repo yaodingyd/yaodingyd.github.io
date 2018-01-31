@@ -105,6 +105,7 @@ make the inner div `display: table-row`
      box-shadow: 0 0 1px rgba(255,255,255,.5);
   }
   ```
+
 9. `line-height` behaves differently in XHTML and HTML5. That would bite you in the ass some day. Pay attention to `line-height` in transitional DOCTYPE.
 
 10. When using `overflow:hidden` to disable scrolling in the background, add `overflow-y:scroll` to body to prevent content shifting. For mobile to prevent body scrolling, use 
@@ -113,20 +114,18 @@ make the inner div `display: table-row`
  position: fixed;
  right: 0;
  left: 0;
+
  ```
 11. 
-`@media` print a specific div, there are three ways: 
- 1. 
+`@media` print a specific div, there are three ways:  
  ```css
  body > * { visibility: hidden;}
  .print { visibility: visible;}
  ```
- 2.
  ```css
  body > * { display: none;}
  .print { display: block;}
  ```
- 3.
  ```javascript
  function printContent(el){
     var restorepage = document.body.innerHTML;
@@ -134,8 +133,8 @@ make the inner div `display: table-row`
     document.body.innerHTML = printcontent;
     window.print();
     document.body.innerHTML = restorepage;
-}
-```
+  }
+ ```
 In Safari, body and print div's `position` must be `static` or `relative`, or it will be blank.
 
 12. SVG, like XML, its node content is modified by `el.textContent` (jQuery.text()), rather than `el.innerHTML`.
@@ -147,18 +146,21 @@ In Safari, body and print div's `position` must be `static` or `relative`, or it
     -webkit-backface-visibility: hidden;
     transform-style: preserve-3d;
     ```
-15. iOS scales text when change orientation. Use the following to prevent his behavior
 
+15. iOS scales text when change orientation. Use the following to prevent his behavior
  ```css
  html {
    -webkit-text-size-adjust: 100%;
  }
  ```
- 16. If `overflow:hidden` is not working on pseudo elements, add `position:relative` to their wrapper.
  
- 17. https://css-tricks.com/full-width-containers-limited-width-parents/.
+16. If `overflow:hidden` is not working on pseudo elements, add `position:relative` to their wrapper.
  
- 18. For `position:sticky` tow work, its parent must not be `overflow:hidden`.
+17. https://css-tricks.com/full-width-containers-limited-width-parents/.
+ 
+18. For `position:sticky` tow work, its parent must not be `overflow:hidden`.
+
+19. You can register an object with property `handleEvent` on event listener. [MDN](https://developer.mozilla.org/en-US/docs/Web/API/EventListener)
 
 
 # Some best practices I have encountered.

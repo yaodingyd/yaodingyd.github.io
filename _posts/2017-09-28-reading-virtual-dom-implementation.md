@@ -13,10 +13,12 @@ https://github.com/creeperyang/blog/issues/33
 
 https://github.com/livoras/blog/issues/13
 
+https://github.com/berwin/Blog/issues/18
+
 ## Terms
 
 *`vnode`*: A abstract model of node, using POJO to represent a DOM node; usually have three properties: `tagName`, `props` for attributes, and `children` for children DOM nodes or plain text.
-*`h`*: function to convert to vnode; usually returns a virtual dom tree, or a `vtree`.
+*`h`*: function to create vnode; usually returns a virtual dom tree, or a `vtree`. In react-like libraries, we use JSX syntax to structure HTML. Babel would transpile JSX to a series of `createElement` or `h` functions. 
 *`diff`*: function to compare two `vtree` to get patches.
 *`patch`*: function to apply patches to real DOM.
 *`render`*: the process of turning virtual DOM element into a real DOM element.

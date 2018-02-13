@@ -71,30 +71,55 @@
     </header>
 
     <div class="post__content" itemprop="articleBody">
-      <p>Some resources on how to implement virtual dom.</p>
+      <p>Some thoughts on reading the source code on <em>preact</em>, <em>snabbdom</em> and other virtual DOM implementations.</p>
+
+<h2 id="jargons">Jargons</h2>
+
+<p><em><code class="highlighter-rouge">vnode</code></em>: A abstract model of node, using POJO to represent a DOM node; usually have three properties: <code class="highlighter-rouge">tagName</code>, <code class="highlighter-rouge">props</code> for attributes, and <code class="highlighter-rouge">children</code> for children DOM nodes or plain text.
+<em><code class="highlighter-rouge">h</code></em>: function to create vnode; usually returns a virtual dom tree, or a <code class="highlighter-rouge">vtree</code>. In react-like libraries, we use JSX syntax to structure HTML. Babel would transpile JSX to a series of <code class="highlighter-rouge">createElement</code> or <code class="highlighter-rouge">h</code> functions. 
+<em><code class="highlighter-rouge">diff</code></em>: function to compare two <code class="highlighter-rouge">vtree</code> to get patches.
+<em><code class="highlighter-rouge">patch</code></em>: function to apply patches to real DOM.
+<em><code class="highlighter-rouge">render</code></em>: the process of turning a <code class="highlighter-rouge">vnode</code> into a real DOM element.
+<em><code class="highlighter-rouge">hydration</code></em>: usually means to do rendering in server side, then apply <code class="highlighter-rouge">state</code> in client side.</p>
+
+<h2 id="ideas">Ideas:</h2>
+
+<p>Once you have a set of patches, you could apply them immediately, but it’s better to queue them and flush this queue at a fixed interval like 60 times per second. Only doing our DOM manipulation with the callback to requestAnimationFrame will give us a performance boost and minimize the number of DOM operations we do. We also call batch in before we apply our patches to squash our list of diffs to the minimal set of operations.</p>
+
+<p>The basic idea to use virtual dom is the same: use JavaScript object to represent DOM node and construct a tree based on vnode, whenever there is change on vnode, we diff the old and new tree, and only patch the diff results.</p>
+
+<p>There are two ways to do patching: first we do <code class="highlighter-rouge">diff</code> and store patches in a queue, then do <code class="highlighter-rouge">patch</code>; or we can do <code class="highlighter-rouge">diff</code> and <code class="highlighter-rouge">patch</code> together.</p>
+
+<h2 id="preact">Preact</h2>
+
+<p>Preact shines on the small file size, only 3kb gzipped. In order to reduce file size, a lot of logic are minimal. While most other libraries compare two <code class="highlighter-rouge">vnode</code> to do <code class="highlighter-rouge">diff</code>, whenever a <code class="highlighter-rouge">vnode</code> renders, the actually DOM node would have a property of its vnode. So in code <code class="highlighter-rouge">diff</code> is implemented with a DOM node and a <code class="highlighter-rouge">vnode</code>. This would introduce some overhead.</p>
+
+<p>Because DOM node and <code class="highlighter-rouge">vnode</code> both keep reference to each other, so preact needs to manually do garbage collection to prevent out of DOM reference memory leak. Basically <code class="highlighter-rouge">vnode</code> and DOM’s reference needs to be cleared after they are removed.</p>
+
+<p>There are several technique preact uses to improve its speed:</p>
+
+<ol>
+  <li>
+    <p>With <code class="highlighter-rouge">h</code> function preact would first check <code class="highlighter-rouge">vnode</code>’s type and determine if it is a <em>simple</em> node, which is essentially a text node; if two simple nodes are next to each other, preact would concatenate them together, and results in fewer nodes.</p>
+  </li>
+  <li>
+    <p>Preact would hash previous removed component(<code class="highlighter-rouge">vnode</code> and its DOM reference) into a map. If following actions would have the same component constructor, the cached DOM node would be reused.</p>
+  </li>
+</ol>
+
+<h2 id="snabbdom">Snabbdom</h2>
+
+<p>Snabbdom’s source code reads very smoothly. Because snabbdom is just a virtual DOM implementation and has no component involved, code is simpler than  react-like libraries.</p>
+
+<p><code class="highlighter-rouge">diff</code> for children is similar between snabbdom and preact, though snabbdom’s code is much better to understand: for two groups of<code class="highlighter-rouge">vnode</code> children, we create maps based on their <code class="highlighter-rouge">key</code>, if there is a same keyed child, patch child; if not, try to find two nodes of the same type, and pay attention to two special case: previous head moves to tail, and previous tail moves to head. The difference is that Snabbdom converts all keyed children to index and use index to do more detailed comparing.</p>
+
+<h2 id="diy-implementations">DIY implementations:</h2>
 
 <p>https://github.com/creeperyang/blog/issues/33</p>
 
 <p>https://github.com/livoras/blog/issues/13</p>
 
 <p>https://github.com/berwin/Blog/issues/18</p>
-
-<h2 id="terms">Terms</h2>
-
-<p><em><code class="highlighter-rouge">vnode</code></em>: A abstract model of node, using POJO to represent a DOM node; usually have three properties: <code class="highlighter-rouge">tagName</code>, <code class="highlighter-rouge">props</code> for attributes, and <code class="highlighter-rouge">children</code> for children DOM nodes or plain text.
-<em><code class="highlighter-rouge">h</code></em>: function to create vnode; usually returns a virtual dom tree, or a <code class="highlighter-rouge">vtree</code>. In react-like libraries, we use JSX syntax to structure HTML. Babel would transpile JSX to a series of <code class="highlighter-rouge">createElement</code> or <code class="highlighter-rouge">h</code> functions. 
-<em><code class="highlighter-rouge">diff</code></em>: function to compare two <code class="highlighter-rouge">vtree</code> to get patches.
-<em><code class="highlighter-rouge">patch</code></em>: function to apply patches to real DOM.
-<em><code class="highlighter-rouge">render</code></em>: the process of turning virtual DOM element into a real DOM element.
-<em><code class="highlighter-rouge">hydration</code></em>: usually means to do rendering in server side, then apply <code class="highlighter-rouge">state</code> in client side.</p>
-
-<h2 id="ideas">Ideas:</h2>
-
-<p>Once you have a set of patches, you could apply them immediately but it’s better to queue them and flush this queue at a fixed interval like 60 times per second. Only doing our DOM manipulation with the callback to requestAnimationFrame will give us a performance boost and minimize the number of DOM operations we do. We also call batch in before we apply our patches to squash our list of diffs to the minimal set of operations.</p>
-
-<p>The basic idea to use virtual dom is the same: use JavaScript object to represent DOM node and construct a tree based on vnode, whenever there is change on vnode, we diff the old and new tree, and only patch the diff results.</p>
-
-<p>There are two ways to do patching: first we do <code class="highlighter-rouge">diff</code> and store patches in a queue, then do <code class="highlighter-rouge">patch</code>; or we can do <code class="highlighter-rouge">diff</code> and <code class="highlighter-rouge">patch</code> together.</p>
 
     </div>
   </article>

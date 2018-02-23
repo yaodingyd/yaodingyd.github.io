@@ -16,7 +16,7 @@ First of all, jasmine-ajax just hijacks the native `XMLHttpRequest`, so when we 
 
 Things start to get interesting with jQuery. With 1.11, `Deferred` is not `promise a+` compliant, so I thought it should pass, but it doesn't; while with 3.0+, `Deferred` is `promise a+` compliant, but with `$.ajax().done()` it works.
 
-Now why it that?
+## Now why it that?
 
 Because jQuery's `ajax` returns a `Deferred().promise` object, so I was saying it should match whether or not `Deferred` is compliant with `promise a+` implementation. To be compliant, `onFulfilled` and `onRejected`, or jQuery's `then`, `done`, and `fail`, should be called in a new context stack, which means it should be run in a task(`setTimeout`, or with micro-task `Mutation Observer`). But in jQuery 1.11, it is not implemented in this way. It uses jQuery's `Callbacks()`'s `add` function, which could run in synchronous manner. *BUT*, ajax's callback for `onreadystatechange` is wrapped in a `setTimeout`, so callback for `done` is still executed in next tick, so my tests would not pass.
 

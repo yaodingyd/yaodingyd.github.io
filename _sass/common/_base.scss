@@ -1,5 +1,6 @@
 html {
   font-size: 16px;
+  line-height: 1.9;
 
   @include mobile {
     font-size: 14px;
@@ -25,10 +26,6 @@ h3, h4, h5, h6 {
 
 p, div {
   color: #000;
-}
-
-p {
-  line-height: 1.9;
 }
 
 a,

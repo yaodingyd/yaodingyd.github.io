@@ -81,7 +81,7 @@
 
 <p>Things start to get interesting with jQuery. With 1.11, <code class="highlighter-rouge">Deferred</code> is not <code class="highlighter-rouge">promise a+</code> compliant, so I thought it should pass, but it doesn’t; while with 3.0+, <code class="highlighter-rouge">Deferred</code> is <code class="highlighter-rouge">promise a+</code> compliant, but with <code class="highlighter-rouge">$.ajax().done()</code> it works.</p>
 
-<p>Now why it that?</p>
+<h2 id="now-why-it-that">Now why it that?</h2>
 
 <p>Because jQuery’s <code class="highlighter-rouge">ajax</code> returns a <code class="highlighter-rouge">Deferred().promise</code> object, so I was saying it should match whether or not <code class="highlighter-rouge">Deferred</code> is compliant with <code class="highlighter-rouge">promise a+</code> implementation. To be compliant, <code class="highlighter-rouge">onFulfilled</code> and <code class="highlighter-rouge">onRejected</code>, or jQuery’s <code class="highlighter-rouge">then</code>, <code class="highlighter-rouge">done</code>, and <code class="highlighter-rouge">fail</code>, should be called in a new context stack, which means it should be run in a task(<code class="highlighter-rouge">setTimeout</code>, or with micro-task <code class="highlighter-rouge">Mutation Observer</code>). But in jQuery 1.11, it is not implemented in this way. It uses jQuery’s <code class="highlighter-rouge">Callbacks()</code>’s <code class="highlighter-rouge">add</code> function, which could run in synchronous manner. <em>BUT</em>, ajax’s callback for <code class="highlighter-rouge">onreadystatechange</code> is wrapped in a <code class="highlighter-rouge">setTimeout</code>, so callback for <code class="highlighter-rouge">done</code> is still executed in next tick, so my tests would not pass.</p>
 
@@ -95,7 +95,7 @@
       <a class="page__prev" href="/blog/all-about-servers/">&laquo; All About Servers</a>
     
     
-      <a class="page__next" href="/blog/key-takeaways-about-event-loop/">Key Takeaways About Event Loop &raquo;</a>
+      <a class="page__next" href="/blog/key-takeaways-about-event-loop/">Key Takeaways About Event Loop, Tasks and Microtasks &raquo;</a>
     
   </div>
 </div>

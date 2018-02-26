@@ -211,13 +211,23 @@
 </div>
 <p>This is called also ‘Parasitic Combination Inheritance’.</p>
 
+<h3 id="subclass-a-built-in">Subclass a built-in</h3>
+
+<p>One difference for ES6 class from ES5 is that it makes possible to subclass all buit-in constructors, like <code class="highlighter-rouge">Date</code> and <code class="highlighter-rouge">Array</code>.
+There are work-arounds for ES5, but these have significant limitations</p>
+
 <h3 id="inheritance-vs-delegation">Inheritance vs Delegation</h3>
 
 <p>“Inheritance” always implies a copy operation. This is what happens in Java, so if you extend a children class from parent class, all parent’s property will be copied to children class. But JavaScript doesn’t copy object properties (natively, by default). Instead, JS creates a link between two objects, where one object can essentially delegate property/function access to another object. So we should call “Prototype Delegation”. In ES6 though it uses <code class="highlighter-rouge">extend</code> to make it look like a ‘copy’, deep down it still is a delegation.</p>
 
-<h3 id="read-more">Read more</h3>
+<h3 id="reference">Reference</h3>
 
-<p>This article is somewhat my cheatsheet to Prototype. Read the famous <a href="https://github.com/getify/You-Dont-Know-JS/tree/master/this%20%26%20object%20prototypes">You Dont Know JS</a> for a more thorough and deep understanding for Prototype.</p>
+<ol>
+  <li><a href="https://github.com/getify/You-Dont-Know-JS/tree/master/this%20%26%20object%20prototypes">You Dont Know JS</a></li>
+  <li><a href="http://2ality.com/2015/02/es6-classes-final.html#the-details-of-subclassing">The details of subclass</a></li>
+  <li><a href="http://speakingjs.com/es5/ch28.html">Subclass in ES5</a></li>
+  <li><a href="http://dailichun.com/2018/01/15/howtoextenddate.html">How to extend <code class="highlighter-rouge">Date</code></a></li>
+</ol>
 
 
     </div>

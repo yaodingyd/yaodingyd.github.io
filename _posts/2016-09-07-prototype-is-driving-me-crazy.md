@@ -136,14 +136,22 @@ Here is a simple polyfill of Object.create:
 ```
 This is called also 'Parasitic Combination Inheritance'.
 
+### Subclass a built-in 
+
+One difference for ES6 class from ES5 is that it makes possible to subclass all buit-in constructors, like `Date` and `Array`.
+There are work-arounds for ES5, but these have significant limitations
+
 ### Inheritance vs Delegation
 
 "Inheritance" always implies a copy operation. This is what happens in Java, so if you extend a children class from parent class, all parent's property will be copied to children class. But JavaScript doesn't copy object properties (natively, by default). Instead, JS creates a link between two objects, where one object can essentially delegate property/function access to another object. So we should call "Prototype Delegation". In ES6 though it uses `extend` to make it look like a 'copy', deep down it still is a delegation.
 
 
-### Read more
+### Reference
 
-This article is somewhat my cheatsheet to Prototype. Read the famous [You Dont Know JS](https://github.com/getify/You-Dont-Know-JS/tree/master/this%20%26%20object%20prototypes) for a more thorough and deep understanding for Prototype. 
+1. [You Dont Know JS](https://github.com/getify/You-Dont-Know-JS/tree/master/this%20%26%20object%20prototypes)
+2. [The details of subclass](http://2ality.com/2015/02/es6-classes-final.html#the-details-of-subclassing)
+3. [Subclass in ES5](http://speakingjs.com/es5/ch28.html)
+4. [How to extend `Date`](http://dailichun.com/2018/01/15/howtoextenddate.html)
 
 
 

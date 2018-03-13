@@ -27,13 +27,15 @@ exclude:
   - node_modules
   - gulpfile.js
   - package.json
+  - package-lock.json
+  - LICENSE
   - Gemfile
   - Gemfile.lock
   - vendor
   - Rakefile
   - .sass-cache
-  - _sass
   - _js
+  - public
 
 # GitHub
 username:             yaodingyd

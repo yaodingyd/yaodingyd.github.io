@@ -39,15 +39,15 @@ function backtrack() {
 I keep forgetting methods of traversing node in DOM, so here it is:
 
 Traversing in `Nodes`
-![node](https://javascript.info/article/dom-navigation/dom-links@2x.png)
+![node](https://javascript.info/article/dom-navigation/dom-links.png)
 
 Traversing in `Elements`
 
-![element](https://javascript.info/article/dom-navigation/dom-links-elements@2x.png)
+![element](https://javascript.info/article/dom-navigation/dom-links-elements.png)
 
 
 Node types
-![type](https://javascript.info/article/basic-dom-node-properties/dom-class-hierarchy@2x.png)
+![type](https://javascript.info/article/basic-dom-node-properties/dom-class-hierarchy.png)
 
 All images credit to [https://javascript.info/](https://javascript.info/).
 

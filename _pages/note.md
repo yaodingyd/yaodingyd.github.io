@@ -31,6 +31,7 @@ function backtrack() {
 ```
 3. greedy: start from end of array to check if there is a matching node 
 4. Think recursive and iterative
+5. BFS: if edge has no weight or equal weight, then first route is shortest route.
 
 
 

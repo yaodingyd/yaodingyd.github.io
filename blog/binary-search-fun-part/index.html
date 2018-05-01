@@ -121,7 +121,7 @@
       <span class="nx">left</span> <span class="o">=</span> <span class="nx">middle</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="p">}</span>
   <span class="p">}</span>
-  <span class="k">return</span> <span class="nx">left</span>
+  <span class="k">return</span> <span class="nx">right</span>
 <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">getRightmost</span><span class="p">(</span><span class="nx">nums</span><span class="p">,</span> <span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
@@ -168,7 +168,7 @@ l        r
       <span class="k">if</span><span class="p">(</span><span class="nx">nums</span><span class="p">[</span><span class="nx">mid</span><span class="p">]</span><span class="o">===</span><span class="nx">target</span><span class="p">)</span> <span class="k">return</span> <span class="nx">mid</span>
       
       <span class="k">if</span> <span class="p">(</span><span class="nx">nums</span><span class="p">[</span><span class="nx">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">right</span><span class="p">])</span> <span class="p">{</span> <span class="c1">// right half sorted</span>
-          <span class="k">if</span> <span class="p">(</span><span class="nx">target</span> <span class="o">&gt;</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">mid</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nx">target</span> <span class="o">&lt;=</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">nums</span><span class="p">])</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">target</span> <span class="o">&gt;</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">mid</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="nx">target</span> <span class="o">&lt;=</span> <span class="nx">nums</span><span class="p">[</span><span class="nx">mid</span><span class="p">])</span>
               <span class="nx">left</span> <span class="o">=</span> <span class="nx">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
           <span class="k">else</span>
               <span class="nx">right</span> <span class="o">=</span> <span class="nx">mid</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">;</span>

@@ -56,7 +56,7 @@ function getLeftmost(nums, target) {
       left = middle + 1
     }
   }
-  return left
+  return right
 }
 
 function getRightmost(nums, target) {
@@ -104,7 +104,7 @@ function searchInRotatedArray(nums, target) {
       if(nums[mid]===target) return mid
       
       if (nums[mid] < nums[right]) { // right half sorted
-          if (target > nums[mid] && target <= nums[nums])
+          if (target > nums[mid] && target <= nums[mid])
               left = mid + 1;
           else
               right = mid - 1 ;

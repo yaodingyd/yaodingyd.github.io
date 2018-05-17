@@ -7,6 +7,8 @@ tag:
     - Tip
 ---
 
+OS yields different behavior for window width with displaying scrollbar.
+
 ### Mac vs PC
 In Mac, there is a system preference setting that hides scrollbar in browsers, so scrollbar does not take space. In IE, there is `-ms-overflow-style:-ms-autohiding-scrollbar` that does the same thing. But unfortunately for Chrome and Firefox on Windows, you cannot make the scrollbar not taking up space.
 

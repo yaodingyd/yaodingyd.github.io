@@ -6,7 +6,9 @@ tags:
     - Node
 ---
 
-I started learning Dependency Injection(DI) with Angular 1 and frankly speaking, it was not a very pleasant experiences for me at the start. Angular uses all kinds of jargons in one short [article](https://github.com/angular/angular.js/wiki/Understanding-Dependency-Injection): `service`, `provider`, then `$provider`, `$provider.service()`, `$provider.factory()`, with some actually referring to the one of program paradiams and some are Angular's directives, I was totally confused at that time.
+I started learning Dependency Injection(DI) with Angular 1 and frankly speaking, it was not a very pleasant experiences for me at the start. 
+
+Angular uses all kinds of jargons in one short [article](https://github.com/angular/angular.js/wiki/Understanding-Dependency-Injection): `service`, `provider`, then `$provider`, `$provider.service()`, `$provider.factory()`, with some actually referring to the one of program paradiams and some are Angular's directives, I was totally confused at that time.
 
 Surly I have no problem understanding it now. To quote from Laravel's offical documents:
 

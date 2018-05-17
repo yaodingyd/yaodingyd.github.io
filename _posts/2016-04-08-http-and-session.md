@@ -11,9 +11,9 @@ A collection of knowledge on HTTP and a sad story about a web dev who didn't hav
 ### HTTP
 
 HTTP is a TCP/IP based communication protocol, that is used to deliver data (HTML files, image files, query results, etc.) on the World Wide Web. By default, web traffic uses TCP port 80. The basic structure is like this:
-HTTP | Application layer  
-TCP(Transmission Control Protocol) | Transport layer  
-IP (Internet Protocol) | Internet layer
+1. HTTP  *Application layer*  
+2. TCP(Transmission Control Protocol) *Transport layer*  
+3. IP (Internet Protocol) *Internet layer*
 
 HTTP is connectionless(HTTP/1.0), stateless and media independent.
 
@@ -49,7 +49,18 @@ WebSocket is a protocol providing full-duplex communication channels over a sing
 9. *DNT(Do Not Track)*: indicate whether or not a browser should be allowed to user tracking(cookies, Internet address, browser fingerprinting).
 
 ### Security and Authentication
-TTPS is a secure version of HTTP, inserting an additional layer between HTTP and TCP called TLS or SSL (Transport Layer Security or Secure Sockets Layer, respectively). HTTPS communicates over port 443 by default.
+HTTPS is a secure version of HTTP, inserting an additional layer between HTTP and TCP called TLS or SSL (Transport Layer Security or Secure Sockets Layer, respectively). HTTPS communicates over port 443 by default.
+
+#### How HTTPS works
+
+1. Client sent request to server, server sends back with *public key* and *certificate*.
+2. CLient checks *certificate*'s *digital signiture* with preinstalled *Certificate Authorities(CA)*.
+3. *Certificate* is trusted; client use *public key* to generate a *session key*.
+4. Client sends data with *session key* to server; server decrypts using *Private key* to get *session key*
+5. Client and server talks with encrypted messages in *session key*
+6. *Private key* is always kept protected in server, *public key* is distrubited freely; any message encryted with *public key* can only be decrypted with *private key* --- this is asymmetric key
+7. Once server and client establish connection, they use *session key* to send data --- this is symmetric key
+
 
 Cross-Origin Resource Sharing (CORS) gives web servers cross-domain access controls, which enable secure cross-domain data transfers. Modern browsers use CORS in an API container - such as XMLHttpRequest - to mitigate risks of cross-origin HTTP requests.
 The response header adds a Access-Control-Allow-Origin header to specifies a URI that may access the resource.
@@ -61,8 +72,8 @@ A Cross-site request forgery hole is when a malicious site can cause a visitor's
 
 A session can be defined as a server-side storage of information that is desired to persist throughout the user's interaction with the web site or web application. Intuitively, I treat session as a specific time span, for example, the time browser window keeps open, that client and server communiate with each other. 
 
-So, in order to keep persistent infor with stateless HTTP, here are a few different ways a server can collect client info:
+So, in order to keep persistent info with stateless HTTP, here are a few different ways a server can collect client info:
 1. Request headers: From, Referer, User-Agent 
 2. Client-IP - the IP address of the client
 3. Fat Urls(rewrite URLs) - storing state of the current user by modifying the URL and redirecting to a different URL on each click; each click essentially accumulates state.
-4. Cookies - Cookies allow the server to attach arbitrary information for outgoing responses via the Set-Cookie response header. A cookie is set with key/value pairs separated by semicolon (;), as in Set-Cookie: session-id=12345ABC; username=nettuts. A server can also restrict the cookies to a specific domain and path, and it can make them persistent with an expires value. Cookies are automatically sent by the browser for each request made to a server, and the browser ensures that only the domain- and path-specific cookies are sent in the request. In cookies we  can set SessionID, or a session token, which  is a unique identifier that is generated and sent from a server to a client to identify the current interaction session.  This is called *session tracking*. There are other techniques use other to keep tracking of session, like OAuth uses access tokens.
+4. Cookies - Cookies allow the server to attach arbitrary information for outgoing responses via the Set-Cookie response header. A cookie is set with key/value pairs separated by semicolon (;), as in Set-Cookie: session-id=12345ABC; username=nettuts. A server can also restrict the cookies to a specific domain and path, and it can make them persistent with an expires value. Cookies are automatically sent by the browser for each request made to a server, and the browser ensures that only the domain- and path-specific cookies are sent in the request. In cookies we can set SessionID, or a session token, which is an unique identifier that is generated and sent from a server to a client to identify the current interaction session. This is called *session tracking*. There are other techniques use other to keep tracking of session, like OAuth uses access tokens.

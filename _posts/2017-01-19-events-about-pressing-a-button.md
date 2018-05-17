@@ -6,6 +6,8 @@ tags:
     - Web Fundamental
 ---
 
+Events About Pressing A Button
+
 ### Problem
 
 Recently I had simple task turned out to be not that simple. My goal is to write a input mask for SSN, and I use `keydown` and `keyup` event to do my magic. Here comes the problem: in (some, or all) Android devices, `keydown` and `keyup` event returns `keycode` all as `229`, which essentially breaks my function.

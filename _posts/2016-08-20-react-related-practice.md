@@ -5,7 +5,9 @@ date:   2016-08-20
 tag:    React
 ---
 
-# Redux
+Might be outdated now...
+
+## Redux
 
 Do more in action-creator and do less in reducer.
 
@@ -16,7 +18,7 @@ Export selectors with related reducers. Or put they in standalone selector files
 Use more selectors for improving render performance.
 
 
-# React-Router (with react-transition-groups)
+## React-Router (with react-transition-groups)
 
 1. Doing transition, two take-aways: always use `key` for `TransitionGroup` children, and use `location` for children route.
 

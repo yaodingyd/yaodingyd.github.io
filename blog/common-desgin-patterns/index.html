@@ -59,12 +59,10 @@
           <div class="container">
   <article class="post" itemtype="http://schema.org/BlogPosting">  
     <header class="post__header">
-      <h1 class="title" itemprop="name headline">Factory Pattern</h1>
+      <h1 class="title" itemprop="name headline">Common Design Patterns</h1>
       <div class="post__meta">
-        <time class="post__time">Aug 29, 2016</time>
+        <time class="post__time">Aug 1, 2016</time>
           
-          
-            <a href="/tag#javascript" class="post__tag">JavaScript</a>
           
             <a href="/tag#programming" class="post__tag">Programming</a>
           
@@ -73,7 +71,40 @@
     </header>
 
     <div class="post__content" itemprop="articleBody">
-      <p>Basically, factory pattern is:</p>
+      <p>A collection of common desgin patterns in JavaScript.</p>
+
+<h3 id="most-commons-ones-ive-used">Most commons ones I’ve used</h3>
+<ol>
+  <li>Module</li>
+  <li>Constructor</li>
+  <li>Prototype</li>
+  <li>Observer (Pub/Sub)</li>
+  <li>Factory</li>
+  <li>Decorator</li>
+</ol>
+
+<h3 id="observer-pattern-and-pubsub-pattern">Observer Pattern and Pub/Sub Pattern</h3>
+
+<p>First of all, read <a href="https://addyosmani.com/resources/essentialjsdesignpatterns/book/#observerpatternjavascript">this</a>.</p>
+
+<p>Main idea: loose coupling. <a href="http://stackoverflow.com/a/13513771/6901252">“It’s a somewhat event-based way of thinking, but the “events” aren’t tied to a specific object.”</a>. So for Pub/Sub, they don’t even know if their counterparts exist. For Observer pattern, though observer must subscribe to the subject, observers don’t know about each other.</p>
+
+<p>Also, because subscribers are agnostic of publisher, they can implement an event handler published by any one.</p>
+
+<p>In Angular 1, thw Observer Pattern is implemented through digest circle in <code class="highlighter-rouge">$scope</code>. Angular would add a watcher for each of these:</p>
+
+<ol>
+  <li><code class="highlighter-rouge"><span class="p">{</span><span class="err">{expression</span><span class="p">}</span><span class="err">}</span></code> or <code class="highlighter-rouge">ng-model</code>, implicitly by Angular;</li>
+  <li><code class="highlighter-rouge">$scope.$watch</code>, explicitly by you</li>
+</ol>
+
+<p>Too many watchers will lower application performances. For Angular 1, the offcial recommedation is that you should not have more than 2000 watchers in a single page. So either reduce watchers usages or use bind-once.</p>
+
+<p>In Angular 1, a subscriber ‘subscribes’ to an event using <code class="highlighter-rouge">$on(‘event’, callback)</code>, and a publisher ‘publishes’ an event using <code class="highlighter-rouge">$emit(‘event’, args)</code> or <code class="highlighter-rouge">$broadcast(‘event’, args)</code>.</p>
+
+<h3 id="factory-pattern">Factory Pattern</h3>
+
+<p>Basically, factory pattern is:</p>
 <blockquote>
   <p>To get a new JavaScript Object instance without using <code class="highlighter-rouge">new</code>.</p>
 </blockquote>
@@ -135,16 +166,15 @@
 </code></pre>
 </div>
 
-
     </div>
   </article>
 
   <div class="page-navigation">
     
-      <a class="page__prev" href="/blog/react-related-practice/">&laquo; Redux/React-Router Practice</a>
+      <a class="page__prev" href="/blog/one-line-punch-javascript/">&laquo; One Line Punch JavaScript</a>
     
     
-      <a class="page__next" href="/blog/prototype-is-driving-me-crazy/">Prototype Is Driving Me Crazy &raquo;</a>
+      <a class="page__next" href="/blog/react-related-practice/">Redux/React-Router Practice &raquo;</a>
     
   </div>
 </div>

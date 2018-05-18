@@ -61,7 +61,7 @@
     <header class="post__header">
       <h1 class="title" itemprop="name headline">All About Servers</h1>
       <div class="post__meta">
-        <time class="post__time">Jan 11, 2018</time>
+        <time class="post__time">Dec 11, 2015</time>
           
           
             <a href="/tag#web-fundamental" class="post__tag">Web Fundamental</a>
@@ -82,12 +82,12 @@
 
 <p>Basically, there are three layers in each web application:</p>
 <ol>
-  <li>Presentation layer (front end server)</li>
-  <li>Logic layer (back end server)</li>
+  <li>Presentation layer (front end server, static server)</li>
+  <li>Logic layer (back end server, dynamic server)</li>
   <li>Data layer (database)</li>
 </ol>
 
-<h2 id="front-end-server">Front end server</h2>
+<h2 id="front-end-server">Front-end server</h2>
 
 <p>What is a front end server? A front end server is the first server to receive requests and sending them to other servers. In this way, it improves the scalability of services. You can provide multiple front end servers accessing the same backend server or a single front end server with multiple backend servers. So a front end server acts as a reverse proxy (accepts a request from a client, forwards it to a server that can fulfill it, and returns the server’s response to the client), and a load balancer (distributes incoming client requests among a group of servers, in each case returning the response from the selected server to the appropriate client).</p>
 
@@ -95,9 +95,21 @@
 
 <p>Sometimes we call it a ‘web server’, to differentiate from an ‘app server’, which contains the business logic.</p>
 
-<h2 id="the-need-for-a-front-end-server">The need for a front end server</h2>
+<h2 id="the-need-for-a-front-end-server">The need for a front-end server</h2>
 
 <p>Basically front end server serves faster with static content and clustering is easy. For other reason, see <a href="https://wiki.apache.org/tomcat/FAQ/Connectors#Q3">this</a>.</p>
+
+<h2 id="back-end-server">Back-end server</h2>
+
+<p>App server, or app container. Depends on the back-end technology stack, it could be a nodejs server, tomcat, or python application.</p>
+
+<h3 id="proxy">Proxy</h3>
+
+<ol>
+  <li>A proxy server that passes unmodified requests and responses is usually called a <em>gateway</em>.</li>
+  <li>A forward proxy is an Internet-facing proxy used to retrieve from a wide range of sources.</li>
+  <li>A reverse proxy is usually an internal-facing proxy used as a front-end to control and protect access to a server on a private network. A reverse proxy commonly also performs tasks such as load-balancing, authentication, decryption or caching.</li>
+</ol>
 
 
     </div>
@@ -105,10 +117,10 @@
 
   <div class="page-navigation">
     
-      <a class="page__prev" href="/blog/async-vs-dom-ready/">&laquo; Async vs DOMContentLoaded</a>
+      <a class="page__prev" href="/blog/binary-tree-traverse/">&laquo; Binary Tree Traversal</a>
     
     
-      <a class="page__next" href="/blog/from-jasmine-ajax-to-jquery-ajax/">From Jasmine-ajax to jQuery Ajax &raquo;</a>
+      <a class="page__next" href="/blog/http-and-session/">HTTP and Session &raquo;</a>
     
   </div>
 </div>

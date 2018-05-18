@@ -132,6 +132,8 @@
   <li>Once server and client establish connection, they use <em>session key</em> to send data — this is symmetric key</li>
 </ol>
 
+<p>HTTPS could be achieved by proxy - that’s one of the benefits of reverse proxy too: we have one layer of SSL on reverse proxy (equipped with SSL acceleration hardware), and app servers doesn’t have to deal with encryption any more.</p>
+
 <p>Cross-Origin Resource Sharing (CORS) gives web servers cross-domain access controls, which enable secure cross-domain data transfers. Modern browsers use CORS in an API container - such as XMLHttpRequest - to mitigate risks of cross-origin HTTP requests.
 The response header adds a Access-Control-Allow-Origin header to specifies a URI that may access the resource.</p>
 
@@ -155,7 +157,7 @@ A Cross-site request forgery hole is when a malicious site can cause a visitor�
 
   <div class="page-navigation">
     
-      <a class="page__prev" href="/blog/binary-tree-traverse/">&laquo; Binary Tree Traversal</a>
+      <a class="page__prev" href="/blog/all-about-servers/">&laquo; All About Servers</a>
     
     
       <a class="page__next" href="/blog/one-line-punch-javascript/">One Line Punch JavaScript &raquo;</a>

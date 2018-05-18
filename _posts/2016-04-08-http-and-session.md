@@ -61,6 +61,8 @@ HTTPS is a secure version of HTTP, inserting an additional layer between HTTP an
 6. *Private key* is always kept protected in server, *public key* is distrubited freely; any message encryted with *public key* can only be decrypted with *private key* --- this is asymmetric key
 7. Once server and client establish connection, they use *session key* to send data --- this is symmetric key
 
+HTTPS could be achieved by proxy - that's one of the benefits of reverse proxy too: we have one layer of SSL on reverse proxy (equipped with SSL acceleration hardware), and app servers doesn't have to deal with encryption any more.
+
 
 Cross-Origin Resource Sharing (CORS) gives web servers cross-domain access controls, which enable secure cross-domain data transfers. Modern browsers use CORS in an API container - such as XMLHttpRequest - to mitigate risks of cross-origin HTTP requests.
 The response header adds a Access-Control-Allow-Origin header to specifies a URI that may access the resource.

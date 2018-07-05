@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Yao's Blog</title>
+  <meta name="description" content="Yao's blog on everything about web technologies'">
+
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link rel="canonical" href="https://yaodingyd.github.io/">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/black/pace-theme-flash.min.css" />
+  
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yaodingyd.github.io">
+  <meta property="og:title" content="Yao's Blog">
+  <meta property="og:image" content="">
+  <meta property="og:description" content="Yao's blog on everything about web technologies">
+  <meta property="og:site_name" content="Yao's Blog">
+  <meta property="og:locale" content="en_US">
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@YaoDingSD">
+  <meta name="twitter:url" content="https://yaodingyd.github.io">
+  <meta name="twitter:title" content="Yao's Blog">
+  <meta name="twitter:description" content="Yao's blog on everything about web technologies">
+  <meta name="twitter:image" content="https://example.com/image.jpg">
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-86352654-1', 'auto');
+  ga('send', 'pageview');
+  </script>
+</head>
+
+  <body class="site">
+
+        <header class="header" role="banner">
+    <a class="header__avatar" href="/">
+        <img class="header__avatar-img" src="/resource/avatar.jpg">
+    </a>
+    <nav class="header__nav">
+        <a class="header__nav-link" href="/">Blog</a>
+        <a class="header__nav-link" href="/project/">Project</a>
+        <a class="header__nav-link" href="/about/">About</a>
+    </nav>
+</header>
+
+        <main id="barba-wrapper" class="site__content" aria-label="Content">
+          <div class="barba-container">
+          <div class="container">
+  <article class="post" itemtype="http://schema.org/BlogPosting">  
+    <header class="post__header">
+      <h1 class="title" itemprop="name headline">Simple Infinite Loop Carousel Like Animation</h1>
+      <div class="post__meta">
+        <time class="post__time">Jul 5, 2018</time>
+          
+          
+            <a href="/tag#web-fundamental" class="post__tag">Web Fundamental</a>
+          
+        
+      </div>
+    </header>
+
+    <div class="post__content" itemprop="articleBody">
+      <p>A very simple way to achieve infinite looping animation.</p>
+
+<h2 id="the-story">The story</h2>
+
+<p>Currently I find there are two ways to achieve this: one is to add two cloned elements, one to the head and one to the tail, like the famous Slick; the other way is no cloned elements involved at all, but it requires re-positioning head/tail elements, and at least three elements to complete an infinite loop, as the famous Flickity. Then when I was reading the source code of awesome <a href="https://github.com/gaoryrt/number-flip">number-flip</a> and found that this actually can be used for a very simple infinite loop carousel. This only needs one cloned element and doesn’t require elements to be repositioned.</p>
+
+<h2 id="the-code">The code</h2>
+
+<p>Like all other implementations, we need calculate and apply translations per frame. The inspiration is this single line of <a href="https://github.com/gaoryrt/number-flip/blob/master/number-flip.js#L69">code</a>, and we need to modify it to suit our usecases.</p>
+
+<p>The HTML setup is similar to all, we need a fixed height/width <code class="highlighter-rouge">overflow:hidden</code> container, a track to hold all elements and to apply translation, and actual elements:</p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">"position: relative; overflow: hidden; height: 20px;"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"track"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div&gt;</span>1<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div&gt;</span>2<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div&gt;</span>3<span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;div&gt;</span>1<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre>
+</div>
+
+<p>Notice I already have the first element cloned and appended to the tail. We can do this by JavaScript too.</p>
+
+<p>Then comes the animation:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">const</span> <span class="nx">el</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'track'</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">height</span> <span class="o">=</span> <span class="nx">el</span><span class="p">.</span><span class="nx">firstChild</span><span class="p">.</span><span class="nx">clientHeight</span>
+
+<span class="kd">function</span> <span class="nx">loop</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// we will figure out what is x</span>
+  <span class="nx">el1</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transform</span> <span class="o">=</span> <span class="err">`</span><span class="nx">translateY</span><span class="p">(</span><span class="o">-</span><span class="nx">$</span><span class="p">{</span><span class="nx">x</span><span class="p">}</span><span class="nx">px</span><span class="p">)</span><span class="err">`</span>
+  <span class="nx">requestAnimationFrame</span><span class="p">(</span><span class="nx">loop</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nx">requestAnimationFrame</span><span class="p">(</span><span class="nx">loop</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>So what should <code class="highlighter-rouge">x</code> be? Well, it should be something like this:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">x</span> <span class="o">=</span> <span class="p">(((</span><span class="nx">percentage</span> <span class="o">*</span> <span class="nx">translationDistance</span>  <span class="p">)</span> <span class="o">%</span> <span class="nx">numberOfElements</span> <span class="o">+</span> <span class="nx">numberOfElements</span><span class="p">)</span> <span class="o">%</span> <span class="nx">numberOfElements</span><span class="p">)</span> <span class="o">*</span> <span class="nx">elementHeight</span><span class="o">/</span><span class="nx">Width</span>
+</code></pre>
+</div>
+
+<ol>
+  <li><code class="highlighter-rouge">percentage</code> is the current animation progress. Usually it is calculated by <code class="highlighter-rouge">(currentTime - startTime)/animationDuration</code>.</li>
+  <li><code class="highlighter-rouge">transaltionDistance</code> is the total distance from starting postion to end position. Usually it it calculated by <code class="highlighter-rouge">(endPositionIndex - startPositionIndex) * elementWidth/Height</code>.</li>
+  <li><code class="highlighter-rouge">percentage * translationDistance</code> is the track’s current translation position. It could be more than we actually need though, like when there are multiple loops, and we only need a mod value.</li>
+  <li>The next step is to make sure <code class="highlighter-rouge">x</code> is always a position value, so translation is always moving to the correct direction (where there are elements)</li>
+  <li>Till now what we get is the measured by how many elements we should move. But we need actually pixel values. So we multiply it by elementHeight/width.</li>
+  <li>One extra step is if we want to control the speed of the translation, we can have <code class="highlighter-rouge">percentage * translationDistance * speedFactor</code>, the larger <code class="highlighter-rouge">speedFactor</code> is, the faster animation goes.</li>
+</ol>
+
+<p>See the final demo <a href="https://codesandbox.io/s/m795zpjxlp">here</a>.</p>
+
+
+    </div>
+  </article>
+
+  <div class="page-navigation">
+    
+      <a class="page__prev" href="/blog/key-takeaways-about-event-loop/">&laquo; Key Takeaways About Event Loop, Tasks and Microtasks</a>
+    
+    
+  </div>
+</div>
+
+          </div>
+        </main>
+
+        <footer class="footer" id="barba-footer">
+  <div class="footer__title">Yao Ding</div>
+  <div class="footer__links">
+      <a class="footer__link" href="mailto:yaodingyd@gmail.com">Email</a>
+      <a  class="footer__link" href="https://github.com/yaodingyd">Github</a>
+  </div>
+</footer>
+
+<!-- <script src="/public/js/src.js"></script> -->
+
+
+  </body>
+</html>

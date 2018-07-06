@@ -49,7 +49,7 @@
     </a>
     <nav class="header__nav">
         <a class="header__nav-link" href="/">Blog</a>
-        <a class="header__nav-link" href="/project/">Project</a>
+        <!-- <a class="header__nav-link" href="/project/">Project</a> -->
         <a class="header__nav-link" href="/about/">About</a>
     </nav>
 </header>
@@ -57,7 +57,22 @@
         <main id="barba-wrapper" class="site__content" aria-label="Content">
           <div class="barba-container">
           <main class="container">
-  <h1 id="leetcode">LeetCode</h1>
+  <h1 id="hacky-javascript">Hacky JavaScript</h1>
+
+<ol>
+  <li>Call function without <code class="highlighter-rouge">call</code> or <code class="highlighter-rouge">apply</code>: <code class="highlighter-rouge">(0, func)(arguments)</code></li>
+  <li><code class="highlighter-rouge">~~</code> is equivalant of
+    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
+  <span class="k">else</span> <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">x</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+    </div>
+  </li>
+  <li><code class="highlighter-rouge">string.splice(x.indexOf(y) &gt;&gt;&gt; 0, 1)</code> this way if y is not in x,  <code class="highlighter-rouge">x.indexOf(y) &gt;&gt;&gt; 0</code> returns a large positive number that we don’t need to verify</li>
+</ol>
+
+<h1 id="leetcode">LeetCode</h1>
 
 <ol>
   <li>usage of two pointers(one faster, and one slow ):
@@ -67,26 +82,24 @@
       <li>one left, one right: sort</li>
     </ul>
   </li>
-  <li>backtrack</li>
-</ol>
+  <li>backtrack
+    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">backtrack</span><span class="p">()</span> <span class="p">{</span>
+ <span class="k">if</span> <span class="p">(</span><span class="nx">condition</span> <span class="nx">met</span><span class="p">)</span> <span class="p">{</span>
+     <span class="k">return</span> <span class="nx">res</span>
+ <span class="p">}</span>
 
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">backtrack</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">condition</span> <span class="nx">met</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">res</span>
-    <span class="p">}</span>
-
-    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="nx">of</span> <span class="nx">pool</span> <span class="p">)</span> <span class="p">{</span>
-        <span class="nx">res</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
-        <span class="kd">var</span> <span class="nx">check</span> <span class="o">=</span> <span class="nx">backtrack</span><span class="p">()</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">check</span> <span class="nx">met</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">break</span><span class="c1">// or return true</span>
-        <span class="p">}</span>
-        <span class="nx">res</span><span class="p">.</span><span class="nx">pop</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
-    <span class="p">}</span>
+ <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="nx">of</span> <span class="nx">pool</span> <span class="p">)</span> <span class="p">{</span>
+     <span class="nx">res</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+     <span class="kd">var</span> <span class="nx">check</span> <span class="o">=</span> <span class="nx">backtrack</span><span class="p">()</span>
+     <span class="k">if</span> <span class="p">(</span><span class="nx">check</span> <span class="nx">met</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">break</span><span class="c1">// or return true</span>
+     <span class="p">}</span>
+     <span class="nx">res</span><span class="p">.</span><span class="nx">pop</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+ <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
-</div>
-<ol>
+    </div>
+  </li>
   <li>greedy: start from end of array to check if there is a matching node</li>
   <li>Think recursive and iterative</li>
   <li>BFS: if edge has no weight or equal weight, then first route is shortest route.</li>
@@ -99,9 +112,8 @@
 <p>Traversing in <code class="highlighter-rouge">Nodes</code>
 <img src="https://javascript.info/article/dom-navigation/dom-links.png" alt="node" /></p>
 
-<p>Traversing in <code class="highlighter-rouge">Elements</code></p>
-
-<p><img src="https://javascript.info/article/dom-navigation/dom-links-elements.png" alt="element" /></p>
+<p>Traversing in <code class="highlighter-rouge">Elements</code>
+<img src="https://javascript.info/article/dom-navigation/dom-links-elements.png" alt="element" /></p>
 
 <p>Node types
 <img src="https://javascript.info/article/basic-dom-node-properties/dom-class-hierarchy.png" alt="type" /></p>
@@ -134,10 +146,10 @@ background position / background size.</p>
 on html or body tag. So you should have another div wrap your main.</p>
   </li>
   <li>In order to prevent css transform flicker in iPhone and Android, use
-    <div class="highlighter-rouge"><pre class="highlight"><code>  -webkit-perspective: 1000px;
-  -webkit-backface-visibility: hidden;
-  perspective: 1000px;
-  backface-visibility: hidden;
+    <div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nt">-webkit-perspective</span><span class="o">:</span> <span class="nt">1000px</span><span class="o">;</span>
+<span class="nt">-webkit-backface-visibility</span><span class="o">:</span> <span class="nt">hidden</span><span class="o">;</span>
+<span class="nt">perspective</span><span class="o">:</span> <span class="nt">1000px</span><span class="o">;</span>
+<span class="nt">backface-visibility</span><span class="o">:</span> <span class="nt">hidden</span><span class="o">;</span>
 </code></pre>
     </div>
   </li>
@@ -152,22 +164,22 @@ make the inner div <code class="highlighter-rouge">display: table-row</code></p>
     <p>If children elements are displayed as <code class="highlighter-rouge">inline-block</code> and get pushed down once there is window resizing, make parent display as <code class="highlighter-rouge">inline-block</code> too, and add <code class="highlighter-rouge">white-space: nowrap</code> to parent.</p>
   </li>
   <li>In order to display scrollbar on iOS device, use:
-    <div class="language-css highlighter-rouge"><pre class="highlight"><code>  <span class="nd">::-webkit-scrollbar</span> <span class="p">{</span>
-  <span class="nl">-webkit-appearance</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">7px</span><span class="p">;</span>
-  <span class="nl">height</span><span class="p">:</span> <span class="m">7px</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="nd">::-webkit-scrollbar:vertical</span> <span class="p">{</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">7px</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="nd">::-webkit-scrollbar:horizontal</span> <span class="p">{</span>
-  <span class="nl">width</span><span class="p">:</span> <span class="m">7px</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="nd">::-webkit-scrollbar-thumb</span> <span class="p">{</span>
-  <span class="nl">border-radius</span><span class="p">:</span> <span class="m">4px</span><span class="p">;</span>
-  <span class="nl">background-color</span><span class="p">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">.5</span><span class="p">);</span>
-  <span class="nl">box-shadow</span><span class="p">:</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1px</span> <span class="n">rgba</span><span class="p">(</span><span class="m">255</span><span class="p">,</span><span class="m">255</span><span class="p">,</span><span class="m">255</span><span class="p">,</span><span class="m">.5</span><span class="p">);</span>
-  <span class="p">}</span>
+    <div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nd">::-webkit-scrollbar</span> <span class="p">{</span>
+ <span class="nl">-webkit-appearance</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+ <span class="nl">width</span><span class="p">:</span> <span class="m">7px</span><span class="p">;</span>
+ <span class="nl">height</span><span class="p">:</span> <span class="m">7px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nd">::-webkit-scrollbar:vertical</span> <span class="p">{</span>
+ <span class="nl">width</span><span class="p">:</span> <span class="m">7px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nd">::-webkit-scrollbar:horizontal</span> <span class="p">{</span><span class="err">å</span>
+ <span class="nl">width</span><span class="p">:</span> <span class="m">7px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nd">::-webkit-scrollbar-thumb</span> <span class="p">{</span>
+ <span class="nl">border-radius</span><span class="p">:</span> <span class="m">4px</span><span class="p">;</span>
+ <span class="nl">background-color</span><span class="p">:</span> <span class="n">rgba</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">.5</span><span class="p">);</span>
+ <span class="nl">box-shadow</span><span class="p">:</span> <span class="m">0</span> <span class="m">0</span> <span class="m">1px</span> <span class="n">rgba</span><span class="p">(</span><span class="m">255</span><span class="p">,</span><span class="m">255</span><span class="p">,</span><span class="m">255</span><span class="p">,</span><span class="m">.5</span><span class="p">);</span>
+<span class="p">}</span>
 </code></pre>
     </div>
   </li>
@@ -175,29 +187,29 @@ make the inner div <code class="highlighter-rouge">display: table-row</code></p>
     <p><code class="highlighter-rouge">line-height</code> behaves differently in XHTML and HTML5. That would bite you in the ass some day. Pay attention to <code class="highlighter-rouge">line-height</code> in transitional DOCTYPE.</p>
   </li>
   <li>When using <code class="highlighter-rouge">overflow:hidden</code> to disable scrolling in the background, add <code class="highlighter-rouge">overflow-y:scroll</code> to body to prevent content shifting. For mobile to prevent body scrolling, use
-    <div class="language-css highlighter-rouge"><pre class="highlight"><code>  <span class="nt">overflow</span><span class="o">:</span> <span class="nt">hidden</span><span class="o">;</span>
-  <span class="nt">position</span><span class="o">:</span> <span class="nt">fixed</span><span class="o">;</span>
-  <span class="nt">right</span><span class="o">:</span> <span class="nt">0</span><span class="o">;</span>
-  <span class="nt">left</span><span class="o">:</span> <span class="nt">0</span><span class="o">;</span>
+    <div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nt">overflow</span><span class="o">:</span> <span class="nt">hidden</span><span class="o">;</span>
+<span class="nt">position</span><span class="o">:</span> <span class="nt">fixed</span><span class="o">;</span>
+<span class="nt">right</span><span class="o">:</span> <span class="nt">0</span><span class="o">;</span>
+<span class="nt">left</span><span class="o">:</span> <span class="nt">0</span><span class="o">;</span>
 </code></pre>
     </div>
   </li>
   <li><code class="highlighter-rouge">@media</code> print a specific div, there are three ways:
-    <div class="language-css highlighter-rouge"><pre class="highlight"><code>   <span class="nt">body</span> <span class="o">&gt;</span> <span class="o">*</span> <span class="p">{</span> <span class="nl">visibility</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;}</span>
-   <span class="nc">.print</span> <span class="p">{</span> <span class="nl">visibility</span><span class="p">:</span> <span class="nb">visible</span><span class="p">;}</span>
+    <div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="c">/* first way */</span>
+<span class="nt">body</span> <span class="o">&gt;</span> <span class="o">*</span> <span class="p">{</span> <span class="nl">visibility</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;}</span>
+<span class="nc">.print</span> <span class="p">{</span> <span class="nl">visibility</span><span class="p">:</span> <span class="nb">visible</span><span class="p">;}</span>
+<span class="c">/* second way */</span>
+<span class="nt">body</span> <span class="o">&gt;</span> <span class="o">*</span> <span class="p">{</span> <span class="nl">display</span><span class="p">:</span> <span class="nb">none</span><span class="p">;}</span>
+<span class="nc">.print</span> <span class="p">{</span> <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;}</span>
 </code></pre>
     </div>
-    <div class="language-css highlighter-rouge"><pre class="highlight"><code>   <span class="nt">body</span> <span class="o">&gt;</span> <span class="o">*</span> <span class="p">{</span> <span class="nl">display</span><span class="p">:</span> <span class="nb">none</span><span class="p">;}</span>
-   <span class="nc">.print</span> <span class="p">{</span> <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;}</span>
-</code></pre>
-    </div>
-    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code>   <span class="kd">function</span> <span class="nx">printContent</span><span class="p">(</span><span class="nx">el</span><span class="p">){</span>
+    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">printContent</span><span class="p">(</span><span class="nx">el</span><span class="p">){</span>
 <span class="kd">var</span> <span class="nx">restorepage</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">innerHTML</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">printcontent</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">el</span><span class="p">).</span><span class="nx">outerHTML</span><span class="p">;</span>
 <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">printcontent</span><span class="p">;</span>
 <span class="nb">window</span><span class="p">.</span><span class="nx">print</span><span class="p">();</span>
 <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">restorepage</span><span class="p">;</span>
-  <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
     </div>
     <p>In Safari, body and print div’s <code class="highlighter-rouge">position</code> must be <code class="highlighter-rouge">static</code> or <code class="highlighter-rouge">relative</code>, or it will be blank.</p>
@@ -215,9 +227,9 @@ make the inner div <code class="highlighter-rouge">display: table-row</code></p>
     </div>
   </li>
   <li>iOS scales text when change orientation. Use the following to prevent his behavior
-    <div class="language-css highlighter-rouge"><pre class="highlight"><code> <span class="nt">html</span> <span class="p">{</span>
+    <div class="language-css highlighter-rouge"><pre class="highlight"><code><span class="nt">html</span> <span class="p">{</span>
    <span class="nl">-webkit-text-size-adjust</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
- <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
     </div>
   </li>
@@ -253,27 +265,6 @@ make the inner div <code class="highlighter-rouge">display: table-row</code></p>
 </code></pre>
 </div>
 
-<h1 id="dont-forget">Don’t forget</h1>
-
-<ol>
-  <li>
-    <p>Get/set body scroll position
- <code class="highlighter-rouge">document.documentElement.scrollTop || document.body.scrollTop</code></p>
-  </li>
-  <li>
-    <p>Get element offset top (to body)
- <code class="highlighter-rouge">element.offsetTop</code></p>
-  </li>
-</ol>
-
-<h1 id="fun-stuff-on-web">Fun-stuff-on-web</h1>
-<p>A collection of interesting web app, sites and APIs.</p>
-
-<ol>
-  <li><a href="https://yesno.wtf/">https://yesno.wtf/</a>
-API that could give you a random Yes/No with a hilarious image.</li>
-</ol>
-
 <h1 id="os-or-bash-related">OS or bash related</h1>
 
 <ol>
@@ -287,6 +278,9 @@ To add path, add <code class="highlighter-rouge">export PATH=$PATH:~/my/custom/p
   <li>
     <p><code class="highlighter-rouge">netstat -nlp | grep :8080</code> Find process running on port 8080
 <code class="highlighter-rouge">ps -e|grep node</code> find all node processes</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">find . -type f | xargs grep -l "file" | xargs grep -h "title"</code> find file with certain text</p>
   </li>
 </ol>
 

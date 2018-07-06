@@ -46,9 +46,11 @@ ol, ul {
   padding: 0;
 }
 
-li {
-  margin-bottom: 5px;
-  margin-left: 16px;
+@include mobile {
+  li {
+    margin-bottom: 5px;
+    margin-left: 16px;
+  }
 }
 
 .container {
@@ -64,4 +66,9 @@ li {
   @include mobile {
     width: 90%;
   }
+}
+
+img {
+  display: block;
+  margin: 1rem auto;
 }

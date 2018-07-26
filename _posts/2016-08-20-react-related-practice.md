@@ -7,6 +7,10 @@ tag:    React
 
 Might be outdated now...
 
+## React
+
+1. react render simply follows a top-down procedure: parent state changes will results in a re-render, and all children will go through the re-render lifecycle. This is why `pureComponent` is necessary, because sometimes children do not reply on parent state and can be spared from re-render.
+
 ## Redux
 
 Do more in action-creator and do less in reducer.

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Simple Infinite Loop Carousel Like Animation"
+title:  "Simple Infinite Loop Carousel Animation"
 date:   2018-07-05
 tags:   
     -  Web Fundamental

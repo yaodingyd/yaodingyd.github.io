@@ -28,4 +28,12 @@ There is a lengthy [thread](https://github.com/facebook/react/issues/11171) on w
 
 This also applies to React's `setState` callback. We know that the callback will be called after component is updated, but again it could happen inside one frame, and when that happens, your expected animation would not happen.
 
+When you want your `state` to change in different frames, the only working way I found out is nested `rAF`. 
+
+Based on [requestAnimationFrame Scheduling For Nerds](https://medium.com/@paul_irish/requestanimationframe-scheduling-for-nerds-9c57f7438ef4)
+
+> All rAF callbacks always run in the same or next frame of work Any rAFs queued in your event handlers will be executed in the ​same frame​. Any rAFs queued in a rAF will be executed in the next frame​. (Same for any queued within IntersectionObserver or ResizeObserver callbacks.)
+
+
+
 

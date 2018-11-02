@@ -56,108 +56,46 @@
 
         <main id="barba-wrapper" class="site__content" aria-label="Content">
           <div class="barba-container">
-          <div class="container posts">
-  <ul class="posts__list">
-    
-      <li class="post">
-        <div class="post__meta">Feb 10, 2018</div>
-        <a class="post__link" href="/blog/from-jasmine-ajax-to-jquery-ajax/">From Jasmine-ajax to jQuery Ajax</a>
-        <div class="post__excerpt"><p>jQuery Ajax has gone through some very important changes over the years, and I have never found them until today with testing using Jasmine-ajax.</p>
-
-</div>        
-      </li>
-    
-      <li class="post">
-        <div class="post__meta">Nov 8, 2017</div>
-        <a class="post__link" href="/blog/async-vs-dom-ready/">Async vs DOMContentLoaded</a>
-        <div class="post__excerpt"><p>The different ways of “wait for” script to loading can be tricky.</p>
-
-</div>        
-      </li>
-    
-      <li class="post">
-        <div class="post__meta">Oct 27, 2017</div>
-        <a class="post__link" href="/blog/mutation-observer-is-cool/">Mutation Observer Is Cool</a>
-        <div class="post__excerpt"><p>Mutation Observer is a well-supported (<a href="https://caniuse.com/#search=Mutation%20Observer">CanIUse link</a>) and very effcient API. Today I finally has a legit usecase for it.</p>
-
-</div>        
-      </li>
-    
-      <li class="post">
-        <div class="post__meta">Sep 28, 2017</div>
-        <a class="post__link" href="/blog/reading-virtual-dom-implementation/">Reading Virtual Dom Implementation</a>
-        <div class="post__excerpt"><p>Some thoughts on reading the source code on <em>preact</em>, <em>snabbdom</em> and other virtual DOM implementations.</p>
-
-</div>        
-      </li>
-    
-      <li class="post">
-        <div class="post__meta">Sep 26, 2017</div>
-        <a class="post__link" href="/blog/reading-vue-source-code/">Reading Vue&#39;s Source Code</a>
-        <div class="post__excerpt"><p>A couples of notes when I read through Vue’s source code.</p>
-
-</div>        
-      </li>
-    
-  </ul>
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-
-  <div class="pagination-wrapper">
-    <div class="pagination">
-      
-        <a class="pagination-step" href="/">
-          Newer
-        </a>
-      
-
-      
-
-      
+          <div class="container">
+  <article class="post" itemtype="http://schema.org/BlogPosting">  
+    <header class="post__header">
+      <h1 class="title" itemprop="name headline">SSH Tunnel</h1>
+      <div class="post__meta">
+        <time class="post__time">Nov 2, 2018</time>
+          
+          
+            <a href="/tag#ssh" class="post__tag">SSH</a>
+          
         
-          <a href="/">1</a>
-        
-      
-        
-          <span class="active">2</span>
-        
-      
-        
-          <a href="/page-3">3</a>
-        
-      
-        
-          <a href="/page-4">4</a>
-        
-      
-        
-          <a href="/page-5">5</a>
-        
-      
+      </div>
+    </header>
 
-      
-        <span class="pagination-more">&middot;&middot;&middot;</span>
-        <a class="pagination-last" href="/page-8">8</a>
-      
+    <div class="post__content" itemprop="articleBody">
+      <p>SSH Tunnel is port forwarding.</p>
 
-      
-        <a class="pagination-step" href="/page-3/">
-          Older
-        </a>
-      
+<p>There are two kinds of port forwarding: local and remote.</p>
+
+<p>The best explaination is from <a href="https://unix.stackexchange.com/questions/115897/whats-ssh-port-forwarding-and-whats-the-difference-between-ssh-local-and-remot">stack overflow</a>:</p>
+
+<p><img src="https://i.stack.imgur.com/a28N8.png" alt="local" /></p>
+
+<p><img src="https://i.stack.imgur.com/4iK3b.png" alt="remote" /></p>
+
+<p>Just in case picture go down:</p>
+
+<blockquote>
+  <p>ssh -L localport:localhost/farawayhost-in-remotehost:remoteport remotehost</p>
+</blockquote>
+
     </div>
+  </article>
+
+  <div class="page-navigation">
+    
+      <a class="page__prev" href="/blog/scheduling-in-react/">&laquo; Scheduling in React</a>
+    
+    
   </div>
-
-
 </div>
 
           </div>

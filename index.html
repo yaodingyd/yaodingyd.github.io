@@ -4,7 +4,7 @@ layout: home
 
 <div class="container posts">
   <ul class="posts__list">
-    {% for post in paginator.posts %}
+    {% for post in site.posts %}
       <li class="post">
         <div class="post__meta">{{ post.date | date: "%b %-d, %Y" }}</div>
         <a class="post__link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title | escape }}</a>
@@ -12,7 +12,5 @@ layout: home
       </li>
     {% endfor %}
   </ul>
-
-  {% include pagination.html %}
 
 </div>

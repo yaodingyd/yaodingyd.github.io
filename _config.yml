@@ -6,7 +6,6 @@ url: "https://yaodingyd.github.io"
 github_username:  yaodingyd
 
 plugins:
-  - jekyll-paginate
   - jekyll-archives
 
 permalink: /blog/:title/
@@ -34,7 +33,6 @@ exclude:
   - vendor
   - Rakefile
   - .sass-cache
-  - _js
   - _sass
 
 # GitHub

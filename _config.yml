@@ -9,8 +9,6 @@ plugins:
   - jekyll-archives
 
 permalink: /blog/:title/
-paginate: 5
-paginate_path: /page-:num/
 
 jekyll-archives:
   enabled: all

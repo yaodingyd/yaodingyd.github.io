@@ -82,3 +82,4 @@ gulp.task('serve', ['css', 'js', 'jekyll'], () => {
 })
 
 gulp.task('default', ['serve'])
+gulp.task('build', ['css', 'js'])

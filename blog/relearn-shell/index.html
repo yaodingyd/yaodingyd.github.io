@@ -59,43 +59,46 @@
           <div class="container">
   <article class="post" itemtype="http://schema.org/BlogPosting">  
     <header class="post__header">
-      <h1 class="title" itemprop="name headline">SSH Tunnel</h1>
+      <h1 class="title" itemprop="name headline">Relearn Shell</h1>
       <div class="post__meta">
-        <time class="post__time">Nov 2, 2018</time>
+        <time class="post__time">Nov 10, 2018</time>
           
-          
-            <a href="/tag#ssh" class="post__tag">SSH</a>
           
         
       </div>
     </header>
 
     <div class="post__content" itemprop="articleBody">
-      <p>SSH Tunnel is port forwarding.</p>
+      <ol>
+  <li>
+    <p>Shell script runs in a subshell and has no access to parent process’s environment. So set environment variables by running a shell script doesn’t work; <code class="highlighter-rouge">source</code> it will work.</p>
+  </li>
+  <li>
+    <p>Double quote wil interpolate its context while single quote doesn’t.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">&lt;&lt; EOF ....  EOF</code> will pass multi-line content as standard input, for example:</p>
+  </li>
+</ol>
 
-<p>There are two kinds of port forwarding: local and remote.</p>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>cat <span class="sh">&lt;&lt;EOF
+export TEST="test";
+alias My=${root}/some/directory;
+EOF
+</span></code></pre>
+</div>
 
-<p>The best explaination is from <a href="https://unix.stackexchange.com/questions/115897/whats-ssh-port-forwarding-and-whats-the-difference-between-ssh-local-and-remot">stack overflow</a>:</p>
-
-<p><img src="https://i.stack.imgur.com/a28N8.png" alt="local" /></p>
-
-<p><img src="https://i.stack.imgur.com/4iK3b.png" alt="remote" /></p>
-
-<p>Just in case picture go down:</p>
-
-<blockquote>
-  <p>ssh -L localport:localhost/farawayhost-in-remotehost:remoteport remotehost</p>
-</blockquote>
+<ol>
+  <li><code class="highlighter-rouge">eval "$(my_func)"</code> will execute whatever is returned from <code class="highlighter-rouge">my_func</code></li>
+</ol>
 
     </div>
   </article>
 
   <div class="page-navigation">
     
-      <a class="page__prev" href="/blog/scheduling-in-react/">&laquo; Scheduling in React</a>
+      <a class="page__prev" href="/blog/ssh-tunnel/">&laquo; SSH Tunnel</a>
     
-    
-      <a class="page__next" href="/blog/relearn-shell/">Relearn Shell &raquo;</a>
     
   </div>
 </div>

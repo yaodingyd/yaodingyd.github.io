@@ -8,7 +8,6 @@ layout: home
       <li class="post">
         <div class="post__meta">{{ post.date | date: "%b %-d, %Y" }}</div>
         <a class="post__link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title | escape }}</a>
-        <div class="post__excerpt">{{ post.excerpt }}</div>        
       </li>
     {% endfor %}
   </ul>

@@ -16,4 +16,4 @@ Does that means all the `packages` folder's node_modules are flooded with sim li
 
 ### Duplicated dependencies
 
-Lerna solves this by hoisting all dependencies to the upmost directory, similar to variable hosting in javascript. Because of how node resolves module, the dependencies can all be found in the upmost directory, usually the root of this project's node_modules.
+Lerna solves this by hoisting all dependencies to the top-level directory, similar to variable hosting in javascript. Because of how node resolves module, the dependencies can all be found in the top-level directory, usually the root of this project's node_modules.

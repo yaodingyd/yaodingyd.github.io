@@ -59,9 +59,9 @@
           <div class="container">
   <article class="post" itemtype="http://schema.org/BlogPosting">  
     <header class="post__header">
-      <h1 class="title" itemprop="name headline">Relearn Shell</h1>
+      <h1 class="title" itemprop="name headline">How Lerna Enables Monorepo to work</h1>
       <div class="post__meta">
-        <time class="post__time">Nov 10, 2018</time>
+        <time class="post__time">Dec 18, 2018</time>
           
           
         
@@ -69,38 +69,27 @@
     </header>
 
     <div class="post__content" itemprop="articleBody">
-      <ol>
-  <li>
-    <p>Shell script runs in a subshell and has no access to parent process’s environment. So set environment variables by running a shell script doesn’t work; <code class="highlighter-rouge">source</code> it will work.</p>
-  </li>
-  <li>
-    <p>Double quote wil interpolate its context while single quote doesn’t.</p>
-  </li>
-  <li>
-    <p><code class="highlighter-rouge">&lt;&lt; EOF ....  EOF</code> will pass multi-line content as standard input, for example:</p>
-  </li>
-</ol>
+      <p>We need to know how <a href="https://nodejs.org/api/modules.html#modules_loading_from_node_modules_folders">Node module resolution algorithm</a> works first: When looking for package A, it looks in a local <code class="highlighter-rouge">node_modules/A</code> directory, then in <code class="highlighter-rouge">../node_modules/A</code>, <code class="highlighter-rouge">../../node_modules/A</code>, <code class="highlighter-rouge">../../../node_modules/A</code>, etc.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>cat <span class="sh">&lt;&lt;EOF
-export TEST="test";
-alias My=${root}/some/directory;
-EOF
-</span></code></pre>
-</div>
+<p>So the issue with monorepo is <strong>local dependencies</strong> and <strong>duplicate dependencies</strong>.</p>
 
-<ol>
-  <li><code class="highlighter-rouge">eval "$(my_func)"</code> will execute whatever is returned from <code class="highlighter-rouge">my_func</code></li>
-</ol>
+<h3 id="local-dependencies">Local Dependencies</h3>
+
+<p>That’s easy. When Lerna bootstraps, it would replace all local modules in node_modules to sim links pointing to your local directory.</p>
+
+<p>Does that means all the <code class="highlighter-rouge">packages</code> folder’s node_modules are flooded with sim links (and other non-local dependencies)?</p>
+
+<h3 id="duplicated-dependencies">Duplicated dependencies</h3>
+
+<p>Lerna solves this by hoisting all dependencies to the upmost directory, similar to variable hosting in javascript. Because of how node resolves module, the dependencies can all be found in the upmost directory, usually the root of this project’s node_modules.</p>
 
     </div>
   </article>
 
   <div class="page-navigation">
     
-      <a class="page__prev" href="/blog/ssh-tunnel/">&laquo; SSH Tunnel</a>
+      <a class="page__prev" href="/blog/relearn-shell/">&laquo; Relearn Shell</a>
     
-    
-      <a class="page__next" href="/blog/how-lerna-enables-monorepo-to-work/">How Lerna Enables Monorepo to work &raquo;</a>
     
   </div>
 </div>

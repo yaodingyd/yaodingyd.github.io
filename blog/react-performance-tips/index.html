@@ -70,8 +70,8 @@
 
     <div class="post__content" itemprop="articleBody">
       <ol>
-  <li>Use <code class="highlighter-rouge">React.memo</code> to wrap static functional component to avoid rerender.</li>
-  <li>Use <code class="highlighter-rouge">useMemo</code> to create memoized value to pass to Provider value to avoid unneccessary rerender. The propagation from Provider to its descendant consumers is not subject to the <code class="highlighter-rouge">shouldComponentUpdate</code> method, so the consumer is updated even when an ancestor component bails out of the update. And because internally react use reference to compare the value, we need to use <code class="highlighter-rouge">useMemo</code> to create a memoized value(essentially same reference if its dependency is unchanged).</li>
+  <li>Use <code class="highlighter-rouge">React.memo</code> to wrap static functional component to avoid rerender. If component uses context, <code class="highlighter-rouge">React.memo</code> will not prevent rerender. <code class="highlighter-rouge">React.memo</code> could also cause problems blocking update for react router, see <a href="https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking">here</a></li>
+  <li>Use <code class="highlighter-rouge">useMemo</code> to create memoized value to pass to Provider value to avoid unneccessary rerender in <strong>descendant consumers</strong>. The propagation from Provider to its descendant consumers is not subject to the <code class="highlighter-rouge">shouldComponentUpdate</code> method, so the consumer is updated even when an ancestor component bails out of the update. And because internally react use reference to compare the value, we need to use <code class="highlighter-rouge">useMemo</code> to create a memoized value(essentially same reference if its dependency is unchanged).</li>
 </ol>
 
     </div>

@@ -59,9 +59,9 @@
           <div class="container">
   <article class="post" itemtype="http://schema.org/BlogPosting">  
     <header class="post__header">
-      <h1 class="title" itemprop="name headline">React Performance Tips</h1>
+      <h1 class="title" itemprop="name headline">Viewport Explained</h1>
       <div class="post__meta">
-        <time class="post__time">Apr 30, 2019</time>
+        <time class="post__time">May 7, 2019</time>
           
           
         
@@ -69,20 +69,32 @@
     </header>
 
     <div class="post__content" itemprop="articleBody">
-      <ol>
-  <li>Use <code class="highlighter-rouge">React.memo</code> to wrap static functional component to avoid rerender. If component uses context, <code class="highlighter-rouge">React.memo</code> will not prevent rerender. <code class="highlighter-rouge">React.memo</code> could also cause problems blocking update for react router, see <a href="https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking">here</a></li>
-  <li>Use <code class="highlighter-rouge">useMemo</code> to create memoized value to pass to Provider value to avoid unneccessary rerender in <strong>descendant consumers</strong>. The propagation from Provider to its descendant consumers is not subject to the <code class="highlighter-rouge">shouldComponentUpdate</code> method, so the consumer is updated even when an ancestor component bails out of the update. And because internally react use reference to compare the value, we need to use <code class="highlighter-rouge">useMemo</code> to create a memoized value(essentially same reference if its dependency is unchanged).</li>
-</ol>
+      <p>Today at work I run into a very werid issue: I have a <code class="highlighter-rouge">position:fixed; width: 100%</code> header, and it works perfectly fine when doing resize in desktop, but grows to 120% width when in device mode.</p>
+
+<p>When an element is in fixed position, the measurement would be relative to viewport, so ideally <code class="highlighter-rouge">width: 100%</code> would be the same to <code class="highlighter-rouge">width: 100vw</code> right? Wrong! Well, most of time it is fine, unless when it’s not.</p>
+
+<p>So we really need to talk about viewport. Already <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Viewport_concepts">so many good articles</a> have elaborated on this so I’ll just cut to the chase: there are really two viewports, namely <strong>layout viewport</strong> and <strong>visual viewport</strong>. You can find more info <a href="https://www.quirksmode.org/mobile/viewports2.html">here</a>, <em>the tldr is</em></p>
+
+<blockquote>
+  <p>The <em>visual viewport</em> is the part of the page that’s currently shown on-screen. The user may scroll to change the part of the page he sees, or zoom to change the size of the visual viewport.</p>
+</blockquote>
+
+<blockquote>
+  <p>However, the CSS layout, especially percentual widths, are calculated relative to the layout viewport, which is considerably wider than the visual viewport.</p>
+</blockquote>
+
+<p>So it makes some sense now. The width is 100% relative to layout viewport, which is wider than the visual viewport. To check layout viewport, we can use <code class="highlighter-rouge">window.innerHeight</code> and <code class="highlighter-rouge">window.innerWidth</code>; to check visual viewport, we have <code class="highlighter-rouge">Visual Viewport API</code>. Since the layout viewport can be larger, sometime quite larger than the actual device size, under device mode the <code class="highlighter-rouge">window.innerWidth</code> could be much larger than <code class="highlighter-rouge">window.outerWidth</code>.</p>
+
+<p>The last thing I want to mention is that for my case, using <code class="highlighter-rouge">vw</code> makes it work. Although I could not find any documentation on this, I feel like here <code class="highlighter-rouge">vw</code> is the visual viewport.</p>
+
 
     </div>
   </article>
 
   <div class="page-navigation">
     
-      <a class="page__prev" href="/blog/how-lerna-enables-monorepo-to-work/">&laquo; How Lerna Enables Monorepo to work</a>
+      <a class="page__prev" href="/blog/react-performance-tips/">&laquo; React Performance Tips</a>
     
-    
-      <a class="page__next" href="/blog/viewport-explained/">Viewport Explained &raquo;</a>
     
   </div>
 </div>

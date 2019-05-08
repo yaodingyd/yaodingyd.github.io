@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "React Performance Tips"
-date:   2018-12-18
+date:   2019-04-30
 ---
 
 1. Use `React.memo` to wrap static functional component to avoid rerender. If component uses context, `React.memo` will not prevent rerender. `React.memo` could also cause problems blocking update for react router, see [here](https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking)

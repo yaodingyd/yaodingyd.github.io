@@ -59,36 +59,40 @@
           <div class="container">
   <article class="post" itemtype="http://schema.org/BlogPosting">  
     <header class="post__header">
-      <h1 class="title" itemprop="name headline">Relearn Babel</h1>
+      <h1 class="title" itemprop="name headline">Polyfill and Transform in Babel</h1>
       <div class="post__meta">
         <time class="post__time">Aug 20, 2018</time>
           
-          
-            <a href="/tag#web-fundamental" class="post__tag">Web Fundamental</a>
           
         
       </div>
     </header>
 
     <div class="post__content" itemprop="articleBody">
-      <p>Notes on relearning Babel</p>
+      <h2 id="the-concept">The concept</h2>
 
-<h2 id="the-concept">The concept</h2>
+<p>Babel transpiles JS code, which involves two processes: transform and polyfill. According to this <a href="https://medium.com/@jcse/clearing-up-the-babel-6-ecosystem-c7678a314bf3">article</a>, the difference between these two are “whether or not you can reimplement the feature today, in ES5”: that means we need to <strong>transform</strong> certain syntax features, like arrow function, but for <code class="highlighter-rouge">Array.from</code>, polyfills would suffice.</p>
 
-<p>Babel does transpiling JS code, and this process involves two parts: transform and polyfill. According to this <a href="https://medium.com/@jcse/clearing-up-the-babel-6-ecosystem-c7678a314bf3">article</a>, the difference between these two are “whether or not you can reimplement the feature today, in ES5”.</p>
+<p>For polyfilling features, babel uses core-js under the hood. <code class="highlighter-rouge">@babel/polyfill</code> is just the combination of stable <code class="highlighter-rouge">core-js</code> features and <code class="highlighter-rouge">regenerator-runtime</code> for generators and async functions.</p>
 
-<p>So we have most plugins called “babel-plugin-transform-xx-xx”, and there is also “babel-polyfill” package for all polyfillable ES5+ features.</p>
+<p>As a full equal of <code class="highlighter-rouge">@babel/polyfill</code>, you can use this:</p>
+<div class="language-js highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="s1">'core-js/stable'</span><span class="p">;</span>
+<span class="kr">import</span> <span class="s1">'regenerator-runtime/runtime'</span><span class="p">;</span>
+</code></pre>
+</div>
 
-<p>Babel 6 also introduced the concept of a preset which is simply shorthand for a set of transforms. So using a <code class="highlighter-rouge">env</code> preset, you don’t have to manually add a bunch of tranform plugins, babel does it for you.</p>
+<p>Since babel 7.4.0, it’s deprecated in favor of modular approach for global import will pollute the namespace. Instead we should use <code class="highlighter-rouge">env-preset</code>,  and <code class="highlighter-rouge">useBuiltIns</code>, <code class="highlighter-rouge">corejs</code> options. <code class="highlighter-rouge">@babel-preset-env</code> will add direct references to core-js modules as bare imports (or requires), whether it’s individual requires to different <code class="highlighter-rouge">core-js</code> entry points based on environment in a single entry file(<em>entry</em> option), or specific imports for polyfills when they are used in each file(<em>usage</em> option).</p>
 
-<p>Most of the time for projects I have seen, they use a different <code class="highlighter-rouge">babel-plugin-transform-runtime</code>. This would achieve the same polyfill effects as <code class="highlighter-rouge">babel-polyfill</code>, with <a href="https://babeljs.io/docs/en/babel-plugin-transform-runtime.html">some difference</a>.</p>
+<p>The other option is to use <code class="highlighter-rouge">@bable/runtime</code>. It is intended to be paired with a transform plugin:<code class="highlighter-rouge">babel-plugin-transform-runtime</code>. Instead polyfill, <code class="highlighter-rouge">babel-runtime</code> does ponyfill: instead of patching functionality, essentially modifying native prototype, a ponyfill provides that functionality as a standalone module you can use. So basically your code is transformed to use a series of helper functions that achieves the same goal, at the same time avoid pollute the global namesapce.</p>
+
+<p>Basically, in this wat you can use built-ins such as Promise, Set, Symbol, etc., as well use all the Babel features that require a polyfill seamlessly, without global pollution, making it extremely suitable for libraries.</p>
 
 <h2 id="the-usage">The usage</h2>
 
 <p>Either:</p>
 
 <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="c1">// in main.js</span>
-<span class="kr">import</span> <span class="s1">'babel-polyfill'</span>
+<span class="kr">import</span> <span class="s1">'core-js'</span>
 <span class="p">...</span>
 
 <span class="c1">// .babelrc</span>
@@ -97,11 +101,19 @@
     <span class="na">targets</span><span class="p">:</span> <span class="p">{</span>
       <span class="na">browsers</span><span class="p">:</span> <span class="p">[</span><span class="s1">'&gt; 1%'</span><span class="p">]</span>
     <span class="p">},</span>
-    <span class="na">useBuiltIns</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="c1">// includes only the polyfills needed</span>
+    <span class="na">useBuiltIns</span><span class="p">:</span> <span class="nx">entry</span><span class="p">,</span> <span class="c1">// includes only the polyfills needed</span>
+    <span class="na">corejs</span><span class="p">:</span> <span class="s1">'3'</span>
     <span class="na">debug</span><span class="p">:</span> <span class="kc">true</span> <span class="c1">// Outputs Babel's targets/plugins/polyfills used and why</span>
   <span class="p">}]</span>
 <span class="p">]</span>
+</code></pre>
+</div>
 
+<p>After this your code looks like:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">from</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{...}</span>
+
+<span class="nx">myArray</span><span class="p">.</span><span class="nx">from</span><span class="p">(</span><span class="nx">array</span><span class="o">-</span><span class="nx">like</span><span class="p">);</span>
 </code></pre>
 </div>
 
@@ -116,6 +128,15 @@
   <span class="p">}]</span>
 <span class="p">],</span>
 <span class="na">plugins</span><span class="p">:</span> <span class="p">[</span><span class="s2">"transform-runtime"</span><span class="p">]</span>
+<span class="c1">// also add @bable/runtime to your depedencies</span>
+</code></pre>
+</div>
+
+<p>After this your code looks like:</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">Arrayfrom</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{...}</span>
+
+<span class="nx">Arrayfrom</span><span class="p">(</span><span class="nx">myArray</span><span class="p">,</span> <span class="nx">array</span><span class="o">-</span><span class="nx">like</span><span class="p">)</span>
 </code></pre>
 </div>
 

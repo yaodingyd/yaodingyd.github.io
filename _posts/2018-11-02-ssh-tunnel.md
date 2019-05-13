@@ -2,8 +2,6 @@
 layout: post
 title:  "SSH Tunnel"
 date:   2018-11-02
-tags:   
-    -  SSH
 ---
 
 SSH Tunnel is port forwarding.

@@ -2,8 +2,6 @@
 layout: post
 title:  "Key Takeaways About Event Loop, Tasks and Microtasks"
 date:   2018-02-18
-tags:   
-    -  Web Fundamental
 ---
 
 Key points on event loop, tasks and microtasks:

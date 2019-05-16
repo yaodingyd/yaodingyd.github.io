@@ -20,6 +20,8 @@ Since babel 7.4.0, it's deprecated in favor of modular approach for global impor
 
 The other option is to use `@bable/runtime`. It is intended to be paired with a transform plugin:`babel-plugin-transform-runtime`. Instead polyfill, `babel-runtime` does ponyfill: instead of patching functionality, essentially modifying native prototype, a ponyfill provides that functionality as a standalone module you can use. So basically your code is transformed to use a series of helper functions that achieves the same goal, at the same time avoid pollute the global namesapce.
 
+(Actually `@babel/runtime` only ponyfills the babel's moduilar runtime helpers. To polyfill ES6, we need to use `@babel/runtime-corejsx` to include core-js polyfilling)
+
 Basically, in this wat you can use built-ins such as Promise, Set, Symbol, etc., as well use all the Babel features that require a polyfill seamlessly, without global pollution, making it extremely suitable for libraries.
 
 ## The usage

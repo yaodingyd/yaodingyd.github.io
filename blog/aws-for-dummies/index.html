@@ -59,9 +59,9 @@
           <div class="container">
   <article class="post" itemtype="http://schema.org/BlogPosting">  
     <header class="post__header">
-      <h1 class="title" itemprop="name headline">Viewport Explained</h1>
+      <h1 class="title" itemprop="name headline">AWS for Dummies</h1>
       <div class="post__meta">
-        <time class="post__time">May 7, 2019</time>
+        <time class="post__time">Jun 18, 2019</time>
           
           
         
@@ -69,34 +69,18 @@
     </header>
 
     <div class="post__content" itemprop="articleBody">
-      <p>Today at work I run into a very werid issue: I have a <code class="highlighter-rouge">position:fixed; width: 100%</code> header, and it works perfectly fine when doing resize in desktop, but grows to 120% width when in device mode.</p>
-
-<p>When an element is in fixed position, the measurement would be relative to viewport, so ideally <code class="highlighter-rouge">width: 100%</code> would be the same to <code class="highlighter-rouge">width: 100vw</code> right? Wrong! Well, most of time it is fine, unless when it’s not.</p>
-
-<p>So we really need to talk about viewport. Already <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Viewport_concepts">so many good articles</a> have elaborated on this so I’ll just cut to the chase: there are really two viewports, namely <strong>layout viewport</strong> and <strong>visual viewport</strong>. You can find more info <a href="https://www.quirksmode.org/mobile/viewports2.html">here</a>, <em>the tldr is</em></p>
-
-<blockquote>
-  <p>The <em>visual viewport</em> is the part of the page that’s currently shown on-screen. The user may scroll to change the part of the page he sees, or zoom to change the size of the visual viewport.</p>
-</blockquote>
-
-<blockquote>
-  <p>However, the CSS layout, especially percentual widths, are calculated relative to the layout viewport, which is considerably wider than the visual viewport.</p>
-</blockquote>
-
-<p>So it makes some sense now. The width is 100% relative to layout viewport, which is wider than the visual viewport. To check layout viewport, we can use <code class="highlighter-rouge">window.innerHeight</code> and <code class="highlighter-rouge">window.innerWidth</code>; to check visual viewport, we have <code class="highlighter-rouge">Visual Viewport API</code>. Since the layout viewport can be larger, sometime quite larger than the actual device size, under device mode the <code class="highlighter-rouge">window.innerWidth</code> could be much larger than <code class="highlighter-rouge">window.outerWidth</code>.</p>
-
-<p>The last thing I want to mention is that for my case, using <code class="highlighter-rouge">vw</code> makes it work. Although I could not find any documentation on this, I feel like here <code class="highlighter-rouge">vw</code> is the visual viewport.</p>
-
+      <ol>
+  <li><code class="highlighter-rouge">Inbound traffic</code> means who has access to this instance(call to this server), <code class="highlighter-rouge">outbound traffic</code> means who this instance can call to. We allow all outbound traffic by default because we don’t limit what this instance can make call to, and inbound traffic needs to be hand-picked.</li>
+  <li>You can configure a Security Group to permit Inbound connections from itself (that is, the security group has its own ID as the Source of the inbound connection). This would enable any Amazon EC2 instance that is associated with the security group to communicate with any other Amazon EC2 instance that is associated with the same security group (on the given port).</li>
+</ol>
 
     </div>
   </article>
 
   <div class="page-navigation">
     
-      <a class="page__prev" href="/blog/react-performance-tips/">&laquo; React Performance Tips</a>
+      <a class="page__prev" href="/blog/viewport-explained/">&laquo; Viewport Explained</a>
     
-    
-      <a class="page__next" href="/blog/aws-for-dummies/">AWS for Dummies &raquo;</a>
     
   </div>
 </div>

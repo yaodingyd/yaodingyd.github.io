@@ -85,9 +85,9 @@
 
 <p>The other option is to use <code class="highlighter-rouge">@bable/runtime</code>. It is intended to be paired with a transform plugin:<code class="highlighter-rouge">babel-plugin-transform-runtime</code>. Instead polyfill, <code class="highlighter-rouge">babel-runtime</code> does ponyfill: instead of patching functionality, essentially modifying native prototype, a ponyfill provides that functionality as a standalone module you can use. So basically your code is transformed to use a series of helper functions that achieves the same goal, at the same time avoid pollute the global namesapce.</p>
 
-<p>(Actually <code class="highlighter-rouge">@babel/runtime</code> only ponyfills the babel’s moduilar runtime helpers. To polyfill ES6, we need to use <code class="highlighter-rouge">@babel/runtime-corejsx</code> to include core-js polyfilling)</p>
+<p>(Actually <code class="highlighter-rouge">@babel/runtime</code> only ponyfills the babel’s modular runtime helpers. To polyfill ES6, we need to use <code class="highlighter-rouge">@babel/runtime-corejsx</code> to include core-js polyfilling)</p>
 
-<p>Basically, in this wat you can use built-ins such as Promise, Set, Symbol, etc., as well use all the Babel features that require a polyfill seamlessly, without global pollution, making it extremely suitable for libraries.</p>
+<p>Basically, in this way you can use built-ins such as Promise, Set, Symbol, etc., as well use all the Babel features that require a polyfill seamlessly, without global pollution, making it extremely suitable for libraries.</p>
 
 <h2 id="the-usage">The usage</h2>
 
@@ -129,8 +129,8 @@
     <span class="p">}</span>
   <span class="p">}]</span>
 <span class="p">],</span>
-<span class="na">plugins</span><span class="p">:</span> <span class="p">[</span><span class="s2">"transform-runtime"</span><span class="p">]</span>
-<span class="c1">// also add @bable/runtime to your depedencies</span>
+<span class="na">plugins</span><span class="p">:</span> <span class="p">[</span><span class="s1">'@babel/plugin-transform-runtime'</span><span class="p">,</span> <span class="p">{</span> <span class="na">corejs</span><span class="p">:</span> <span class="mi">3</span> <span class="p">}]</span>
+<span class="c1">// also add @bable/runtime  and @babel/runtime-corejs3 to your depedencies</span>
 </code></pre>
 </div>
 

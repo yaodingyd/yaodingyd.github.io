@@ -209,15 +209,6 @@
   background-color: #49483e;
 }
 pre.highlight {
-  box-sizing: border-box;
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  padding: 1.25rem 20vw;
-
   @include tablet {
     position: static;
     width: 100%;
@@ -226,9 +217,8 @@ pre.highlight {
   }
 
   code {
-    margin: 0 auto;
+    padding: 15px;
     display: block;
-    width: 40rem;
     overflow-x: auto; 
 
     @include tablet {

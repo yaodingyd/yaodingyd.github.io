@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Yao's Blog</title>
+  <meta name="description" content="Yao's blog on everything about web technologies'">
+
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link rel="canonical" href="https://yaodingyd.github.io/">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/black/pace-theme-flash.min.css" />
+  
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yaodingyd.github.io">
+  <meta property="og:title" content="Yao's Blog">
+  <meta property="og:image" content="">
+  <meta property="og:description" content="Yao's blog on everything about web technologies">
+  <meta property="og:site_name" content="Yao's Blog">
+  <meta property="og:locale" content="en_US">
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@YaoDingSD">
+  <meta name="twitter:url" content="https://yaodingyd.github.io">
+  <meta name="twitter:title" content="Yao's Blog">
+  <meta name="twitter:description" content="Yao's blog on everything about web technologies">
+  <meta name="twitter:image" content="https://example.com/image.jpg">
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-86352654-1', 'auto');
+  ga('send', 'pageview');
+  </script>
+</head>
+
+  <body class="site">
+
+        <header class="header" role="banner">
+    <a class="header__avatar" href="/">
+        <img class="header__avatar-img" src="/resource/avatar.jpg">
+    </a>
+    <nav class="header__nav">
+        <a class="header__nav-link" href="/">Blog</a>
+        <!-- <a class="header__nav-link" href="/project/">Project</a> -->
+        <a class="header__nav-link" href="/about/">About</a>
+    </nav>
+</header>
+
+        <main id="barba-wrapper" class="site__content" aria-label="Content">
+          <div class="barba-container">
+          <div class="container">
+  <article class="post" itemtype="http://schema.org/BlogPosting">  
+    <header class="post__header">
+      <h1 class="title" itemprop="name headline">Jest Testing Tips</h1>
+      <div class="post__meta">
+        <time class="post__time">Jun 9, 2020</time>
+          
+          
+        
+      </div>
+    </header>
+
+    <div class="post__content" itemprop="articleBody">
+      <h4 id="mock-default-export">Mock default export</h4>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">jest</span><span class="p">.</span><span class="nx">mock</span><span class="p">(</span><span class="s1">'my-module'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">({</span>
+  <span class="na">__esModule</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">default</span><span class="p">:</span> <span class="nx">jest</span><span class="p">.</span><span class="nx">fn</span><span class="p">(),</span>
+<span class="p">}));</span>
+</code></pre>
+</div>
+
+<h4 id="mock-export-implementation">Mock export implementation</h4>
+<p>Because Jest always hoist all mocks so we cannot define a spy and use it in the mock export. We need to change the mockImplemention after <code class="highlighter-rouge">jest.mock</code>:</p>
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="nx">myModule</span> <span class="nx">from</span> <span class="s1">'my-module'</span><span class="p">;</span>
+
+<span class="nx">jest</span><span class="p">.</span><span class="nx">mock</span><span class="p">(</span><span class="s1">'@uc/date-picker'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">({</span>
+  <span class="na">__esModule</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="na">default</span><span class="p">:</span> <span class="nx">jest</span><span class="p">.</span><span class="nx">fn</span><span class="p">(),</span>
+<span class="p">}));</span>
+
+<span class="kr">const</span> <span class="nx">mockMyModule</span> <span class="o">=</span> <span class="nx">jest</span><span class="p">.</span><span class="nx">fn</span><span class="p">();</span>
+<span class="nx">myModule</span><span class="p">.</span><span class="nx">mockImplementation</span><span class="p">(</span><span class="nx">mockMyModule</span><span class="p">);</span>
+
+</code></pre>
+</div>
+
+    </div>
+  </article>
+
+  <div class="page-navigation">
+    
+      <a class="page__prev" href="/blog/type-declaration-for-default-export-with-methods/">&laquo; Type Declaration for Default Export with Methods</a>
+    
+    
+  </div>
+</div>
+
+          </div>
+        </main>
+
+        <footer class="footer" id="barba-footer">
+  <div class="footer__title">Yao Ding</div>
+  <div class="footer__links">
+      <a class="footer__link" href="mailto:yaodingyd@gmail.com">Email</a>
+      <a  class="footer__link" href="https://github.com/yaodingyd">Github</a>
+  </div>
+</footer>
+
+<!-- <script src="/public/js/src.js"></script> -->
+
+
+  </body>
+</html>

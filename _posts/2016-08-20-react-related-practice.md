@@ -10,6 +10,17 @@ Might be outdated now...
 ## React
 
 1. react render simply follows a top-down procedure: parent state changes will results in a re-render, and all children will go through the re-render lifecycle. This is why `pureComponent` is necessary, because sometimes children do not reply on parent state and can be spared from re-render.
+2. We only need to bind `this` for event handler because these functions are executed in `window` context where `this` points to `window`. For other functions executed inside component context there is no need to bind it.
+3. If you don't provide your own constructor, then a default constructor will be supplied for you. If your class is a base class, the default constructor is empty:
+```javascript
+constructor() {}
+```
+If your class is a derived class, the default constructor calls the parent constructor, passing along any arguments that were provided:
+```javascript
+constructor(...args) {
+  super(...args);
+}
+```
 
 ## Redux
 

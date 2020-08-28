@@ -59,9 +59,9 @@
           <div class="container">
   <article class="post" itemtype="http://schema.org/BlogPosting">  
     <header class="post__header">
-      <h1 class="title" itemprop="name headline">Jest Testing Tips</h1>
+      <h1 class="title" itemprop="name headline">Pass-By-Value</h1>
       <div class="post__meta">
-        <time class="post__time">Jun 9, 2020</time>
+        <time class="post__time">Aug 28, 2020</time>
           
           
         
@@ -69,38 +69,22 @@
     </header>
 
     <div class="post__content" itemprop="articleBody">
-      <h4 id="mock-default-export">Mock default export</h4>
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">jest</span><span class="p">.</span><span class="nx">mock</span><span class="p">(</span><span class="s1">'my-module'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">({</span>
-  <span class="na">__esModule</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="na">default</span><span class="p">:</span> <span class="nx">jest</span><span class="p">.</span><span class="nx">fn</span><span class="p">(),</span>
-<span class="p">}));</span>
-</code></pre>
-</div>
+      <p>Go and Javascript are both pass-by-value language, and both cannot create a reference type. In fact, because <em>reference</em> is overused in the general context, golang prefers to use <code class="highlighter-rouge">pointer type</code>. What does it mean?</p>
 
-<h4 id="mock-export-implementation">Mock export implementation</h4>
-<p>Because Jest always hoist all mocks so we cannot define a spy and use it in the mock export. We need to change the mockImplemention after <code class="highlighter-rouge">jest.mock</code>:</p>
-<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kr">import</span> <span class="nx">myModule</span> <span class="nx">from</span> <span class="s1">'my-module'</span><span class="p">;</span>
+<p>We know a pointer is a value holds the memory address of some other value, so if <code class="highlighter-rouge">a</code> is a pointer that points to the address of value <code class="highlighter-rouge">b</code>, we can <code class="highlighter-rouge">a</code> is a reference of <code class="highlighter-rouge">b</code>. Later when we modify the content that <code class="highlighter-rouge">a</code> points to, we also modify <code class="highlighter-rouge">b</code>’s value.</p>
 
-<span class="nx">jest</span><span class="p">.</span><span class="nx">mock</span><span class="p">(</span><span class="s1">'@uc/date-picker'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">({</span>
-  <span class="na">__esModule</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-  <span class="na">default</span><span class="p">:</span> <span class="nx">jest</span><span class="p">.</span><span class="nx">fn</span><span class="p">(),</span>
-<span class="p">}));</span>
+<p>But this is still difference from a real <code class="highlighter-rouge">reference type</code>. The main difference is that when you reassign <code class="highlighter-rouge">a</code> to a different address, it has no impact on <code class="highlighter-rouge">b</code>, because <code class="highlighter-rouge">a</code> only holds the memory address of <code class="highlighter-rouge">b</code>, it cannot change <code class="highlighter-rouge">b</code>’s address. But in a language that has reference type, like C++, that would be true.</p>
 
-<span class="kr">const</span> <span class="nx">mockMyModule</span> <span class="o">=</span> <span class="nx">jest</span><span class="p">.</span><span class="nx">fn</span><span class="p">();</span>
-<span class="nx">myModule</span><span class="p">.</span><span class="nx">mockImplementation</span><span class="p">(</span><span class="nx">mockMyModule</span><span class="p">);</span>
+<p>So there we have it: it’s always pass-by-value for Go and Javascript, but sometimes the value can be a pointer(reference). For primitive type, like number, it’s value for sure; in Javascript, when it’s <code class="highlighter-rouge">Object</code>, it would be a pointer, so changing parameter’s property would result in changing the original object, but reaasign parameter would have no effect on original object. For go, if it’s a struct, we need to use a pointer type; if it’s map, channel, interface or slice, they are already a pointer type under the hood, so usually we do not need to use pointer on them.</p>
 
-</code></pre>
-</div>
 
     </div>
   </article>
 
   <div class="page-navigation">
     
-      <a class="page__prev" href="/blog/type-declaration-for-default-export-with-methods/">&laquo; Type Declaration for Default Export with Methods</a>
+      <a class="page__prev" href="/blog/jest-tips/">&laquo; Jest Testing Tips</a>
     
-    
-      <a class="page__next" href="/blog/pass-by-value/">Pass-By-Value &raquo;</a>
     
   </div>
 </div>

@@ -77,6 +77,18 @@
 
 <ol>
   <li>react render simply follows a top-down procedure: parent state changes will results in a re-render, and all children will go through the re-render lifecycle. This is why <code class="highlighter-rouge">pureComponent</code> is necessary, because sometimes children do not reply on parent state and can be spared from re-render.</li>
+  <li>We only need to bind <code class="highlighter-rouge">this</code> for event handler because these functions are executed in <code class="highlighter-rouge">window</code> context where <code class="highlighter-rouge">this</code> points to <code class="highlighter-rouge">window</code>. For other functions executed inside component context there is no need to bind it.</li>
+  <li>If you don’t provide your own constructor, then a default constructor will be supplied for you. If your class is a base class, the default constructor is empty:
+    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">constructor</span><span class="p">()</span> <span class="p">{}</span>
+</code></pre>
+    </div>
+    <p>If your class is a derived class, the default constructor calls the parent constructor, passing along any arguments that were provided:</p>
+    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">constructor</span><span class="p">(...</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">super</span><span class="p">(...</span><span class="nx">args</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+    </div>
+  </li>
 </ol>
 
 <h2 id="redux">Redux</h2>

@@ -1,0 +1,29 @@
+---
+layout: "../../layouts/BlogPost.astro"
+title: "What's with All the Runtimes for JavaScript?"
+pubDate: "Aug 13 2022"
+---
+
+Right now it is an exciting time for JavaScript. We just got a new shiny fast runtime [Bun](https://bun.sh/), with the last new kid Deno being released only 4 years ago, and we have edge computing/serverless runtimes like Cloudflare worker and [Blueboat](https://blueboat.io/). With all these hypes for the JavaScript community, I could not help but ask, how come only JavaScript gets all these fancy new runtimes? Why don’t we hear these more often in other languages?
+
+## What is a runtime anyway?
+
+Runtime can mean different things, but here we refer to the runtime environment or runtime system, which is the system where the program is intended to be run. Basically, it means you need to install some libraries or use some executables to run your codes, like how you would use node command to run your JavaScript codes. One thing to note is that you might confuse it with “runtime library“. Sometimes we also talk about “runtime” in certain compiled languages,  but more often these are standard libraries that are included during every build to manage heap/stack and garbage collections. Check out some faqs like the one for [Go](https://go.dev/doc/faq#runtime) and for [Rust](https://prev.rust-lang.org/en-US/faq.html#does-rust-have-a-runtime).
+
+## Some languages don’t need one
+
+The interesting thing about runtime is not all languages require one to run their programs. Let’s take some static-typed, compiled languages for example. Usually they are compiled ahead-of-time into binary executables, and sometimes for modern languages like go, these executables can be even cross-platform. When you run these executables on a computer, you do not necessarily need to pre-install any required libraries on that computer. So for these languages, we don’t even need a runtime.
+
+## Others might have a few runtimes, but often with an official implementation
+
+Being a static-typed and compiled language, Java does need a runtime, which is a virtual machine called Java Virtual Machine(JVM). When Java source codes are being compiled, they are transformed into bytecodes, and these bytecodes will be executed in JVM. In some sense, python being an interpreted language is actually [quite similar to Java](https://stackoverflow.com/questions/441824/java-virtual-machine-vs-python-interpreter-parlance/1732383#1732383): the Python interpreter would first transform python source codes to bytecodes and these bytecodes would be executed in the Python virtual machine. The difference is for Python the interpreter and virtual machine are both inside the same executable.  So for these two languages, they would both require a runtime, to either interpret and/or run the intermediate codes. For Java, there are different [JVMs](https://en.wikipedia.org/wiki/List_of_Java_virtual_machines); for Python, there are also [alternatives](https://www.python.org/download/alternatives/) other than the default CPython. These are all different runtimes, but most of the time we always use the default reference implementation.
+
+## JavaScript runtime is made of JavaScript engine and implementations of other APIs
+
+Historically being an embedded language, we use JavaScript to perform tasks in the host environment, most of the time being a browser. These tasks, like DOM manipulation, adding event listeners, and fetching HTTP requests, though initiated by JavaScript codes, are all part of Web APIs and not part of the core language.  So browser would need an “engine” to run these JavaScript codes to get work done.  The term “JavaScript Engine“ echos the other major part of a browser -  [rendering engine](https://developer.mozilla.org/en-US/docs/Glossary/Rendering_engine), and is more suitable than “JavaScript interpreter“ since modern engines also use Just-In-Time compilation for performance improvement(Interestingly, only the PHP community uses the word “engine” to refer its interpreter).
+
+So we can think of the JavaScript engine as a minimum runtime that is an implementation of the ECMAScript spec, or the “core JavaScript“, and it will only execute JavaScript synchronously, which is not that useful. The runtime will add all the good stuff that we want: for the browser environment, it’s DOM, Fetch and other Web APIs; for the server environment, it’s file systems, networking and also some Web APIs.  If I can use an analogy:  the JavaScript engine is like a human brain that can understand instructions, and runtime is the complete human with a brain and a body that can both understand instructions and perform tasks. Just to think that something necessary and simple as the console API is not included in the ECMAScript spec and has be to add by the runtime. To make up these “bodies“, or to implement these APIs, we also need to use other low-level languages, like for Node it’s c++,  for Deno it’s Rust, and for Bun it’s Zig. These are all driven by the community; the lack of an official organization or a reference implementation for server-side JavaScript also makes it possible that one cannot overshadow the others.
+
+## Conclusion
+
+So there you have it, for other languages, either it does not need a runtime at all, or it has several runtimes but one being predominately used. For JavaScript, with multiple choices for web browsers, we also have several contenders for runtimes, and there always will be newcomers to challenge the status quo.  Just like how all the major frontend frameworks compete with each other and make the web better altogether, I believe all runtimes are going in the same good direction for server-side JavaScript, for that we have to thank all the creative and hard-working community contributors, who keep making JavaScript fresh and exciting.

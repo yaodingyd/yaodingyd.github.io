@@ -26,7 +26,9 @@ I spent one hour and was still not able to run a single test case successfully, 
 
 There are some issues when converting to swc, and it is clearly documented on their part. Mostly because [swc correctly implemented the ESM spec](https://github.com/swc-project/swc/issues/5205). The following issues are all part of it:
 
-1. Directly mock ESM would fail. For example the following code would throw error
+#### issue 1
+
+Directly mock ESM would fail. For example the following code would throw error
 
 ```javascript
 import * as Foo from "foo";
@@ -52,7 +54,9 @@ it("foo", () => {
 });
 ```
 
-2. This is just a different format of the first issue, assigning jest mock function to imports would throw error. For example:
+#### issue 2
+
+This is just a different format of the first issue, assigning jest mock function to imports would throw error. For example:
 
 ```javascript
 import * as Foo from "foo";
@@ -77,7 +81,9 @@ Foo.fooFunction = jest.fn;
 // now it works
 ```
 
-3. Calling jest.mock() with the module factory parameter will always throw error if it tries to access a variable. This will not work even if you prefix variable name with 'mock'. @swc/jest does not respect this disable check rule and [consider it a jest issue](https://github.com/swc-project/swc/issues/7005). So this will not work:
+#### issue 3
+
+Calling jest.mock() with the module factory parameter will always throw error if it tries to access a variable. This will not work even if you prefix variable name with 'mock'. @swc/jest does not respect this disable check rule and [consider it a jest issue](https://github.com/swc-project/swc/issues/7005). So this will not work:
 
 ```javascript
 const mockfunction = jest.fn();

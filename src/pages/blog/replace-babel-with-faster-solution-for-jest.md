@@ -1,6 +1,6 @@
 ---
 layout: "../../layouts/BlogPost.astro"
-title: "Replace Bebel with Faster Solution for Jest"
+title: "Replace Babel with Faster Solution for Jest"
 pubDate: "August 23 2023"
 ---
 

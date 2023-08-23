@@ -20,7 +20,7 @@ len("\\c") == 2 # true
 print("\c")     # \c
 ```
 
-```javascript
+```
 // JavaScript
 "c" !== "\\c"; // true
 "c".length === 1; // true
@@ -52,7 +52,7 @@ len(r"\c")   # 2
 print(r"\c") # \c
 ```
 
-```javascript
+```
 // JavaScript
 String.raw`\c`.length; // 2
 console.log(String.raw`\c`); // \c

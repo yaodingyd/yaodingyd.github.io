@@ -11,9 +11,16 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^0.11.4",
-    "@astrojs/rss": "^1.0.2",
-    "@astrojs/sitemap": "^1.0.0",
-    "astro": "^2.6.4"
+    "@astrojs/mdx": "^0.11.6",
+    "@astrojs/rss": "^1.2.1",
+    "@astrojs/sitemap": "^1.4.0",
+    "@astrojs/tailwind": "^4.0.0",
+    "astro": "^2.10.14",
+    "tailwindcss": "^3.0.24"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.2",
+    "prettier-plugin-astro": "^0.12.0",
+    "prettier-plugin-tailwindcss": "^0.5.3"
   }
 }

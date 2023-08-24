@@ -2,5 +2,5 @@
 // You can import this data from anywhere in your site by using the `import` keyword.
 
 export const SITE_TITLE = 'Yao Ding';
-export const SITE_DESCRIPTION = 'Open Sorcerer\'s Spellbook';
+export const SITE_DESCRIPTION = 'Yao \'s personal blog';
 

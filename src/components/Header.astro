@@ -3,19 +3,98 @@ import HeaderLink from './HeaderLink.astro';
 import { SITE_TITLE } from '../config';
 ---
 
+
+
 <header>
-	<h2>
-		{SITE_TITLE}
-	</h2>
-	<nav>
-		<HeaderLink href="/">Home</HeaderLink>
-	</nav>
+	<div class="flex justify-between items-center">
+		<h2>
+			<a href="/" class="no-underline">{SITE_TITLE}</a>
+		</h2>
+		<button class="theme-toggle" data-theme-toggle title="Toggles light & dark" aria-label="auto" aria-live="polite">
+			<svg class="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
+			  <mask class="moon" id="moon-mask">
+				<rect x="0" y="0" width="100%" height="100%" fill="white" />
+				<circle cx="24" cy="10" r="6" fill="black" />
+			  </mask>
+			  <circle class="sun" cx="12" cy="12" r="6" mask="url(#moon-mask)" fill="currentColor" />
+			  <g class="sun-beams" stroke="currentColor">
+				<line x1="12" y1="1" x2="12" y2="3" />
+				<line x1="12" y1="21" x2="12" y2="23" />
+				<line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+				<line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+				<line x1="1" y1="12" x2="3" y2="12" />
+				<line x1="21" y1="12" x2="23" y2="12" />
+				<line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+				<line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+			   </g>
+			</svg>
+		  </button>
+	</div>
+	
 </header>
-<style>
-	header {
-		margin: 0em 0 2em;
-	}
-	h2 {
-		margin: 0.5em 0;
-	}
-</style>
+
+
+<script>
+/**
+ * Based on article https://whitep4nth3r.com/blog/best-light-dark-mode-theme-toggle-javascript/
+ */
+/**
+* Utility function to calculate the current theme setting.
+* Look for a local storage value.
+* Fall back to system setting.
+* Fall back to light mode.
+*/
+function calculateSettingAsThemeString({ localStorageTheme, systemSettingDark }) {
+  if (localStorageTheme !== null) {
+    return localStorageTheme;
+  }
+
+  if (systemSettingDark.matches) {
+    return "dark";
+  }
+
+  return "light";
+}
+
+
+/**
+* Utility function to update the theme setting on the html tag
+*/
+function updateThemeOnHtmlEl({ theme }) {
+  document.querySelector("html").setAttribute("data-theme", theme);
+}
+
+
+/**
+* On page load:
+*/
+
+/**
+* 1. Grab what we need from the DOM and system settings on page load
+*/
+const button = document.querySelector("[data-theme-toggle]");
+const localStorageTheme = localStorage.getItem("theme");
+const systemSettingDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+/**
+* 2. Work out the current site settings
+*/
+let currentThemeSetting = calculateSettingAsThemeString({ localStorageTheme, systemSettingDark });
+
+/**
+* 3. Update the theme setting and button text accoridng to current settings
+*/
+updateThemeOnHtmlEl({ theme: currentThemeSetting });
+
+/**
+* 4. Add an event listener to toggle the theme
+*/
+button.addEventListener("click", (event) => {
+  const newTheme = currentThemeSetting === "dark" ? "light" : "dark";
+
+  localStorage.setItem("theme", newTheme);
+  updateThemeOnHtmlEl({ theme: newTheme });
+
+  currentThemeSetting = newTheme;
+}); 
+</script>

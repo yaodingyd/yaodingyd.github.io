@@ -1,6 +1,6 @@
 ---
 layout: "../../layouts/BlogPost.astro"
-title: "Raw string, interpreted string, and escaping characters"
+title: "Raw String, Interpreted String, and Escaping Characters"
 pubDate: "Jun 16 2023"
 ---
 

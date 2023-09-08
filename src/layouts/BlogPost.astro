@@ -18,7 +18,7 @@ const {
 } = Astro.props;
 ---
 
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="dark" transition:animate="none">
   <head>
     <BaseHead title={title} description={description} />
   </head>
@@ -27,7 +27,7 @@ const {
     <Header />
     <main>
       <article>
-        <h1 class="title">{title}</h1>
+        <h1 class="title" transition:name="title" transition:animate="slide">{title}</h1>
         {pubDate && <time>{pubDate}</time>}
         <hr />
         <slot />

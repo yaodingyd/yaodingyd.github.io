@@ -22,7 +22,8 @@
 body {
 	font-family: Verdana, sans-serif;
 	margin: auto;
-	padding: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
 	max-width: 800px;
 	text-align: left;
 	word-wrap: break-word;
@@ -87,32 +88,30 @@ Toggle button animation from https://web.dev/patterns/theming/theme-switch/
 */
 
 .theme-toggle {
---size: 2rem;
---icon-fill: hsl(210 10% 30%);
---icon-fill-hover: hsl(210 10% 15%);
+	--size: 2rem;
+	--icon-fill: hsl(210 10% 30%);
+	--icon-fill-hover: hsl(210 10% 15%);
 
-background: none;
-border: none;
-padding: 0;
+	background: none;
+	border: none;
+	padding: 0;
 
-inline-size: var(--size);
-block-size: var(--size);
-aspect-ratio: 1;
-border-radius: 50%;
+	inline-size: var(--size);
+	block-size: var(--size);
+	aspect-ratio: 1;
+	border-radius: 50%;
 
-cursor: pointer;
-touch-action: manipulation;
--webkit-tap-highlight-color: transparent;
+	cursor: pointer;
+	touch-action: manipulation;
+	-webkit-tap-highlight-color: transparent;
 
-outline-offset: 5px;
+	outline-offset: 5px;
 
-& > svg {
-	inline-size: 100%;
-	block-size: 100%;
-	stroke-linecap: round;
-}
-
-
+	& > svg {
+		inline-size: 100%;
+		block-size: 100%;
+		stroke-linecap: round;
+	}
 
 	@media (hover: none) {
 		--size: 48px;

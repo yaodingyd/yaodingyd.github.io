@@ -5,9 +5,19 @@ import { SITE_TITLE } from '../config';
 
 <header>
 	<div class="flex justify-between items-center">
-		<h2>
-			<a href="/" class="no-underline">{SITE_TITLE}</a>
-		</h2>
+		<div class="flex items-end">
+			<h1>
+				<a href="/" class="no-underline">{SITE_TITLE}</a>
+			</h1>
+			<h3 class="ml-10 pb-2 divide-x divide-x-200">
+				<HeaderLink href="https://www.linkedin.com/in/yao-ding/">
+					<span class="fa fa-linkedin"></span>
+				</HeaderLink>
+				<HeaderLink href="https://www.github.com/yaodingyd/">
+					<span class="fa fa-github"></span>
+				</HeaderLink>
+			</h3>
+		</div>
 		<button class="theme-toggle" data-theme-toggle title="Toggles light & dark" aria-label="auto" aria-live="polite">
 			<svg class="sun-and-moon" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
 			  <mask class="moon" id="moon-mask">

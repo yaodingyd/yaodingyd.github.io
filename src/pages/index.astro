@@ -11,7 +11,7 @@ const posts = (await Astro.glob('./blog/*.{md,mdx}')).sort(
 ---
 
 <!doctype html>
-<html lang="en" data-theme="dark" transition:animate="fade">
+<html lang="en" data-theme="dark">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
@@ -24,7 +24,11 @@ const posts = (await Astro.glob('./blog/*.{md,mdx}')).sort(
 						posts.map((post) => (
 							<li class="mb-8 list-none">
 								<div>
-									<a class="text-xl no-underline" href={post.url} rel="prefetch-intent" transition:name="title">
+									<a 
+										class="text-xl no-underline" 
+										href={post.url} 
+										rel="prefetch-intent" 
+										transition:name={post.frontmatter.title}>
 										{post.frontmatter.title}
 									</a>
 								</div>

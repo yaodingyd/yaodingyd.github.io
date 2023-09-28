@@ -28,7 +28,7 @@ const posts = (await Astro.glob('./blog/*.{md,mdx}')).sort(
 										class="text-xl no-underline" 
 										href={post.url} 
 										rel="prefetch-intent" 
-										transition:name={post.frontmatter.title}>
+									>
 										{post.frontmatter.title}
 									</a>
 								</div>

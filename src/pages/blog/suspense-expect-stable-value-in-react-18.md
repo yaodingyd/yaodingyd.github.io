@@ -1,7 +1,7 @@
 ---
 layout: "../../layouts/BlogPost.astro"
 title:  "Suspense Expects Stable Value in React 18"
-pubDate:   October 27, 2034
+pubDate:   October 27, 2023
 ---
 
 I've been banging my head over a page stuck in loading spinner issue at work for a long time. Some background: this page uses `Suspense` to lazy-load a component that uses react-query to fetch some data, and we display a spinner before `useQuery` gets data. Ever since we migrated to react 18, we began to see  that one `useQuery` never resolved, even though the underlying http call finished. So I wildly guess that react 18's concurrent scheduling somewhat messed with react query. Well it turned out it's much simpler (or harder to find) than that: react 18 now expects a stable value within `Suspense`.

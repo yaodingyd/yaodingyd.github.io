@@ -8,6 +8,8 @@ I've been banging my head over a page stuck in loading spinner issue at work for
 
 Let's look at some examples: a very simple react 18 application that has a `Suspense` and one state update to trigger a rerender. I have added a `console.log` to show when rerender happens.
 
+# Examples
+
 First, react 18 with `ReactDOM.render` with the old root behavior:
 <iframe src="https://codesandbox.io/embed/old-root-lazy-component-w7pflf?fontsize=14&hidenavigation=1&theme=dark"
     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
@@ -16,7 +18,7 @@ First, react 18 with `ReactDOM.render` with the old root behavior:
     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
-Now react 18  with `createRoot`, and a stable value created with `useState` for suspended component:
+Next, react 18  with `createRoot`, and a stable value created with `useState` for suspended component:
 <iframe src="https://codesandbox.io/embed/new-root-lazy-component-stable-sm7v2c?fontsize=14&hidenavigation=1&theme=dark"
     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
     title="new root lazy component, stable"
@@ -24,7 +26,7 @@ Now react 18  with `createRoot`, and a stable value created with `useState` for 
     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
 
-Now react 18 with unstable value, notice that we now have over 1k console.log messages, indicating component keeps rerendering
+Lastly react 18 with unstable value, notice that we now have over 1k console.log messages, indicating component keeps rerendering
 <iframe src="https://codesandbox.io/embed/new-root-lazy-component-unstabled-sk53w3?fontsize=14&hidenavigation=1&theme=dark"
     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
     title="new root lazy component, unstabled"
@@ -33,4 +35,7 @@ Now react 18 with unstable value, notice that we now have over 1k console.log me
 ></iframe>
 
 
-Now we can see that in react 18 new root mode, `Suspense` would require a stable value to not rerender. It's a bit unfortunate that this is not documented anywhere in react docs. I have filed a [bug](https://github.com/facebook/react/issues/27611) in react repo and see if this is intended or not. 
+# Stable Value
+
+Now we can see that in react 18 new root mode, `Suspense` would require a *stable value* to not rerender. If you are not familiar with what is stable value yet, shopify engineering has a wonderful [blog](https://shopify.engineering/master-reacts-stable-values) on it, basically it means values which are the same across multiple renders. Here the same "value" is from react's point of view, so more accurately it should be the same equality through shallow comparison. Thus when using a value from `useState` hook, it is kept the same through renders.
+It's a bit unfortunate that this is not documented anywhere in react docs. I have since filed a [bug](https://github.com/facebook/react/issues/27611) in react repo and see if this is intended or not. 

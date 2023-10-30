@@ -61,7 +61,12 @@ Lastly react 18 with unstable value, notice that we now have over 1k console.log
 
 Now we can see that in react 18 new root mode, `Suspense` would require a *stable value* to not rerender. If you are not familiar with what is stable value yet, shopify engineering has a wonderful [blog](https://shopify.engineering/master-reacts-stable-values) on it, basically it means values which are the same across multiple renders. Here the same "value" is from react's point of view, so more accurately it should be the same referential equality through shallow comparison. When using a value from `useState` hook, it is kept the same through renders, so we won't have any re-render.
 
-React team actually suggested that "[Lazy should always either be hoisted to the top level of your file or cached outside of React](https://github.com/facebook/react/issues/24881#issuecomment-1179535114)" so the above pattern should be not be implemented in the first place, but if you have to do dynamic lazy load under certain situations, at least use a stable value to avoid rerenders.
+
+# Conclusion
+
+Back to my original issue, because of the constant rerendering created from unstable component value, react-query lost reference to its original call so the `useQuery` never resolves to loaded state. 
+
+React team actually suggested that "[Lazy should always either be hoisted to the top level of your file or cached outside of React](https://github.com/facebook/react/issues/24881#issuecomment-1179535114)" so the above pattern should be not be implemented in the first place (oh well), but if you have to do dynamic lazy load under certain situations, at least use a stable value to avoid rerenders.
 
 
 

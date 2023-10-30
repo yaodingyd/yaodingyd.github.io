@@ -1,6 +1,6 @@
 ---
 layout: "../../layouts/BlogPost.astro"
-title:  "Suspense Expects Stable Value At Least in React 18"
+title:  "Suspense Expects Stable Value in React 18"
 pubDate:   October 27, 2023
 ---
 

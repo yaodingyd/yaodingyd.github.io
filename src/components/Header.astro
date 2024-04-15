@@ -1,4 +1,8 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
+import { fade } from 'astro:transitions';
+
+
 import HeaderLink from './HeaderLink.astro';
 import { SITE_TITLE } from '../config';
 ---
@@ -40,6 +44,7 @@ import { SITE_TITLE } from '../config';
 	</div>	
 </header>
 
+<ViewTransitions />
 
 <script>
 /**

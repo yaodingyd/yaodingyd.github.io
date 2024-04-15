@@ -1,7 +1,5 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
-import { fade } from 'astro:transitions';
-
 
 import HeaderLink from './HeaderLink.astro';
 import { SITE_TITLE } from '../config';
@@ -13,7 +11,7 @@ import { SITE_TITLE } from '../config';
 			<h1>
 				<a href="/" class="no-underline">{SITE_TITLE}</a>
 			</h1>
-			<h3 class="ml-10 pb-2 divide-x divide-x-200">
+			<h3 class="ml-10 pb-2 divide-x divide-x-200 no-underline">
 				<HeaderLink href="https://www.linkedin.com/in/yao-ding/">
 					<span class="fa fa-linkedin"></span>
 				</HeaderLink>

@@ -5,6 +5,6 @@ const { href, ...props } = Astro.props;
 const isActive = href === Astro.url.pathname.replace(/\/$/, '');
 ---
 
-<a href={href} class:list={['mx-1', { active: isActive }]} {...props}>
+<a href={href} class:list={['mx-1 no-underline', { active: isActive }]} {...props}>
 	<slot />
 </a>

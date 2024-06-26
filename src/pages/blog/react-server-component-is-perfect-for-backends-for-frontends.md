@@ -48,6 +48,7 @@ The benefits of server components shine in this context:
 - We achieve better code colocation for all frontend code.
 - We eliminate multiple network roundtrips to fetch data.
 - Client bundle size is significantly reduced.
+
 It's a perfect match for the BFF pattern.
 
 ## Conclusion

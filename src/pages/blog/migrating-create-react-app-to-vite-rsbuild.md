@@ -33,3 +33,7 @@ And that's it! I didn't need to make changes in the source code or really any ot
 ## Conclusion
 
 Technically speaking, I didn't finish the migration completely since I have not verified the build version and didn't really touch on tests. Still, this was a good experience and definitely shows the power of modern tooling. I think both Vite and Rsbuild offer an excellent experience, and honestly, Rsbuild wins here for me with thorough official documentation and fewer invasive changes in the code.
+
+## Update 
+
+I tried to complete the migration by also upgrade the tests from using jest to vitest and it was brutal: in the end I spent almost 10x time than migrating the build system and it was not a perfect one, meaning I have to update some custom settings to make tests pass. One interesting lesson is I stuck at a snapshot testing for a long time, until I realized that the the mocks were not consistent in one component: from the same source, some imports were mocked but some were not. Next time, better to mock all imports from one source just to make your life easier.

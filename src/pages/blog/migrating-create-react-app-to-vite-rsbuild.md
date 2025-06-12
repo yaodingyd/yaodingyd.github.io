@@ -4,11 +4,11 @@ title:  "My Experience with Migrating Create-React-App to Vite/Rsbuild"
 pubDate: "February 20 2025"
 ---
 
-Recently, the React team has [officially deprecated Create React App (CRA)](https://react.dev/blog/2025/02/14/sunsetting-create-react-app) and recommends moving to either a framework or a build tool. This created [some discourse](https://x.com/youyuxi/status/1891721924197351497) online about whether the React team had been hesitant to recommend a build tool, and I feel like this is the right time to actually test the migration from Create React App. I’m choosing [one open-source project](https://github.com/aqualinkorg/aqualink-app) I contribute to, which is a rather simple Single Page Application (SPA) and a perfect candidate. In this case, I’m testing Vite and Rsbuild since I’m not really a Parcel user. It’s my grease pass. I'll check all possible angles, including documentation, community support, and overall developer experience.
+Recently, the React team has [officially deprecated Create React App (CRA)](https://react.dev/blog/2025/02/14/sunsetting-create-react-app) and recommends moving to either a framework or a build tool. This created [some discourse](https://x.com/youyuxi/status/1891721924197351497) online about whether the React team had been hesitant to recommend a build tool, and I feel like this is the right time to actually test the migration from Create-React-App. I’m choosing [one open-source project](https://github.com/aqualinkorg/aqualink-app) I have contributed to, which is a rather simple Single-Page-Application (SPA), thus a perfect candidate. In this case, I’m testing both Vite and Rsbuild, and I'll check from all possible angles, including documentation, community support, and overall developer experience.
 
 ## Vite
 
-To be honest, I’m kind of surprised that the Vite documentation does not have an official guide for CRA migration. That's not really an issue, though, since there are so many good guides from the community. I used the [migration guide recommended by the React team](https://www.robinwieruch.de/vite-create-react-app/), and it roughly follows these steps:
+To be honest, I’m kind of surprised that the Vite documentation does not have an official guide for CRA migration. That's not really an issue though, since there are so many good guides from the community. I used the [migration guide recommended by the React team](https://www.robinwieruch.de/vite-create-react-app/), and it roughly follows these steps:
 
 1. Update dependencies (add Vite, remove react-scripts)
 2. Create `vite.config.js` with basic settings

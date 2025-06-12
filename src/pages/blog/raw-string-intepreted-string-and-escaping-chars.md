@@ -8,7 +8,7 @@ When we write a string in almost all programming languages, the string is actual
 
 ## Let's see an example
 
-In Python, the `"\c"` sequence is not recognized as a special character sequence. Therefore, when you compare `"\c"` and `"\\c"`, they are considered equal because the second backslash "\" is treated as an escape character, representing a single backslash character. So both `"\c"` and `"\\c"` are treated as the same string `"\\c"`.
+In Python, the `"\c"` sequence is not recognized as a special character sequence. Therefore, when you compare `"\c"` and `"\\c"`, they are considered equal because the second backslash `"\"` is treated as an escape character, representing a single backslash character. So both `"\c"` and `"\\c"` are treated as the same string `"\\c"`.
 
 However, in JavaScript, although `"\c"` is also not recognized as a special character sequence. but when do comparison with `"\\c"`, they are not considered equal.
 
@@ -20,7 +20,7 @@ len("\\c") == 2 # true
 print("\c")     # \c
 ```
 
-```
+```javascript
 // JavaScript
 "c" !== "\\c"; // true
 "c".length === 1; // true
@@ -52,7 +52,7 @@ len(r"\c")   # 2
 print(r"\c") # \c
 ```
 
-```
+```javascript
 // JavaScript
 String.raw`\c`.length; // 2
 console.log(String.raw`\c`); // \c
